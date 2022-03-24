@@ -1,10 +1,18 @@
+import { useRouter } from "next/router";
 import LoginTitle from "../components/Login/LoginTitle"
 import LoginLema from "../components/Login/LoginLema";
 import GoogleButton from "../components/Login/GoogleButton";
 import RecoveryInformation from "../components/Login/RecoveryInformation";
 import CopyrightFooter from "../components/Login/CopyrightFooter";
+import LoginErrorMessage from "./../components/Login/LoginErrorMessage";
+
 
 const LoginPage = () => {
+
+  const { query } = useRouter();
+
+  
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
       <div className="hidden lg:block bg-primaryColor z-10" />
@@ -16,6 +24,9 @@ const LoginPage = () => {
           <LoginTitle/>
           <LoginLema />
           <GoogleButton />
+          {
+            query.error && <LoginErrorMessage message={query.error}/>
+          }
           <RecoveryInformation />
         </div>
         <footer className="flex justify-center mb-4">
