@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
-import LoginTitle from "../components/Login/LoginTitle"
-import LoginLema from "../components/Login/LoginLema";
-import GoogleButton from "../components/Login/GoogleButton";
-import RecoveryInformation from "../components/Login/RecoveryInformation";
-import CopyrightFooter from "../components/Login/CopyrightFooter";
-import LoginErrorMessage from "./../components/Login/LoginErrorMessage";
+import LoginTitle from "../components/login/LoginTitle"
+import LoginLema from "../components/login/LoginLema";
+import GoogleButton from "../components/login/GoogleButton";
+import RecoveryInformation from "../components/login/RecoveryInformation";
+import CopyrightFooter from "../components/login/CopyrightFooter";
+import LoginErrorMessage from "../components/login/LoginErrorMessage";
 
 
 const LoginPage = () => {
