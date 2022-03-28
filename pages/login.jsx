@@ -1,10 +1,16 @@
-import LoginTitle from "../components/Login/LoginTitle"
-import LoginLema from "../components/Login/LoginLema";
-import GoogleButton from "../components/Login/GoogleButton";
-import RecoveryInformation from "../components/Login/RecoveryInformation";
-import CopyrightFooter from "../components/Login/CopyrightFooter";
+import { useRouter } from "next/router";
+import { getUnAuthenticatedRedirect } from "./../services/user";
+import LoginTitle from "../components/login/LoginTitle"
+import LoginLema from "../components/login/LoginLema";
+import GoogleButton from "../components/login/GoogleButton";
+import RecoveryInformation from "../components/login/RecoveryInformation";
+import CopyrightFooter from "../components/login/CopyrightFooter";
+import LoginErrorMessage from "../components/login/LoginErrorMessage";
+
 
 const LoginPage = () => {
+  const { query } = useRouter();
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
       <div className="hidden lg:block bg-primaryColor z-10" />
@@ -16,6 +22,9 @@ const LoginPage = () => {
           <LoginTitle/>
           <LoginLema />
           <GoogleButton />
+          {
+            query.error && <LoginErrorMessage message={query.error}/>
+          }
           <RecoveryInformation />
         </div>
         <footer className="flex justify-center mb-4">
@@ -24,6 +33,13 @@ const LoginPage = () => {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps ({ req }) {
+  const { user_auth_token } = req.cookies
+
+  return await getUnAuthenticatedRedirect(user_auth_token)
+
 }
 
 export default LoginPage;
