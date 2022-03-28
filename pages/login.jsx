@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { getUnAuthenticatedRedirect } from "./../services/user";
 import LoginTitle from "../components/login/LoginTitle"
 import LoginLema from "../components/login/LoginLema";
 import GoogleButton from "../components/login/GoogleButton";
@@ -8,10 +9,7 @@ import LoginErrorMessage from "../components/login/LoginErrorMessage";
 
 
 const LoginPage = () => {
-
   const { query } = useRouter();
-
-  
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
@@ -35,6 +33,13 @@ const LoginPage = () => {
       </div>
     </div>
   )
+}
+
+export async function getServerSideProps ({ req }) {
+  const { user_auth_token } = req.cookies
+
+  return await getUnAuthenticatedRedirect(user_auth_token)
+
 }
 
 export default LoginPage;
