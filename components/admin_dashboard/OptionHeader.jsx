@@ -25,7 +25,6 @@ const OptionHeader = ({ title, showSearchBar, showAddButton, addButtonText }) =>
         )
       } 
     </div>
-
   )
 }
 

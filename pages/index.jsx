@@ -4,7 +4,9 @@ import { ADMIN_SECTIONS } from "../config/admin";
 import OptionButton from "../components/side_menu/OptionButton";
 import SectionHeader from "./../components/side_menu/SectionHeader";
 import SideHeader from "../components/side_menu/SideHeader";
-import InstitutionDetailSection from "../components/admin_dashboard/InstitutionDetailSection";
+import GradeSection from "../components/admin_dashboard/GradeSection";
+import InstitutionSection from "../components/admin_dashboard/InstitutionSection";
+import GradeDetailSection from "../components/admin_dashboard/GradeDetailSection";
 
 
 const Home = ({ user }) => {
@@ -44,7 +46,7 @@ const Home = ({ user }) => {
         </div>
       </div>
       <div className="p-4 lg:w-full">
-        <InstitutionDetailSection />
+        <GradeDetailSection />
       </div>
     </div>
   )
