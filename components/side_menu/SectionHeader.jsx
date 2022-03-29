@@ -3,7 +3,7 @@ const SectionHeader = ({ text, icon: Icon }) => {
     <div>
       <div className="flex items-center overflow-hidden">
       { Icon && <Icon className="text-white mr-2"/> }
-      <h1 className="text-white font-semibold lg:text-sm">{text}</h1>
+      <h1 className="text-white font-semibold lg:text-lg">{text}</h1>
       </div>
       <div className="w-full h-[1px] bg-white mt-1"/>
     </div>
