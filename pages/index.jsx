@@ -4,10 +4,13 @@ import { ADMIN_SECTIONS } from "../config/admin";
 import OptionButton from "../components/side_menu/OptionButton";
 import SectionHeader from "./../components/side_menu/SectionHeader";
 import SideHeader from "../components/side_menu/SideHeader";
+import OptionHeader from "../components/admin_dashboard/OptionHeader";
+import SearchInput from "../components/admin_dashboard/SearchInput";
+import InstitutionCard from "../components/admin_dashboard/InstitutionCard";
 
 
 const Home = ({ user }) => {
-  const [sideBarOpen, setSideBarOpen] = useState(true)
+  const [sideBarOpen, setSideBarOpen] = useState(false)
   const [optionSelected, setOptionSelected] = useState(null)
 
   const handleOpen = () => {
@@ -20,7 +23,7 @@ const Home = ({ user }) => {
 
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center whitespace-nowrap">
+    <div className="relative">
       <div className={`transition-all  duration-75 ease-linear absolute top-0 left-0 h-screen ${sideBarOpen ? 'w-3/4 lg:w-1/4' : 'w-0'} bg-primaryColor ${ sideBarOpen && 'p-4'} overflow-hidden`}>
         <SideHeader name="Gustavo Adolfo Pinto" description="Admin" handleOpen={handleOpen}/>
         <div className="mt-4">
@@ -42,7 +45,15 @@ const Home = ({ user }) => {
           }) }
         </div>
       </div>
-      <button className="lg:hidden" onClick={handleOpen}>Open</button>
+      <div className="p-4">
+        <OptionHeader />
+        <SearchInput />
+        <InstitutionCard 
+          name="1 - Institución Educativa Cristobal Colón"
+          city="Cali"
+          address="Calle 25 #33-25"
+        />
+      </div>
     </div>
   )
 }
