@@ -8,6 +8,7 @@ import GradeSection from "../components/admin_dashboard/GradeSection";
 import InstitutionSection from "../components/admin_dashboard/InstitutionSection";
 import GradeDetailSection from "../components/admin_dashboard/GradeDetailSection";
 import StudentSection from "../components/admin_dashboard/StudentSection";
+import StudentDetailSection from "../components/admin_dashboard/StudentDetailSection";
 
 
 const Home = ({ user }) => {
@@ -47,7 +48,7 @@ const Home = ({ user }) => {
         </div>
       </div>
       <div className="p-4 lg:w-full">
-        <StudentSection />
+        <StudentDetailSection />
       </div>
     </div>
   )
