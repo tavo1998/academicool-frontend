@@ -9,7 +9,7 @@ const ItemButton = ({ id, text, handleClose, optionSelected, handleOptionSelecte
   return (
     <button 
       onClick={handleClick}  
-      className={`${isSelected ? 'bg-white text-primaryColor p-1 rounded-lg' : 'text-white text-opacity-80'} w-full text-left`}>
+      className={`${isSelected ? 'bg-white text-primaryColor p-1 rounded-lg' : 'text-white text-opacity-80'} w-full text-left lg:text-xs`}>
       {text}
     </button>
   )
