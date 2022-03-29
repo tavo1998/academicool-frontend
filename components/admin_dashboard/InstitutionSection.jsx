@@ -1,7 +1,34 @@
 import OptionHeader from "./OptionHeader";
 import InstitutionItem from "./InstitutionItem";
 import PaginationButtons from "./PaginationButtons";
-import InstitutionHeader from "./InstitutionHeader";
+import TableHeader from "./TableHeader";
+
+const headerNames = [
+  {
+    col: 1,
+    name: 'ÍD'
+  },
+  {
+    col: 2,
+    name: 'Nombre'
+  },
+  {
+    col: 3,
+    name: 'Misión'
+  },
+  {
+    col: 3,
+    name: 'Visión'
+  },
+  {
+    col: 1,
+    name: 'Ciudad'
+  },
+  {
+    col: 1,
+    name: 'Dirección'
+  }
+]
 
 const InstitutionSection = () => {
   return (
@@ -12,7 +39,9 @@ const InstitutionSection = () => {
         showSearchBar={true}
         addButtonText="Agregar Institución" 
       />
-      <InstitutionHeader />
+      <TableHeader
+        headerNames={headerNames} 
+      />
       <InstitutionItem
         id={1} 
         name="Institución Educativa Cristobal Colón"
