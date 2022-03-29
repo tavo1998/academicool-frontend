@@ -13,43 +13,51 @@ const InstitutionSection = () => {
         addButtonText="Agregar Institución" 
       />
       <InstitutionHeader />
-      <InstitutionItem 
-        name="1 - Institución Educativa Cristobal Colón"
+      <InstitutionItem
+        id={1} 
+        name="Institución Educativa Cristobal Colón"
         city="Cali"
         address="Calle 25 #33-25"
       />
-      <InstitutionItem 
-        name="1 - Institución Educativa Cristobal Colón"
+      <InstitutionItem
+        id={1}  
+        name="Institución Educativa Cristobal Colón"
         city="Cali"
         address="Calle 25 #33-25"
       />
-      <InstitutionItem 
-        name="1 - Institución Educativa Cristobal Colón"
+      <InstitutionItem
+        id={1}  
+        name="Institución Educativa Cristobal Colón"
         city="Cali"
         address="Calle 25 #33-25"
       />
-      <InstitutionItem 
-        name="1 - Institución Educativa Cristobal Colón"
+      <InstitutionItem
+        id={1}  
+        name="Institución Educativa Cristobal Colón"
         city="Cali"
         address="Calle 25 #33-25"
       />
-      <InstitutionItem 
-        name="1 - Institución Educativa Cristobal Colón"
+      <InstitutionItem
+        id={1}  
+        name="Institución Educativa Cristobal Colón"
         city="Cali"
         address="Calle 25 #33-25"
       />
-      <InstitutionItem 
-        name="1 - Institución Educativa Cristobal Colón"
+      <InstitutionItem
+        id={1} 
+        name="Institución Educativa Cristobal Colón"
         city="Cali"
         address="Calle 25 #33-25"
       />
-      <InstitutionItem 
-        name="1 - Institución Educativa Cristobal Colón"
+      <InstitutionItem
+        id={1}  
+        name="Institución Educativa Cristobal Colón"
         city="Cali"
         address="Calle 25 #33-25"
       />
-      <InstitutionItem 
-        name="1 - Institución Educativa Cristobal Colón"
+      <InstitutionItem
+        id={1}  
+        name="Institución Educativa Cristobal Colón"
         city="Cali"
         address="Calle 25 #33-25"
       />
