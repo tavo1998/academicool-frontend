@@ -1,17 +1,13 @@
 import { useState } from "react";
-import { getAuthenticatedRedirect } from "./../services/user";
-import { ADMIN_SECTIONS } from "../config/admin";
-import OptionButton from "../components/side_menu/OptionButton";
-import SectionHeader from "./../components/side_menu/SectionHeader";
-import SideHeader from "../components/side_menu/SideHeader";
-import GradeSection from "../components/admin_dashboard/GradeSection";
-import InstitutionSection from "../components/admin_dashboard/InstitutionSection";
-import GradeDetailSection from "../components/admin_dashboard/GradeDetailSection";
-import StudentSection from "../components/admin_dashboard/StudentSection";
-import StudentDetailSection from "../components/admin_dashboard/StudentDetailSection";
+import { getAuthenticatedRedirect } from "../../services/user";
+import { ADMIN_SECTIONS } from "../../config/admin";
+import OptionButton from "../../components/side_menu/OptionButton";
+import SectionHeader from "../../components/side_menu/SectionHeader";
+import SideHeader from "../../components/side_menu/SideHeader";
+import StudentDetailSection from "../../components/admin_dashboard/StudentDetailSection";
 
 
-const Home = ({ user }) => {
+const AdminDashboard = ({ user }) => {
   const [sideBarOpen, setSideBarOpen] = useState(true)
   const [optionSelected, setOptionSelected] = useState(null)
 
@@ -31,18 +27,18 @@ const Home = ({ user }) => {
         <div className="mt-4">
           { ADMIN_SECTIONS.map(section => {
             return (
-              <>
+              <div key={section.name}>
                 <SectionHeader text={section.name} />
                 <ul className="mt-2 mb-2 space-y-2 lg:space-y-3">
                   { section.options.map(option => {
                     return (
-                      <li>
-                        <OptionButton id={option.id} text={option.name} handleClose={handleOpen} optionSelected={optionSelected} handleOptionSelected={handleOptionSelected}/>
+                      <li key={option.id}>
+                        <OptionButton text={option.name} handleClose={handleOpen} optionSelected={optionSelected} handleOptionSelected={handleOptionSelected}/>
                       </li>
                     )
                   }) }
                 </ul>
-              </>
+              </div>
             )
           }) }
         </div>
@@ -57,8 +53,7 @@ const Home = ({ user }) => {
 export async function getServerSideProps ({ req }) {
   const { user_auth_token } = req.cookies
 
-  //return await getAuthenticatedRedirect(user_auth_token)
-  return { props: {} }
+  return await getAuthenticatedRedirect(user_auth_token)
 }
 
-export default Home
+export default AdminDashboard
