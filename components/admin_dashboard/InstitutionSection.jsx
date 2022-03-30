@@ -1,7 +1,9 @@
+import { INSTITUTION_CREATE_OPTION } from "./../../config/admin";
 import OptionHeader from "./OptionHeader";
 import InstitutionItem from "./InstitutionItem";
 import PaginationButtons from "./PaginationButtons";
 import TableHeader from "./TableHeader";
+import useSideBar from "../../store/sidebar";
 
 const headerNames = [
   {
@@ -31,13 +33,20 @@ const headerNames = [
 ]
 
 const InstitutionSection = () => {
+  const setOptionSelected = useSideBar(state => state.setOptionSelected)
+
+  const handleAddButton = () => {
+    setOptionSelected(INSTITUTION_CREATE_OPTION)
+  }
+
   return (
     <>
       <OptionHeader 
         title="Instituciones" 
         showAddButton={true} 
         showSearchBar={true}
-        addButtonText="Agregar Institución" 
+        addButtonText="Agregar Institución"
+        handleAddButton={handleAddButton} 
       />
       <TableHeader
         headerNames={headerNames} 

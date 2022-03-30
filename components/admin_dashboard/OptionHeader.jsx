@@ -2,7 +2,7 @@ import { AiOutlineMenu } from 'react-icons/ai';
 import SearchInput from "../common/SearchInput";
 import useSideBar from "../../store/sidebar";
 
-const OptionHeader = ({ title, showSearchBar, showAddButton, addButtonText }) => {
+const OptionHeader = ({ title, showSearchBar, showAddButton, addButtonText, handleAddButton }) => {
   const setIsOpen = useSideBar(state => state.setIsOpen)
 
   return (
@@ -16,7 +16,10 @@ const OptionHeader = ({ title, showSearchBar, showAddButton, addButtonText }) =>
         </div>
         {
           showAddButton && (
-            <button className="flex justify-center items-center rounded-sm p-1 text-sm lg:text-base bg-accentColor text-white px-2">
+            <button 
+              className="flex justify-center items-center rounded-sm p-1 text-sm lg:text-base bg-accentColor text-white px-2"
+              onClick={handleAddButton}
+            >
               { addButtonText }
             </button>
           )

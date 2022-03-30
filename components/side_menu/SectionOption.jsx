@@ -7,7 +7,7 @@ const SectionOption = ({ option }) => {
   const setOptionSelected = useSideBar(state => state.setOptionSelected)
 
   const handleClick = () => {
-    setOptionSelected(option)
+    setOptionSelected(option.id)
   }
 
   useEffect(() => {
