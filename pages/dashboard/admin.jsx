@@ -5,15 +5,12 @@ import OptionButton from "../../components/side_menu/OptionButton";
 import SectionHeader from "../../components/side_menu/SectionHeader";
 import SideHeader from "../../components/side_menu/SideHeader";
 import StudentDetailSection from "../../components/admin_dashboard/StudentDetailSection";
+import useSideBar from "../../store/sidebar";
 
 
 const AdminDashboard = ({ user }) => {
-  const [sideBarOpen, setSideBarOpen] = useState(true)
+  const isOpen = useSideBar(state => state.isOpen)
   const [optionSelected, setOptionSelected] = useState(null)
-
-  const handleOpen = () => {
-    setSideBarOpen(!sideBarOpen)
-  }
 
   const handleOptionSelected = (option) => {
     setOptionSelected(option)
@@ -22,8 +19,8 @@ const AdminDashboard = ({ user }) => {
 
   return (
     <div className="relative lg:flex">
-      <div className={`transition-all  duration-75 ease-linear absolute lg:relative top-0 left-0 h-screen ${sideBarOpen ? 'w-3/4 lg:w-1/5' : 'w-0'} bg-primaryColor ${ sideBarOpen && 'p-4'} overflow-hidden`}>
-        <SideHeader name="Gustavo Adolfo Pinto" description="Admin" handleOpen={handleOpen}/>
+      <div className={`transition-all  duration-75 ease-linear absolute lg:relative top-0 left-0 h-screen ${isOpen ? 'w-3/4 lg:w-1/5' : 'w-0'} bg-primaryColor ${ isOpen && 'p-4'} overflow-hidden`}>
+        <SideHeader name="Gustavo Adolfo Pinto" description="Admin"/>
         <div className="mt-4">
           { ADMIN_SECTIONS.map(section => {
             return (
@@ -33,7 +30,7 @@ const AdminDashboard = ({ user }) => {
                   { section.options.map(option => {
                     return (
                       <li key={option.id}>
-                        <OptionButton text={option.name} handleClose={handleOpen} optionSelected={optionSelected} handleOptionSelected={handleOptionSelected}/>
+                        <OptionButton text={option.name} optionSelected={optionSelected} handleOptionSelected={handleOptionSelected}/>
                       </li>
                     )
                   }) }

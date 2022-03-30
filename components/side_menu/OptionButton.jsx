@@ -1,4 +1,4 @@
-const ItemButton = ({ id, text, handleClose, optionSelected, handleOptionSelected }) => {
+const ItemButton = ({ id, text, optionSelected, handleOptionSelected }) => {
 
   const isSelected = optionSelected === id
 
