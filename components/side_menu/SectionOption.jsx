@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useSideBar from "../../store/sidebar"
 
-const ItemButton = ({ option }) => {
+const SectionOption = ({ option }) => {
   const [isSelected, setIsSelected] = useState(false)
   const optionSelected = useSideBar(state => state.optionSelected)
   const setOptionSelected = useSideBar(state => state.setOptionSelected)
@@ -25,4 +25,4 @@ const ItemButton = ({ option }) => {
   )
 }
 
-export default ItemButton;
+export default SectionOption;
