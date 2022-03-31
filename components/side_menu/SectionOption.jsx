@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
-import useSideBar from "../../store/sidebar"
+import useStore from "../../store"
 
 const SectionOption = ({ option }) => {
   const [isSelected, setIsSelected] = useState(false)
-  const optionSelected = useSideBar(state => state.optionSelected)
-  const setOptionSelected = useSideBar(state => state.setOptionSelected)
+  const itemSideBarSelected = useStore(state => state.itemSideBarSelected)
+  const setItemSideBarSelected = useStore(state => state.setItemSideBarSelected)
+  const setSectionSelected = useStore(state => state.setSectionSelected)
 
   const handleClick = () => {
-    setOptionSelected(option.id)
+    setSectionSelected(option.sectionType)
+    setItemSideBarSelected(option.id)
   }
 
   useEffect(() => {
-    if(optionSelected && optionSelected.id === option.id) setIsSelected(true)
+    if(itemSideBarSelected && itemSideBarSelected === option.id) setIsSelected(true)
     else setIsSelected(false)
-  }, [optionSelected])
+  }, [itemSideBarSelected])
   
   
   return (

@@ -1,14 +1,14 @@
 import { BsX } from "react-icons/bs";
-import useSideBar from "../../store/sidebar";
+import useStore from "../../store";
 import { useUser } from "./../../context/userContext";
 
 const SideHeader = ({ name, description, handleOpen }) => {
   const user = useUser();
-  const setIsOpen = useSideBar(state => state.setIsOpen)
+  const setIsSideBarOpen = useStore(state => state.setIsSideBarOpen)
 
   return (
     <div>
-      <button onClick={() => setIsOpen()} className="lg:hidden">
+      <button onClick={() => setIsSideBarOpen()} className="lg:hidden">
         <BsX className="text-white h-10 w-10"/>
       </button>
       <div className="flex flex-col items-center">

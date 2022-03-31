@@ -3,7 +3,7 @@ import OptionHeader from "./OptionHeader";
 import InstitutionItem from "./InstitutionItem";
 import PaginationButtons from "./PaginationButtons";
 import TableHeader from "./TableHeader";
-import useSideBar from "../../store/sidebar";
+import useStore from "../../store";
 
 const headerNames = [
   {
@@ -33,10 +33,10 @@ const headerNames = [
 ]
 
 const InstitutionSection = () => {
-  const setOptionSelected = useSideBar(state => state.setOptionSelected)
+  const setSectionSelected = useStore(state => state.setSectionSelected)
 
   const handleAddButton = () => {
-    setOptionSelected(INSTITUTION_CREATE_OPTION)
+    setSectionSelected(INSTITUTION_CREATE_OPTION)
   }
 
   return (

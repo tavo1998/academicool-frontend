@@ -1,9 +1,9 @@
 import { AiOutlineMenu } from 'react-icons/ai';
 import SearchInput from "../common/SearchInput";
-import useSideBar from "../../store/sidebar";
+import useStore from "../../store";
 
 const OptionHeader = ({ title, showSearchBar, showAddButton, addButtonText, handleAddButton }) => {
-  const setIsOpen = useSideBar(state => state.setIsOpen)
+  const setIsSideBarOpen = useStore(state => state.setIsSideBarOpen)
 
   return (
     <div className="lg:flex justify-between lg:mb-2">
