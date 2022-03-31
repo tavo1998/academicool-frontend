@@ -9,7 +9,7 @@ const OptionHeader = ({ title, showSearchBar, showAddButton, addButtonText, hand
     <div className="lg:flex justify-between lg:mb-2">
       <div className="flex justify-between space-x-2 lg:flex-1">
         <div className="flex justify-between items-center space-x-2 lg:space-x-0">
-          <button onClick={() => setIsOpen()}>
+          <button onClick={() => setIsSideBarOpen()}>
             <AiOutlineMenu className="text-lg text-customGrey lg:hidden"/>
           </button>
           <h1 className="text-lg lg:text-xl text-customGrey font-semibold">{title}</h1>

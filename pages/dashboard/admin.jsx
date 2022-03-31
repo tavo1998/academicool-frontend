@@ -7,8 +7,6 @@ import InstitutionDetailSection from "../../components/admin_dashboard/Instituti
 
 const AdminDashboard = () => {
   const sectionSelected = useStore(state => state.sectionSelected)
-
-  console.log(sectionSelected)
   
   const renderSection = () => {
     if(sectionSelected.id === null) return <h1>Ninguna opción seleccionada</h1>
