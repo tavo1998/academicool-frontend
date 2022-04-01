@@ -1,4 +1,4 @@
-import { ADMIN_OPTIONS, INSTITUTION_CREATE_OPTION, INSTITUTION_OPTION } from "../../config/admin";
+import { ADMIN_OPTIONS, INSTITUTION_CREATE_OPTION, INSTITUTION_OPTION, INSTITUTION_UPDATE_OPTION } from "../../config/admin";
 import { getAuthenticatedRedirect } from "../../services/user";
 import SideBar from "../../components/side_menu/SideBar";
 import useStore from "../../store";
@@ -12,6 +12,7 @@ const AdminDashboard = () => {
     if(sectionSelected.id === null) return <h1>Ninguna opción seleccionada</h1>
     if(sectionSelected.id === INSTITUTION_OPTION) return <InstitutionSection />
     if(sectionSelected.id === INSTITUTION_CREATE_OPTION) return <InstitutionDetailSection />
+    if(sectionSelected.id === INSTITUTION_UPDATE_OPTION) return <InstitutionDetailSection isEdit/>
   }
 
   return (

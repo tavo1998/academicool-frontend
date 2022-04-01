@@ -1,6 +1,14 @@
 import { MdModeEdit } from "react-icons/md"
+import { INSTITUTION_UPDATE_OPTION } from "../../config/admin"
+import useStore from "../../store"
 
 const InstitutionItem = ({ institution }) => {
+  const setSectionSelected = useStore(state => state.setSectionSelected)
+
+  const handleEdit = () => {
+    setSectionSelected(INSTITUTION_UPDATE_OPTION, institution)
+  }
+
   return (
     <>
       <div className="bg-customGrey bg-opacity-10 pl-2 pr-2 pt-2">
@@ -16,7 +24,9 @@ const InstitutionItem = ({ institution }) => {
           <p className="col-span-12 col-start-2 lg:col-span-2 text-sm text-customGrey">
             <span className="lg:hidden text-customGrey font-semibold">Dirección:</span> {institution.address}
           </p>
-          <MdModeEdit className="text-customGrey h-4 w-4 justify-self-center col-start-12 col-end-13 row-start-1"/>
+          <button onClick={handleEdit} className="col-start-12 col-end-13 row-start-1 justify-self-center">
+            <MdModeEdit className="text-customGrey h-4 w-4 justify-self-center"/>
+          </button>
         </div>
         <div className="h-px bg-customGrey bg-opacity-20" />
       </div>
