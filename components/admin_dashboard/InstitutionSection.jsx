@@ -5,8 +5,8 @@ import PaginationButtons from "./PaginationButtons";
 import TableHeader from "./TableHeader";
 import useStore from "../../store";
 import useSWR from "swr";
-import useHandleForbidden from "../../hooks/useHandleForbidden";
 import fetcher from "../../services/fetcher";
+import ErrorComponent from "../common/ErrorComponent";
 
 const headerNames = [
   {
@@ -34,13 +34,18 @@ const headerNames = [
 const InstitutionSection = () => {
   const { data, error } = useSWR('/api/v1/institutions', fetcher)
   const setSectionSelected = useStore(state => state.setSectionSelected)
-  useHandleForbidden(error)
 
   const handleAddButton = () => {
     setSectionSelected(INSTITUTION_CREATE_OPTION)
   }
 
-  if(error) return <h1>Ocurrió un error</h1>
+  if(error) {
+    return (
+      <ErrorComponent error={error}>
+        <h1>Ocurrió un error</h1>
+      </ErrorComponent>
+    )
+  }
   if(!data) return <h1>Cargando...</h1>
 
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TextAreaField = React.forwardRef(({ title, placeholder, rows, maxLength }, ref) => {
+const TextAreaField = React.forwardRef(({ title, placeholder, rows, maxLength, ...rest }, ref) => {
   return (
     <label className="block w-full">
       <h1 className="text-customGrey font-semibold text-sm lg:text-lg">{title}</h1>
@@ -10,7 +10,8 @@ const TextAreaField = React.forwardRef(({ title, placeholder, rows, maxLength },
         placeholder={placeholder}
         rows={rows}
         maxLength={maxLength}
-        ref={ref} 
+        ref={ref}
+        {...rest} 
       />
    </label>
   )

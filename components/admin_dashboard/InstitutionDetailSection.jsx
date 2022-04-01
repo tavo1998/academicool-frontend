@@ -2,29 +2,46 @@ import AccentButton from "../common/AccentButton"
 import OptionHeader from "./OptionHeader"
 import TextAreaField from "../common/TextAreaField"
 import TextInputField from "../common/TextInputField"
+import ErrorComponent from "../common/ErrorComponent"
 import useStore from "../../store"
+import creator from "./../../services/creator"
+import updater from "./../../services/updater"
 import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { INSTITUTION_OPTION } from "../../config/admin"
+import { useState } from "react"
 
 const InstitutionDetailSection = ({ isEdit }) => {
   const setSectionSelected = useStore(state => state.setSectionSelected)
   const institution = useStore(state => state.sectionSelected.data)
+  const [ isSubmitting, setIsSubmitting ] = useState(false)
+  const [ requestError, setRequestError ] = useState(null)
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data)
-  }
-
-  const handleCancel = () => {
-    setSectionSelected(INSTITUTION_OPTION)
-  }
 
   useEffect(() => {
     if(isEdit) {
       reset({ ...institution })
     }
   }, [])
+
+  const onSubmit = async (data) => {
+    if(requestError) setRequestError(null)
+    setIsSubmitting(true)
+    try {
+      if(isEdit) await updater(`/api/v1/institutions/${institution.id}`, data)
+      else await creator('/api/v1/institutions', data)
+      setSectionSelected(INSTITUTION_OPTION)
+    } catch (e) {
+      console.log(e)
+      setRequestError(e)
+    }
+    setIsSubmitting(false)
+  }
+
+
+  const handleCancel = () => {
+    setSectionSelected(INSTITUTION_OPTION)
+  }
 
   return (
     <div className="lg:w-1/2 lg:mx-auto">
@@ -35,8 +52,9 @@ const InstitutionDetailSection = ({ isEdit }) => {
           <TextInputField 
             title="Nombre"
             placeholder="Nombre de la Institución"
-            error={errors.name?.message}
             maxLength={100}
+            error={errors.name?.message}
+            disabled={ isSubmitting }
             {...register("name", { 
               required: { 
                 value: isEdit ? false : true, 
@@ -51,6 +69,7 @@ const InstitutionDetailSection = ({ isEdit }) => {
             placeholder="Dirección"
             maxLength={100}
             error={errors.address?.message}
+            disabled={ isSubmitting }
             {...register("address", { 
               required: { 
                 value: isEdit ? false : true, 
@@ -65,6 +84,7 @@ const InstitutionDetailSection = ({ isEdit }) => {
             rows={6}
             maxLength={280}
             placeholder="Escriba una misión"
+            disabled={ isSubmitting }
             {...register("mision")}
           />
         </div>
@@ -74,13 +94,15 @@ const InstitutionDetailSection = ({ isEdit }) => {
             rows={6}
             maxLength={280}
             placeholder="Escriba una visión"
+            disabled={ isSubmitting }
             {...register("vision")}
           />
         </div>
         <div className="flex space-x-2 mt-2 lg:mt-4 lg:col-span-2">
           <AccentButton 
-            text="Guardar Cambios"
+            text={isSubmitting ? "Cargando..." : "Guardar Cambios"}
             type="submit"
+            disabled={isSubmitting}
           />
           <AccentButton 
             text="Cancelar"
@@ -88,6 +110,13 @@ const InstitutionDetailSection = ({ isEdit }) => {
             onClick={handleCancel}
           />
         </div>
+        <div className="mt-2 lg:col-span-2">
+        { requestError && 
+            <ErrorComponent error={requestError}>
+              <h1>Ocurrió un error al realizar la solicitud, intentelo más tarde</h1>
+            </ErrorComponent> 
+        }
+        </div> 
       </form>
     </div>
   )
