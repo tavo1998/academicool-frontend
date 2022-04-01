@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
-import { getUnAuthenticatedRedirect } from "./../services/user";
+import { getRoleRedirectUrl } from "./../lib/redirect";
+import { getUserAuthenticated } from "../services/user";
 import LoginTitle from "../components/login/LoginTitle"
 import LoginLema from "../components/login/LoginLema";
 import GoogleButton from "../components/login/GoogleButton";
@@ -38,7 +39,17 @@ const LoginPage = () => {
 export async function getServerSideProps ({ req }) {
   const { user_auth_token } = req.cookies
 
-  return await getUnAuthenticatedRedirect(user_auth_token)
+  const user = await getUserAuthenticated(user_auth_token)
+
+  if(user) {
+    return {
+      redirect: { permanent: false, destination: getRoleRedirectUrl(user.role) }
+    }
+  }
+
+  return {
+    props : {}
+  }
 
 }
 
