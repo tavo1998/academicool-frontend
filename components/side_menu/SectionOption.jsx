@@ -5,10 +5,12 @@ const SectionOption = ({ option }) => {
   const itemSideBarSelected = useStore(state => state.itemSideBarSelected)
   const setItemSideBarSelected = useStore(state => state.setItemSideBarSelected)
   const setSectionSelected = useStore(state => state.setSectionSelected)
+  const setIsSideBarOpen = useStore(state => state.setIsSideBarOpen)
 
   const handleClick = () => {
     setSectionSelected(option.sectionType)
     setItemSideBarSelected(option.id)
+    setIsSideBarOpen()
   }
   
   return (
