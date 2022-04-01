@@ -4,7 +4,7 @@ const TableHeader = ({ headerNames }) => {
       <div className="grid grid-cols-12 w-full gap-4 mb-2 pb-2">
         {
           headerNames.map(header => {
-            return <p className={`text-base text-customGrey col-span-${header.col} font-semibold`}>{header.name}</p>
+            return <p key={header.name} className={`text-base text-customGrey col-span-${header.col} font-semibold`}>{header.name}</p>
           })
         }
       </div>

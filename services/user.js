@@ -26,7 +26,7 @@ export async function getUnAuthenticatedRedirect (user_auth_token) {
     return {
       redirect: {
         permanent: false,
-        destination: '/'
+        destination: '/dashboard/admin'
       }
     }
   } catch (e) {
