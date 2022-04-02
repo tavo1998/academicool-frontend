@@ -9,7 +9,7 @@ const AssigmentItem = ({ className, assignment }) => {
   }
 
   return (
-    <div className={`${className} bg-primaryColor bg-opacity-10 p-2`}>
+    <div className={`${className} bg-primaryColor bg-opacity-10 p-2 rounded-sm`}>
       <div className="flex text-customGrey justify-between items-center">
         <h1 className="text-customGrey text-sm font-semibold">
           Ejercicio Teorema de Pitagoras

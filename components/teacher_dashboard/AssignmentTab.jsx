@@ -8,7 +8,7 @@ const AssignmetTab = () => {
       <SearchInput />
       <AccentButton
         className="py-2 mt-2 mb-1" 
-        text="Agregar Comunicado" />
+        text="Crear Asignación" />
       <AssigmentItem className="mt-2" />
       <AssigmentItem className="mt-2" />
       <AssigmentItem className="mt-2" />

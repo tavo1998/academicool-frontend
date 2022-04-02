@@ -2,9 +2,10 @@ import useStore from "../../store"
 import SectionHeader from "../common/SectionHeader"
 import SubjectDescription from "./SubjectDescription"
 import SubjectTabs from "./SubjectTabs"
-import { ASSIGNMENT_TAB, TABS } from "../../config/common"
+import { ASSIGNMENT_TAB, NOTICES_TAB, TABS } from "../../config/common"
 import NoTabSelected from "./NoTabSelected"
 import AssignmetTab from "./AssignmentTab"
+import NoticeTab from "./NoticeTab"
 
 const SubjectTeacherSection = () => {
   const { data } = useStore(state => state.sectionSelected)
@@ -16,6 +17,8 @@ const SubjectTeacherSection = () => {
         return <NoTabSelected />
       case ASSIGNMENT_TAB:
         return <AssignmetTab />
+      case NOTICES_TAB:
+        return <NoticeTab />
       default:
         return <h1>Fantastico</h1>
     }
