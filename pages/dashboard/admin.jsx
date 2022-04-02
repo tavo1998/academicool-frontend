@@ -1,5 +1,5 @@
 import { ADMIN_OPTIONS, INSTITUTION_CREATE_OPTION, INSTITUTION_OPTION, INSTITUTION_UPDATE_OPTION } from "../../config/admin";
-import { getAuthRedirectResponse, getRoleRedirectUrl } from "../../lib/redirect";
+import { getRoleRedirectUrl } from "../../lib/redirect";
 import SideBar from "../../components/side_menu/SideBar";
 import useStore from "../../store";
 import InstitutionSection from "../../components/admin_dashboard/InstitutionSection";
@@ -30,8 +30,6 @@ export async function getServerSideProps ({ req }) {
   const { user_auth_token } = req.cookies
 
   const user = await getUserAuthenticated(user_auth_token)
-
-  console.log(user)
 
   if(!user) {
     return {
