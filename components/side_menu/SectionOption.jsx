@@ -8,7 +8,7 @@ const SectionOption = ({ option }) => {
   const setIsSideBarOpen = useStore(state => state.setIsSideBarOpen)
 
   const handleClick = () => {
-    setSectionSelected(option.sectionType)
+    setSectionSelected(option.sectionType, option.data)
     setItemSideBarSelected(option.id)
     setIsSideBarOpen()
   }
