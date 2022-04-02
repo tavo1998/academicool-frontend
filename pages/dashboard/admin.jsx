@@ -11,10 +11,18 @@ const AdminDashboard = () => {
   const sectionSelected = useStore(state => state.sectionSelected)
   
   const renderSection = () => {
-    if(sectionSelected.id === null) return <NoSectionSelected />
-    if(sectionSelected.id === INSTITUTION_OPTION) return <InstitutionSection />
-    if(sectionSelected.id === INSTITUTION_CREATE_OPTION) return <InstitutionDetailSection />
-    if(sectionSelected.id === INSTITUTION_UPDATE_OPTION) return <InstitutionDetailSection isEdit/>
+    switch(sectionSelected.id) {
+      case null:
+        return <NoSectionSelected />
+      case INSTITUTION_OPTION:
+        return <InstitutionSection />
+      case INSTITUTION_CREATE_OPTION:
+        return <InstitutionDetailSection />
+      case INSTITUTION_UPDATE_OPTION:
+        return <InstitutionDetailSection isEdit/>
+      default:
+        return <h1>Error</h1>
+    }
   }
 
   return (
