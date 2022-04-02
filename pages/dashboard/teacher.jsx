@@ -1,15 +1,26 @@
 import { getUserAuthenticated } from "../../services/user"
 import { getRoleRedirectUrl } from "../../lib/redirect"
-import { createTeacherSideBarOptions } from "../../config/teacher"
+import { createTeacherSideBarOptions, SUBJECT_TEACHER_OPTION } from "../../config/teacher"
 import SideBar from "../../components/side_menu/SideBar"
 import useSWR from "swr"
 import fetcher from "./../../services/fetcher"
 import ErrorComponent from "../../components/common/ErrorComponent"
+import useStore from "../../store"
+import NoSectionSelected from "../../components/common/NoSectionSelected"
+import SubjectTeacherSection from "../../components/teacher_dashboard/SubjectTeacherSection"
 
 const TeacherDashboard = () => {
+  const sectionSelected = useStore(state => state.sectionSelected)
   const { data, error } = useSWR('/api/v1/subjects', fetcher)
 
-  console.log(data?.data)
+  const renderSection = () => {
+    switch(sectionSelected.id){
+      case null:
+        return <NoSectionSelected />
+      case SUBJECT_TEACHER_OPTION:
+        return <SubjectTeacherSection />
+    }
+  }
 
   if(error) {
     return (
@@ -22,8 +33,11 @@ const TeacherDashboard = () => {
   if(!data) return <></>
 
   return (
-    <div>
+    <div className="lg:flex">
       <SideBar sections={createTeacherSideBarOptions(data.data)} />
+      <div className="flex-1">
+        { renderSection() }
+      </div>
     </div>
   )
 }

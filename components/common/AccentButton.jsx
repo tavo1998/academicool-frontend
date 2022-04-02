@@ -1,7 +1,7 @@
-const AccentButton = ({ text, ...rest}) => {
+const AccentButton = ({ className, text, ...rest}) => {
   return (
     <button 
-      className="bg-accentColor px-4 py-1 text-white rounded-sm w-full text-sm lg:text-base"
+      className={`${className} bg-accentColor text-white rounded-sm w-full text-sm lg:text-base`}
       {...rest}
     >
       { text }
