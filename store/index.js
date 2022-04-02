@@ -7,9 +7,9 @@ const useStore = create(devtools(set => ({
   sectionSelected: { id: null, data: null },
   tabSelected: null,
   setIsSideBarOpen: () => set(state => ({ isSideBarOpen: !state.isSideBarOpen })),
-  setSectionSelected: (id, data = null) => set(state => ({ sectionSelected: { id, data } })),
-  setItemSideBarSelected: (id) => set(state => ({ itemSideBarSelected: id })),
-  setTabSelected: (id) => set(state => ({ tabSelected: id }))
+  setSectionSelected: (id, data = null) => set(() => ({ sectionSelected: { id, data } })),
+  setItemSideBarSelected: (id) => set(() => ({ itemSideBarSelected: id })),
+  setTabSelected: (id) => set(() => ({ tabSelected: id }))
 })))
 
 export default useStore

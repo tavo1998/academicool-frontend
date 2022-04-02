@@ -16,7 +16,7 @@ const SectionOption = ({ option }) => {
   return (
     <button 
       onClick={handleClick}  
-      className={`${itemSideBarSelected === option.id ? 'bg-white text-primaryColor p-1 rounded-lg' : 'text-white text-opacity-80'} w-full text-left lg:text-base`}>
+      className={`${itemSideBarSelected === option.id ? 'bg-white text-primaryColor p-1 rounded-sm' : 'text-white text-opacity-80'} w-full text-left lg:text-base`}>
       {option.name}
     </button>
   )

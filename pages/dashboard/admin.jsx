@@ -4,13 +4,14 @@ import SideBar from "../../components/side_menu/SideBar";
 import useStore from "../../store";
 import InstitutionSection from "../../components/admin_dashboard/InstitutionSection";
 import InstitutionDetailSection from "../../components/admin_dashboard/InstitutionDetailSection";
+import NoSectionSelected from "./../../components/common/NoSectionSelected";
 import { getUserAuthenticated } from "../../services/user";
 
 const AdminDashboard = () => {
   const sectionSelected = useStore(state => state.sectionSelected)
   
   const renderSection = () => {
-    if(sectionSelected.id === null) return <h1>Ninguna opción seleccionada</h1>
+    if(sectionSelected.id === null) return <NoSectionSelected />
     if(sectionSelected.id === INSTITUTION_OPTION) return <InstitutionSection />
     if(sectionSelected.id === INSTITUTION_CREATE_OPTION) return <InstitutionDetailSection />
     if(sectionSelected.id === INSTITUTION_UPDATE_OPTION) return <InstitutionDetailSection isEdit/>
@@ -19,7 +20,7 @@ const AdminDashboard = () => {
   return (
     <div className="relative lg:flex">
       <SideBar sections={ADMIN_OPTIONS} />
-      <div className="p-4 lg:w-full">
+      <div className="flex-1">
         { renderSection() }
       </div>
     </div>
