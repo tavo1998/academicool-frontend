@@ -7,8 +7,8 @@ import NoTabSelected from "./NoTabSelected"
 import AssignmetTab from "./AssignmentTab"
 import NoticeTab from "./NoticeTab"
 import AssistanceTab from "./AssistanceTab"
-import CreateAssigment from "./CreateAssigment"
-import CreateNotice from "./CreateNotice"
+import CreateEditAssignment from "./CreateEditAssignment"
+import CreateEditNotice from "./CreateEditNotice"
 
 const SubjectTeacherSection = () => {
   const { data } = useStore(state => state.sectionSelected)
@@ -31,9 +31,9 @@ const SubjectTeacherSection = () => {
       case ASSISTANCE_TAB:
         return <AssistanceTab />
       case CREATE_ASSIGNMENT:
-        return <CreateAssigment handleCancel={() => setTabSelected(ASSIGNMENT_TAB)} />
+        return <CreateEditAssignment handleCancel={() => setTabSelected(ASSIGNMENT_TAB)} />
       case CREATE_NOTICE:
-        return <CreateNotice handleCancel={() => setTabSelected(NOTICES_TAB)} />
+        return <CreateEditNotice handleCancel={() => setTabSelected(NOTICES_TAB)} />
       default:
         return <h1>Fantastico</h1>
     }

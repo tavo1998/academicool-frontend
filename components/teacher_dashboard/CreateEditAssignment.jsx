@@ -1,15 +1,21 @@
 import TextInputField from "../common/TextInputField"
+import DateInputField from "../common/DateInputField"
 import TextAreaField from "../common/TextAreaField"
+import { formatDateYMD } from "../../lib/calendar"
 import AccentButton from "../common/AccentButton"
 
-const CreateNotice = ({ handleCancel }) => {
+const CreateEditAssignment = ({ handleCancel }) => {
   return (
-      <form className="space-y-2">
-      <h1 className="text-customGrey font-semibold mt-3 mb-1">Crear Comunicado</h1>
+    <form className="space-y-2">
+      <h1 className="text-customGrey font-semibold mt-3 mb-1">Crear Asignacion</h1>
       <TextInputField
         maxLength={100}
         title="Título"
         placeholder="Ingresa el título"
+      />
+      <DateInputField 
+        title="Fecha de entrega"
+        min={formatDateYMD(new Date())}
       />
       <TextAreaField
         title="Descripción"
@@ -30,4 +36,4 @@ const CreateNotice = ({ handleCancel }) => {
   )
 }
 
-export default CreateNotice
+export default CreateEditAssignment
