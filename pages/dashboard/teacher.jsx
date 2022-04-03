@@ -1,6 +1,3 @@
-import { getUserAuthenticated } from "../../services/user"
-import { getRoleRedirectUrl } from "../../lib/redirect"
-import { createTeacherSideBarOptions, SUBJECT_TEACHER_OPTION } from "../../config/teacher"
 import SideBar from "../../components/side_menu/SideBar"
 import useSWR from "swr"
 import fetcher from "./../../services/fetcher"
@@ -8,17 +5,30 @@ import ErrorComponent from "../../components/common/ErrorComponent"
 import useStore from "../../store"
 import NoSectionSelected from "../../components/common/NoSectionSelected"
 import SubjectTeacherSection from "../../components/teacher_dashboard/SubjectTeacherSection"
+import { getUserAuthenticated } from "../../services/user"
+import { getRoleRedirectUrl } from "../../lib/redirect"
+import { createTeacherSideBarOptions, SUBJECT_TEACHER_OPTION } from "../../config/teacher"
+import { useMediaQuery } from "react-responsive"
+import SubjectDesktopTeacherSection from "../../components/teacher_dashboard/SubjectDesktopTeacherSection"
 
 const TeacherDashboard = () => {
   const sectionSelected = useStore(state => state.sectionSelected)
   const { data, error } = useSWR('/api/v1/subjects', fetcher)
+  const isMobileOrDesktop = useMediaQuery({
+    query: '(min-width: 1024px)'
+  })
+
+  console.log(isMobileOrDesktop)
 
   const renderSection = () => {
     switch(sectionSelected.id){
       case null:
         return <NoSectionSelected />
       case SUBJECT_TEACHER_OPTION:
-        return <SubjectTeacherSection />
+        if(!isMobileOrDesktop)
+          return <SubjectTeacherSection />
+        else
+          return <SubjectDesktopTeacherSection />
     }
   }
 
