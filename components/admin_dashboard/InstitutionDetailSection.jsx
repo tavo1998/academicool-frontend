@@ -44,7 +44,7 @@ const InstitutionDetailSection = ({ isEdit }) => {
   }
 
   return (
-    <div className="lg:w-1/2 lg:mx-auto">
+    <div className="lg:w-1/2 lg:mx-auto p-4">
       <OptionHeader title={`${ isEdit ? "Editar" : "Crear" } Institución`}/>
       <div className="mb-2"/>
       <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-4">
@@ -99,12 +99,14 @@ const InstitutionDetailSection = ({ isEdit }) => {
           />
         </div>
         <div className="flex space-x-2 mt-2 lg:mt-4 lg:col-span-2">
-          <AccentButton 
+          <AccentButton
+            className="py-1"
             text={isSubmitting ? "Cargando..." : "Guardar Cambios"}
             type="submit"
             disabled={isSubmitting}
           />
-          <AccentButton 
+          <AccentButton
+            className="py-1"
             text="Cancelar"
             type="button"
             onClick={handleCancel}

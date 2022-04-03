@@ -49,7 +49,7 @@ const InstitutionSection = () => {
   if(!data) return <h1>Cargando...</h1>
 
   return (
-    <>
+    <div className="p-4">
       <OptionHeader 
         title="Instituciones" 
         showAddButton={true} 
@@ -65,7 +65,7 @@ const InstitutionSection = () => {
         return <InstitutionItem key={institution.id} institution={institution} />
       })}
       <PaginationButtons />
-    </>
+    </div>
   )
 }
 
