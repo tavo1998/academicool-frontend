@@ -10,7 +10,7 @@ module.exports = {
         secondaryColor: '#CEE0DC',
         accentColor: '#C3423F',
         customGrey: '#5E5E5E'
-      }
+      },
     },
   },
   plugins: [],

@@ -1,5 +1,5 @@
 import SideHeader from "./SideHeader"
-import SectionHeader from "./SectionHeader"
+import SideBarOptionTitle from "./SideBarOptionTitle"
 import SectionOption from "./SectionOption"
 import useStore from "../../store"
 
@@ -13,7 +13,7 @@ const SideBar = ({ sections }) => {
         { sections.map((section, index) => {
           return (
             <div key={index}>
-              <SectionHeader text={section.name} />
+              <SideBarOptionTitle text={section.name} />
               <ul className="mt-2 mb-2 space-y-2 lg:space-y-3">
                 { section.options.map((option, index) => {
                   return (

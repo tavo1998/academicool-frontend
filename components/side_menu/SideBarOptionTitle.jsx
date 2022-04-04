@@ -1,4 +1,4 @@
-const SectionHeader = ({ text, icon: Icon }) => {
+const SideBarOptionTitle = ({ text, icon: Icon }) => {
   return (
     <div>
       <div className="flex items-center overflow-hidden">
@@ -10,4 +10,4 @@ const SectionHeader = ({ text, icon: Icon }) => {
   )
 }
 
-export default SectionHeader;
+export default SideBarOptionTitle;
