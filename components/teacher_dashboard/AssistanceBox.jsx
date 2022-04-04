@@ -1,9 +1,5 @@
-import PaginationButtons from "../admin_dashboard/PaginationButtons"
-import AccentButton from "../common/AccentButton"
 import Calendar from "../common/Calendar"
-import SearchInputDesktop from "../common/SearchInputDesktop"
 import SectionHeader from "../common/SectionHeader"
-import AssignmentDesktopItem from "./AssignmentDesktopItem"
 
 const AssistanceBox = () => {
   return (

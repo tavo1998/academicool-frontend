@@ -11,9 +11,6 @@ module.exports = {
         accentColor: '#C3423F',
         customGrey: '#5E5E5E'
       },
-      gridTemplateRows: {
-        '12': 'repeat(12, minmax(0, 1fr))'
-      },
     },
   },
   plugins: [],

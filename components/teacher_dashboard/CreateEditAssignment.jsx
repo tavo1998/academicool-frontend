@@ -3,11 +3,15 @@ import DateInputField from "../common/DateInputField"
 import TextAreaField from "../common/TextAreaField"
 import { formatDateYMD } from "../../lib/calendar"
 import AccentButton from "../common/AccentButton"
+import useStore from "../../store"
+import { ASSIGNMENT_TAB } from "../../config/common"
 
 const CreateEditAssignment = ({ handleCancel }) => {
+  const setTabSelected = useStore(state => state.setTabSelected)
+
   return (
     <form className="space-y-2">
-      <h1 className="text-customGrey font-semibold mt-3 mb-1">Crear Asignacion</h1>
+      <h1 className="text-customGrey font-semibold lg:text-lg">Crear Asignacion</h1>
       <TextInputField
         maxLength={100}
         title="Título"
@@ -28,7 +32,7 @@ const CreateEditAssignment = ({ handleCancel }) => {
           className="py-1"
           text="Crear"/>
         <AccentButton
-          onClick={handleCancel}
+          onClick={() => setTabSelected(ASSIGNMENT_TAB)}
           className="py-1"
           text="Cancelar"/>
       </div>
