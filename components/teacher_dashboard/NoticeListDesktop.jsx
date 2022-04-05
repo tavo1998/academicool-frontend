@@ -1,13 +1,20 @@
+import { CREATE_NOTICE } from "../../config/common"
 import PaginationButtons from "../admin_dashboard/PaginationButtons"
 import AccentButton from "../common/AccentButton"
 import SearchInput from "../common/SearchInput"
 import SectionHeader from "../common/SectionHeader"
-import NoticeDesktopItem from "./NoticeDesktopItem"
+import NoticeItem from "./../teacher_dashboard/NoticeItem"
 import useStore from "../../store"
-import { CREATE_NOTICE } from "../../config/common"
+import useSWR from "swr"
+import fetcher from "../../services/fetcher"
 
 const NoticeListDesktop = () => {
+  const subject = useStore(state => state.sectionSelected.data)
   const setTabSelected = useStore(state => state.setTabSelected)
+  const { data, error } = useSWR(`/api/v1/subjects/${subject.id}/notices`, fetcher)
+
+  if(error) return <h1>Ocurrió un error</h1>
+  if(!data) return <h1>Cargando</h1>
 
   return (
     <>
@@ -17,6 +24,7 @@ const NoticeListDesktop = () => {
       />
       <div className="flex flex-1 justify-end">
         <SearchInput
+          className="w-3/5"
           placeholder="Buscar" 
           />
         <AccentButton
@@ -26,19 +34,7 @@ const NoticeListDesktop = () => {
           />
       </div>
     </div>
-    <div className="bg-customGrey opacity-30 h-[1px] mt-2" />
-    <NoticeDesktopItem
-      className="mt-2"
-    />
-    <NoticeDesktopItem
-      className="mt-2"
-    />
-          <NoticeDesktopItem
-      className="mt-2"
-    />
-                <NoticeDesktopItem
-      className="mt-2"
-    />
+    {data.data.map((notice => <NoticeItem key={notice.id} className="mt-4" notice={notice}/>))}
     <PaginationButtons />
     </>
   )
