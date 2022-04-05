@@ -1,6 +1,6 @@
 import PaginationButtons from "../admin_dashboard/PaginationButtons"
 import AccentButton from "../common/AccentButton"
-import SearchInputDesktop from "../common/SearchInputDesktop"
+import SearchInput from "../common/SearchInput"
 import SectionHeader from "../common/SectionHeader"
 import NoticeDesktopItem from "./NoticeDesktopItem"
 import useStore from "../../store"
@@ -16,7 +16,7 @@ const NoticeListDesktop = () => {
         title="Comunicados" 
       />
       <div className="flex flex-1 justify-end">
-        <SearchInputDesktop
+        <SearchInput
           placeholder="Buscar" 
           />
         <AccentButton
