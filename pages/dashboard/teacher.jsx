@@ -18,8 +18,6 @@ const TeacherDashboard = () => {
     query: '(min-width: 1024px)'
   })
 
-  console.log(isMobileOrDesktop)
-
   const renderSection = () => {
     switch(sectionSelected.id){
       case null:

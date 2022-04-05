@@ -2,13 +2,20 @@ import { CREATE_ASSIGNMENT } from "../../config/common"
 import useStore from "../../store"
 import PaginationButtons from "../admin_dashboard/PaginationButtons"
 import AccentButton from "../common/AccentButton"
-import SearchInputDesktop from "../common/SearchInputDesktop"
+import SearchInput from "../common/SearchInput"
 import SectionHeader from "../common/SectionHeader"
-import AssignmentDesktopItem from "./AssignmentDesktopItem"
+import AssigmentItem from "./AssigmentItem"
+import fetcher from "../../services/fetcher"
+import useSWR from "swr"
 
 
 const AssignmentListDesktop = () => {
+  const subject = useStore(state => state.sectionSelected.data)
   const setTabSelected = useStore(state => state.setTabSelected)
+  const { data, error } = useSWR(`/api/v1/subjects/${subject.id}/assignments`, fetcher)
+
+  if(error) return <h1>Ocurrió un error</h1>
+  if(!data) return <h1>Cargando</h1>
 
   return (
     <>
@@ -16,10 +23,10 @@ const AssignmentListDesktop = () => {
         <SectionHeader
           title="Asignaciones" 
         />
-        <div className="flex flex-1 justify-end">
-          <SearchInputDesktop
-            placeholder="Buscar" 
-            />
+        <div className="flex-1 flex justify-end">
+          <SearchInput
+          className="w-3/5"
+          />
           <AccentButton
             onClick={() => setTabSelected(CREATE_ASSIGNMENT)}
             className="w-auto px-2 py-1"
@@ -27,25 +34,7 @@ const AssignmentListDesktop = () => {
             />
         </div>
       </div>
-      <div className="bg-customGrey opacity-30 h-[1px] mt-2" />
-      <AssignmentDesktopItem
-        className="mt-2"
-      />
-      <AssignmentDesktopItem
-        className="mt-2"
-      />
-      <AssignmentDesktopItem
-        className="mt-2"
-      />
-      <AssignmentDesktopItem
-        className="mt-2"
-      />
-            <AssignmentDesktopItem
-        className="mt-2"
-      />
-            <AssignmentDesktopItem
-        className="mt-2"
-      />
+      {data.data.map((assignment => <AssigmentItem key={assignment.id} className="mt-4" assignment={assignment}/>))}
       <PaginationButtons />
     </>
   )

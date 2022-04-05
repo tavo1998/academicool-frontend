@@ -1,4 +1,4 @@
-import { CREATE_ASSIGNMENT } from "../../config/common"
+import { CREATE_ASSIGNMENT, EDIT_ASSIGNMENT } from "../../config/common"
 import useStore from "../../store"
 import AssignmentListDesktop from "./AssignmentListDesktop"
 import CreateEditAssignment from "./CreateEditAssignment"
@@ -8,11 +8,12 @@ const AssignmentBox = () => {
 
   const renderComponent = () => {
     if(tabSelected === CREATE_ASSIGNMENT) return <CreateEditAssignment />
+    if(tabSelected === EDIT_ASSIGNMENT) return <CreateEditAssignment isEdit={true}/>
     else return <AssignmentListDesktop />
   }
 
   return (
-    <div className="p-4 bg-primaryColor bg-opacity-10 h-full overflow-y-scroll">
+    <div className="p-4 h-full overflow-y-auto">
       { renderComponent() }
     </div>
   )
