@@ -1,10 +1,19 @@
 import { useState  } from 'react';
 import { MdModeEdit, MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md"
+import { EDIT_ASSIGNMENT } from '../../config/common';
 import { formatDateString } from '../../lib/calendar';
+import useStore from '../../store';
 import AccentButton from '../common/AccentButton';
 
 const AssigmentItem = ({ className, assignment }) => {
+  const setTabSelected = useStore(state => state.setTabSelected)
+  const setTabSelectedData = useStore(state => state.setTabSelectedData)
   const [itemExpanded, setItemExpanded] = useState(false)
+
+  const handleEdit= () =>{
+    setTabSelectedData({ ...assignment, delivery_date: formatDateString(assignment.delivery_date)})
+    setTabSelected(EDIT_ASSIGNMENT)
+  }
 
   const handleExpanded = () => {
     setItemExpanded(!itemExpanded)
@@ -20,7 +29,9 @@ const AssigmentItem = ({ className, assignment }) => {
           <span className="text-customGrey text-xs lg:text-base font-normal">{formatDateString(assignment.created_at)}</span>
         </div>
         <div className="flex items-center space-x-2">
-          <MdModeEdit className="text-customGrey lg:h-5 lg:w-5" />
+          <button onClick={handleEdit}>
+            <MdModeEdit className="text-customGrey lg:h-5 lg:w-5" />
+          </button>
           {
             itemExpanded ?
             <MdKeyboardArrowUp 

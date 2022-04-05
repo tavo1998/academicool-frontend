@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TextAreaField = React.forwardRef(({ className, title, placeholder, ...rest }, ref) => {
+const TextAreaField = React.forwardRef(({ className, title, placeholder, error, ...rest }, ref) => {
   return (
     <label className={`${className} block w-full `}>
       <h1 className="text-customGrey font-semibold text-sm lg:text-lg">{title}</h1>
@@ -11,6 +11,7 @@ const TextAreaField = React.forwardRef(({ className, title, placeholder, ...rest
         ref={ref}
         {...rest} 
       />
+      <span className="text-xs lg:text-sm text-red-600">{error}</span>
    </label>
   )
 })

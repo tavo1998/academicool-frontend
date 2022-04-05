@@ -34,7 +34,7 @@ const AssignmentListDesktop = () => {
             />
         </div>
       </div>
-      {data.data.map((assignment => <AssigmentItem className="mt-4" assignment={assignment}/>))}
+      {data.data.map((assignment => <AssigmentItem key={assignment.id} className="mt-4" assignment={assignment}/>))}
       <PaginationButtons />
     </>
   )
