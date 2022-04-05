@@ -17,6 +17,7 @@ const CreateEditAssignment = ({ isEdit }) => {
   const subject = useStore(state => state.sectionSelected.data)
   const assignmentToUpdate = useStore(state => state.tabSelectedData)
   const setTabSelected = useStore(state => state.setTabSelected)
+  const setTabSelectedData = useStore(state => state.setTabSelectedData)
 
   const { 
     requestOk, 
@@ -39,6 +40,8 @@ const CreateEditAssignment = ({ isEdit }) => {
     if(assignmentToUpdate){
       reset({ ...assignmentToUpdate })
     }
+
+    return () => setTabSelectedData(null)
   }, [assignmentToUpdate])
 
   useEffect(() => {
