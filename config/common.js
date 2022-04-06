@@ -6,6 +6,7 @@ export const ASSISTANCE_TAB = 'ASSISTANCE_TAB'
 export const CREATE_ASSIGNMENT = 'CREATE_ASSIGNMENT'
 export const EDIT_ASSIGNMENT = 'EDIT_ASSIGNMENT'
 export const CREATE_NOTICE = 'CREATE_NOTICE'
+export const EDIT_NOTICE = 'EDIT_NOTICE'
 
 export const TABS = [
   {

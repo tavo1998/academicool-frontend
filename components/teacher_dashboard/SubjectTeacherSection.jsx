@@ -2,7 +2,7 @@ import useStore from "../../store"
 import SectionHeader from "../common/SectionHeader"
 import SubjectDescription from "./SubjectDescription"
 import SubjectTabs from "./SubjectTabs"
-import { ASSIGNMENT_TAB, ASSISTANCE_TAB, CREATE_ASSIGNMENT, CREATE_NOTICE, EDIT_ASSIGNMENT, NOTICES_TAB, TABS, WITHOUT_TABS_BAR } from "../../config/common"
+import { ASSIGNMENT_TAB, ASSISTANCE_TAB, CREATE_ASSIGNMENT, CREATE_NOTICE, EDIT_ASSIGNMENT, EDIT_NOTICE, NOTICES_TAB, TABS, WITHOUT_TABS_BAR } from "../../config/common"
 import NoTabSelected from "./NoTabSelected"
 import AssignmetTab from "./AssignmentTab"
 import NoticeTab from "./NoticeTab"
@@ -35,7 +35,9 @@ const SubjectTeacherSection = () => {
       case EDIT_ASSIGNMENT:
         return <CreateEditAssignment isEdit={true} />
       case CREATE_NOTICE:
-        return <CreateEditNotice handleCancel={() => setTabSelected(NOTICES_TAB)} />
+        return <CreateEditNotice />
+      case EDIT_NOTICE:
+        return <CreateEditNotice isEdit={true}/>
       default:
         return <h1>Fantastico</h1>
     }
