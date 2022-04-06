@@ -1,4 +1,4 @@
-import { CREATE_NOTICE } from "../../config/common"
+import { CREATE_NOTICE, EDIT_NOTICE } from "../../config/common"
 import useStore from "../../store"
 import CreateEditNotice from "./CreateEditNotice"
 import NoticeListDesktop from "./NoticeListDesktop"
@@ -8,6 +8,7 @@ const NoticeBox = () => {
 
   const renderComponent = () => {
     if(tabSelected === CREATE_NOTICE) return <CreateEditNotice />
+    if(tabSelected === EDIT_NOTICE) return <CreateEditNotice isEdit={true}/>
     else return <NoticeListDesktop />
   }
 
