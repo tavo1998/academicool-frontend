@@ -1,6 +1,6 @@
 import { useState  } from 'react';
 import { MdModeEdit, MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md"
-import { EDIT_ASSIGNMENT, QUALIFY_ASSIGNMENT } from '../../config/common';
+import { EDIT_ASSIGNMENT, EDIT_ASSIGNMENT_SCORE, QUALIFY_ASSIGNMENT } from '../../config/common';
 import { formatDateString } from '../../lib/calendar';
 import useStore from '../../store';
 import AccentButton from '../common/AccentButton';
@@ -21,7 +21,8 @@ const AssigmentItem = ({ className, assignment }) => {
   }
 
   const handleQualification = () => {
-    setTabSelected(QUALIFY_ASSIGNMENT)
+    if(assignment.is_qualified) setTabSelected(EDIT_ASSIGNMENT_SCORE)
+    else setTabSelected(QUALIFY_ASSIGNMENT)
     setTabSelectedData(assignment)
   }
 

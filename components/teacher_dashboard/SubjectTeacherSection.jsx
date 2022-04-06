@@ -15,6 +15,7 @@ import {
   CREATE_ASSIGNMENT, 
   CREATE_NOTICE, 
   EDIT_ASSIGNMENT, 
+  EDIT_ASSIGNMENT_SCORE, 
   EDIT_NOTICE, 
   NOTICES_TAB, 
   QUALIFY_ASSIGNMENT, 
@@ -47,6 +48,8 @@ const SubjectTeacherSection = () => {
         return <CreateEditAssignment isEdit={true} />
       case QUALIFY_ASSIGNMENT:
         return <QualifiedAssignment />
+      case EDIT_ASSIGNMENT_SCORE:
+        return <QualifiedAssignment isEdit={true} />
       case CREATE_NOTICE:
         return <CreateEditNotice />
       case EDIT_NOTICE:

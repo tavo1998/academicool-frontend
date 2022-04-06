@@ -1,10 +1,10 @@
-const QualifyInput = ({ className, student, ...rest }) => {
+const QualifyInput = ({ className, student, score, ...rest }) => {
   return (
     <label className={`${className} flex justify-between items-center`}>
       <h1 className="text-customGrey text-sm w-4/5 break-words pr-1">{student.first_name}</h1>
       <input
         name={student.id}
-        defaultValue="0.0"
+        defaultValue={score ? score : '0.0'}
         min="0.0"
         max="5.0"
         step="0.1"

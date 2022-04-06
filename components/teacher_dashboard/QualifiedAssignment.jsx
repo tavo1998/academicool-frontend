@@ -10,11 +10,28 @@ import ErrorComponent from "../common/ErrorComponent"
 import creator from "../../services/creator"
 
 
-const QualifiedAssignment = () => {
+const transformDataToPostBody = (inputs, nInvalidInputs) => {
+  const data = []
+  for(let i = 0; i < inputs.length - nInvalidInputs; i++){
+    data.push({ 
+      user_id: parseInt(event.target[i].name),
+      value: parseFloat(event.target[i].value)
+    })
+  }
+  return data
+}
+
+const QualifiedAssignment = ({ isEdit }) => {
   const setTabSelected = useStore(state=> state.setTabSelected)
   const currentAssignment = useStore(state=> state.tabSelectedData)
   const currentSubject = useStore(state => state.sectionSelected.data)
-  const { data, error } = useSWR(`/api/v1/grades/${currentSubject.grade_id}/students`, fetcher)
+  const { 
+    data, 
+    error 
+  } = useSWR(isEdit ? 
+      `/api/v1/assignments/${currentAssignment.id}/scores` : 
+      `/api/v1/grades/${currentSubject.grade_id}/students`, fetcher
+    )
   const { 
     requestOk, 
     isSubmitting, 
@@ -24,16 +41,9 @@ const QualifiedAssignment = () => {
 
   const onSubmit = (event) => {
     event.preventDefault()
-    const data = []
-    //-2 por el número de botones que hay
-    for(let i = 0; i < event.target.length - 2; i++){
-      data.push({ 
-        user_id: parseInt(event.target[i].name),
-        value: parseFloat(event.target[i].value)
-      })
-    }
-
-    sendMutation(data)
+    const data = transformDataToPostBody(event.target, 2)
+    if(isEdit) console.log(data)
+    else sendMutation(data)
   }
 
   useEffect(() => {
@@ -50,12 +60,14 @@ const QualifiedAssignment = () => {
         Calificar - Ejercicios de pitagoras
       </h1>
       <form onSubmit={onSubmit}>
-        {data.data.map((student) => <QualifyInput key={student.id} className="mt-2" student={student}/>)}
+        { isEdit ? data.data.map(({ score, student }) => <QualifyInput key={student.id} className="mt-2" score={score} student={student}/>)  : 
+          data.data.map((student) => <QualifyInput key={student.id} className="mt-2" student={student}/>)
+        }
         <div className="flex space-x-2">
           <AccentButton
             className="py-1 mt-4"
             disabled={isSubmitting}
-            text={isSubmitting ? "Cargando" : "Calificar"}
+            text={isSubmitting ? "Cargando" : isEdit ? "Actalizar" : "Calificar"}
           />
           <AccentButton
             onClick={() => setTabSelected(ASSIGNMENT_TAB)}
