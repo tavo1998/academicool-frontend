@@ -17,11 +17,13 @@ const AssigmentItem = ({ className, assignment }) => {
 
   const handleExpanded = () => {
     setItemExpanded(!itemExpanded)
+    setTabSelectedData(assignment)
   }
 
   const handleQualification = () => {
     setTabSelected(QUALIFY_ASSIGNMENT)
-  } 
+    setTabSelectedData(assignment)
+  }
 
   return (
     <div className={`${className} bg-primaryColor bg-opacity-10 p-2 lg:p-4 rounded-sm`}>
@@ -56,8 +58,8 @@ const AssigmentItem = ({ className, assignment }) => {
       </p>
       <AccentButton
         onClick={handleQualification}
-        className="w-3/12 py-1 mt-2"
-        text="Calificar"
+        className="w-auto px-2 py-1 mt-2"
+        text={assignment.is_qualified ? "Ver calificacion": "Calificar"}
         />
     </div>
   )
