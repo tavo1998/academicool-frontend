@@ -14,7 +14,7 @@ const transformDataToPostBody = (inputs, nInvalidInputs) => {
   const data = []
   for(let i = 0; i < inputs.length - nInvalidInputs; i++){
     data.push({ 
-      user_id: parseInt(event.target[i].name),
+      student_id: parseInt(event.target[i].name),
       value: parseFloat(event.target[i].value)
     })
   }
