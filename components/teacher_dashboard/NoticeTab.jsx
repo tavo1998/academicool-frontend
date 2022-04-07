@@ -17,12 +17,19 @@ const NoticeTab = () => {
 
   return (
     <div>
-      <SearchInput />
-      <AccentButton
-        onClick={() => setTabSelected(CREATE_NOTICE)}
-        className="p-2 mt-2 mb-1" 
-        text="Crear Comunicado" />
-      {data.data.map((notice => <NoticeItem key={notice.id} className="mt-4" notice={notice}/>))}
+      <div className="lg:flex items-center justify-between">
+        <h1 className='text-lg text-customGrey font-semibold hidden lg:block'>Comunicados</h1>
+        <div className="flex-1 lg:flex items-center justify-end">
+          <SearchInput
+            className="lg:w-3/5"
+          />
+          <AccentButton
+            onClick={() => setTabSelected(CREATE_NOTICE)}
+            className="p-2 mt-2 mb-1 lg:mt-0 lg:mb-0 lg:w-auto px-4" 
+            text="Crear Comunicado" />
+        </div>
+      </div>
+      {data.data.map((notice => <NoticeItem key={notice.id} className="mt-2 lg:mt-4" notice={notice}/>))}
     </div>
   )
 }

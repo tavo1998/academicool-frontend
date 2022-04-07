@@ -1,8 +1,8 @@
 import { CREATE_ASSIGNMENT, EDIT_ASSIGNMENT, EDIT_ASSIGNMENT_SCORE, QUALIFY_ASSIGNMENT } from "../../config/common"
 import useStore from "../../store"
-import AssignmentListDesktop from "./AssignmentListDesktop"
 import CreateEditAssignment from "./CreateEditAssignment"
 import QualifiedAssignment from "./QualifiedAssignment"
+import AssignmentTab from "./AssignmentTab"
 
 const AssignmentBox = () => {
   const tabSelected = useStore(state => state.tabSelected)
@@ -18,7 +18,7 @@ const AssignmentBox = () => {
       case EDIT_ASSIGNMENT_SCORE:
         return <QualifiedAssignment isEdit={true} />
       default:
-        return <AssignmentListDesktop />
+        return <AssignmentTab />
     }
   }
 

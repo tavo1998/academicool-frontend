@@ -1,15 +1,20 @@
 import { CREATE_NOTICE, EDIT_NOTICE } from "../../config/common"
 import useStore from "../../store"
 import CreateEditNotice from "./CreateEditNotice"
-import NoticeListDesktop from "./NoticeListDesktop"
+import NoticeTab from "./NoticeTab"
 
 const NoticeBox = () => {
   const tabSelected = useStore(state => state.tabSelected)
 
   const renderComponent = () => {
-    if(tabSelected === CREATE_NOTICE) return <CreateEditNotice />
-    if(tabSelected === EDIT_NOTICE) return <CreateEditNotice isEdit={true}/>
-    else return <NoticeListDesktop />
+    switch(tabSelected) {
+      case CREATE_NOTICE:
+        return <CreateEditNotice />
+      case EDIT_NOTICE:
+        return <CreateEditNotice isEdit={true}/>
+      default:
+        return <NoticeTab />
+    }
   }
 
   return (

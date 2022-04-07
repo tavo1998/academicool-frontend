@@ -24,13 +24,21 @@ const AssignmetTab = () => {
 
   return (
     <div>
-      <SearchInput />
-      <AccentButton
-        onClick={() => setTabSelected(CREATE_ASSIGNMENT)}
-        className="py-2 mt-2 mb-1" 
-        text="Crear Asignación" />
+      <div className='lg:flex items-center justify-between'>
+        <h1 className='text-lg text-customGrey font-semibold hidden lg:block'>Asignaciones</h1>
+        <div className='flex-1 lg:flex justify-end'>
+          <SearchInput
+            className="lg:w-3/5" 
+          />
+          <AccentButton
+            onClick={() => setTabSelected(CREATE_ASSIGNMENT)}
+            className="py-2 mt-2 lg:mt-0 mb-1 lg:mb-0 lg:w-auto px-2" 
+            text="Crear Asignación" />
+        </div>
+
+      </div>
       {
-        data.data.map((assignment) => <AssigmentItem key={assignment.id} className="mt-2" assignment={assignment}/>)
+        data.data.map((assignment) => <AssigmentItem key={assignment.id} className="mt-2 lg:mt-4" assignment={assignment}/>)
       }
     </div>
   )
