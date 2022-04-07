@@ -82,7 +82,9 @@ const CreateEditNotice = ({ isEdit }) => {
           disabled={isSubmitting}
           onClick={() => setTabSelected(NOTICES_TAB)}
           className="py-1"
-          text="Cancelar"/>
+          text="Cancelar"
+          type="button"
+        />
       </div>
       { requestError && 
         <ErrorComponent error={requestError}>

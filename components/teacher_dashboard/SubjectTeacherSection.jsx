@@ -2,18 +2,30 @@ import useStore from "../../store"
 import SectionHeader from "../common/SectionHeader"
 import SubjectDescription from "./SubjectDescription"
 import SubjectTabs from "./SubjectTabs"
-import { ASSIGNMENT_TAB, ASSISTANCE_TAB, CREATE_ASSIGNMENT, CREATE_NOTICE, EDIT_ASSIGNMENT, EDIT_NOTICE, NOTICES_TAB, TABS, WITHOUT_TABS_BAR } from "../../config/common"
 import NoTabSelected from "./NoTabSelected"
 import AssignmetTab from "./AssignmentTab"
 import NoticeTab from "./NoticeTab"
 import AssistanceTab from "./AssistanceTab"
 import CreateEditAssignment from "./CreateEditAssignment"
 import CreateEditNotice from "./CreateEditNotice"
+import QualifiedAssignment from "./QualifiedAssignment"
+import { 
+  ASSIGNMENT_TAB, 
+  ASSISTANCE_TAB, 
+  CREATE_ASSIGNMENT, 
+  CREATE_NOTICE, 
+  EDIT_ASSIGNMENT, 
+  EDIT_ASSIGNMENT_SCORE, 
+  EDIT_NOTICE, 
+  NOTICES_TAB, 
+  QUALIFY_ASSIGNMENT, 
+  TABS, 
+  WITHOUT_TABS_BAR 
+} from "../../config/common"
 
 const SubjectTeacherSection = () => {
   const { data } = useStore(state => state.sectionSelected)
   const tabSelected  = useStore(state => state.tabSelected)
-  const setTabSelected  = useStore(state => state.setTabSelected)
 
   const renderTabsBar = () => {
     if(WITHOUT_TABS_BAR.includes(tabSelected)) return null
@@ -34,6 +46,10 @@ const SubjectTeacherSection = () => {
         return <CreateEditAssignment />
       case EDIT_ASSIGNMENT:
         return <CreateEditAssignment isEdit={true} />
+      case QUALIFY_ASSIGNMENT:
+        return <QualifiedAssignment />
+      case EDIT_ASSIGNMENT_SCORE:
+        return <QualifiedAssignment isEdit={true} />
       case CREATE_NOTICE:
         return <CreateEditNotice />
       case EDIT_NOTICE:

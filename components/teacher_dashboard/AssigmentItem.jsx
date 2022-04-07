@@ -1,6 +1,6 @@
 import { useState  } from 'react';
 import { MdModeEdit, MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md"
-import { EDIT_ASSIGNMENT } from '../../config/common';
+import { EDIT_ASSIGNMENT, EDIT_ASSIGNMENT_SCORE, QUALIFY_ASSIGNMENT } from '../../config/common';
 import { formatDateString } from '../../lib/calendar';
 import useStore from '../../store';
 import AccentButton from '../common/AccentButton';
@@ -17,6 +17,13 @@ const AssigmentItem = ({ className, assignment }) => {
 
   const handleExpanded = () => {
     setItemExpanded(!itemExpanded)
+    setTabSelectedData(assignment)
+  }
+
+  const handleQualification = () => {
+    if(assignment.is_qualified) setTabSelected(EDIT_ASSIGNMENT_SCORE)
+    else setTabSelected(QUALIFY_ASSIGNMENT)
+    setTabSelectedData(assignment)
   }
 
   return (
@@ -45,14 +52,15 @@ const AssigmentItem = ({ className, assignment }) => {
         </div>
       </div>
       <h1 className="text-customGrey text-sm lg:text-base">Fecha de entrega: {formatDateString(assignment.delivery_date)}</h1>
-      <h1 className="text-customGrey text-sm lg:text-base">Calificación: No calificado</h1>
+      <h1 className="text-customGrey text-sm lg:text-base">Calificación: {assignment.is_qualified ? 'Calificado' : 'No calificado'} </h1>
       <p 
         className={`${itemExpanded ? 'h-full mt-2' : 'h-0 overflow-hidden'} text-sm text-customGrey lg:h-full lg:text-base lg:mt-2`}>
         { assignment.description }
       </p>
       <AccentButton
-        className="w-3/12 py-1 mt-2"
-        text="Calificar"
+        onClick={handleQualification}
+        className="w-auto px-2 py-1 mt-2"
+        text={assignment.is_qualified ? "Ver calificacion": "Calificar"}
         />
     </div>
   )
