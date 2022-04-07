@@ -5,6 +5,7 @@ import QualifyInput from "../common/QualifyInput"
 import useSWR from "swr"
 import useStore from "../../store"
 import fetcher from "../../services/fetcher"
+import updater from "../../services/updater"
 import useMutation from "../../hooks/useMutation"
 import ErrorComponent from "../common/ErrorComponent"
 import creator from "../../services/creator"
@@ -14,8 +15,8 @@ const transformDataToPostBody = (inputs, nInvalidInputs) => {
   const data = []
   for(let i = 0; i < inputs.length - nInvalidInputs; i++){
     data.push({ 
-      student_id: parseInt(event.target[i].name),
-      value: parseFloat(event.target[i].value)
+      student_id: parseInt(inputs[i].name),
+      value: parseFloat(inputs[i].value)
     })
   }
   return data
@@ -37,13 +38,12 @@ const QualifiedAssignment = ({ isEdit }) => {
     isSubmitting, 
     requestError, 
     sendMutation 
-  } = useMutation(`/api/v1/assignments/${currentAssignment.id}/qualify`, creator)
+  } = useMutation(`/api/v1/assignments/${currentAssignment.id}/scores`, isEdit ? updater : creator)
 
   const onSubmit = (event) => {
     event.preventDefault()
     const data = transformDataToPostBody(event.target, 2)
-    if(isEdit) console.log(data)
-    else sendMutation(data)
+    sendMutation(data)
   }
 
   useEffect(() => {
@@ -74,6 +74,7 @@ const QualifiedAssignment = ({ isEdit }) => {
             disabled={isSubmitting}
             className="py-1 mt-4"
             text="Cancelar"
+            type="button"
           />
         </div>
         { requestError && 
