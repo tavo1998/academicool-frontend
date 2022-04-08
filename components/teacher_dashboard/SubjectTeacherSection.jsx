@@ -16,12 +16,15 @@ import {
   CREATE_NOTICE, 
   EDIT_ASSIGNMENT, 
   EDIT_ASSIGNMENT_SCORE, 
+  EDIT_ASSISTANCE, 
   EDIT_NOTICE, 
   NOTICES_TAB, 
   QUALIFY_ASSIGNMENT, 
+  QUALIFY_ASSISTANCE, 
   TABS, 
   WITHOUT_TABS_BAR 
 } from "../../config/common"
+import QualifyAssistance from "./QualifyAssistance"
 
 const SubjectTeacherSection = () => {
   const { data } = useStore(state => state.sectionSelected)
@@ -54,6 +57,10 @@ const SubjectTeacherSection = () => {
         return <CreateEditNotice />
       case EDIT_NOTICE:
         return <CreateEditNotice isEdit={true}/>
+      case QUALIFY_ASSISTANCE:
+        return <QualifyAssistance />
+      case EDIT_ASSISTANCE:
+        return <QualifyAssistance isEdit={true} />
       default:
         return <h1>Fantastico</h1>
     }
