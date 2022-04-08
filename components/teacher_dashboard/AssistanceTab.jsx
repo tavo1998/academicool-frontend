@@ -1,8 +1,11 @@
 import { useState } from "react"
 import Calendar from "../common/Calendar"
-import AssistanceCheckBox from "./AssitanceCheckBox"
+import AccentButton from "./../common/AccentButton"
+import useStore from "../../store"
+import { QUALIFY_ASSISTANCE } from "../../config/common"
 
 const AssistanceTab = () => {
+  const setTabSelected = useStore(state => state.setTabSelected)
   const [selectedDate, setSelectedDate] = useState(null)
   const handleDate = (date) => {
     setSelectedDate(date)
@@ -12,16 +15,11 @@ const AssistanceTab = () => {
     <div>
       <Calendar handleDate={handleDate} />
       { selectedDate ? <h1 className="mt-2">{selectedDate.toString()}</h1>  : <></>}
-      <AssistanceCheckBox
-        className="mt-2"
+      <AccentButton
+        onClick={() => setTabSelected(QUALIFY_ASSISTANCE)}
+        className="py-1 mt-2"
+        text="Calificar" 
       />
-      <AssistanceCheckBox
-        className="mt-2"
-      />
-      <AssistanceCheckBox
-        className="mt-2"
-      />
-      
     </div>
   )
 }
