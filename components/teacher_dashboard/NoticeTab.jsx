@@ -2,6 +2,7 @@ import { CREATE_NOTICE } from "../../config/common"
 import AccentButton from "../common/AccentButton"
 import SearchInput from "../common/SearchInput"
 import NoticeItem from "./NoticeItem"
+import ErrorComponent from "../common/ErrorComponent"
 import useStore from "../../store"
 import useSWR from "swr"
 import fetcher from "../../services/fetcher"
@@ -12,8 +13,18 @@ const NoticeTab = () => {
   const setTabSelected = useStore(state => state.setTabSelected)
   const { data, error } = useSWR(`/api/v1/subjects/${subject.id}/notices`, fetcher)
 
-  if(error) return <h1>Ocurrió un error</h1>
-  if(!data) return <h1>Cargando</h1>
+  const render = () => {
+    if(error) {
+      return (
+        <ErrorComponent error={error}>
+          <h1 className="text-customGrey text-center mt-4">Ocurrió un error al traer los datos, intentalo más tarde</h1>
+        </ErrorComponent>
+      )
+    }
+    if(!data) return <h1 className="text-customGrey text-center mt-4">Cargando comunicados...</h1>
+    if(data.data.length === 0) return <h1 className="text-customGrey text-center mt-4">No hay comunicados para mostrar</h1>
+    return data.data.map((notice => <NoticeItem key={notice.id} className="mt-2 lg:mt-4" notice={notice}/>))
+  }
 
   return (
     <div>
@@ -29,7 +40,7 @@ const NoticeTab = () => {
             text="Crear Comunicado" />
         </div>
       </div>
-      {data.data.map((notice => <NoticeItem key={notice.id} className="mt-2 lg:mt-4" notice={notice}/>))}
+      {render()}
     </div>
   )
 }
