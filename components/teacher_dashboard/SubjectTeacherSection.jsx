@@ -16,6 +16,7 @@ import {
   CREATE_NOTICE, 
   EDIT_ASSIGNMENT, 
   EDIT_ASSIGNMENT_SCORE, 
+  EDIT_ASSISTANCE, 
   EDIT_NOTICE, 
   NOTICES_TAB, 
   QUALIFY_ASSIGNMENT, 
@@ -58,6 +59,8 @@ const SubjectTeacherSection = () => {
         return <CreateEditNotice isEdit={true}/>
       case QUALIFY_ASSISTANCE:
         return <QualifyAssistance />
+      case EDIT_ASSISTANCE:
+        return <QualifyAssistance isEdit={true} />
       default:
         return <h1>Fantastico</h1>
     }
