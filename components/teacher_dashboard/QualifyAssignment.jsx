@@ -22,7 +22,7 @@ const transformDataToPostBody = (inputs, nInvalidInputs) => {
   return data
 }
 
-const QualifiedAssignment = ({ isEdit }) => {
+const QualifyAssignment = ({ isEdit }) => {
   const setTabSelected = useStore(state=> state.setTabSelected)
   const currentAssignment = useStore(state=> state.tabSelectedData)
   const currentSubject = useStore(state => state.sectionSelected.data)
@@ -46,11 +46,16 @@ const QualifiedAssignment = ({ isEdit }) => {
     sendMutation(data)
   }
 
+  const renderStudents = () => {
+    if(error) return <h1 className="text-customGrey text-center mt-4">Ocurrió un error al traer la información de los estudiantes, intentelo más tarde</h1>
+    if(!data) return <h1 className="text-customGrey text-center mt-4">Cargando...</h1>
+    if(isEdit) return data.data.map(({ score, student }) => <QualifyInput key={student.id} className="mt-2" score={score} student={student}/>)
+    return data.data.map((student) => <QualifyInput key={student.id} className="mt-2" student={student}/>)
+  }
+
   useEffect(() => {
     if(requestOk) setTabSelected(ASSIGNMENT_TAB)
   }, [requestOk])
-
-  if(!data) return <h1>Cargando</h1>
 
   return (
     <div>
@@ -60,31 +65,35 @@ const QualifiedAssignment = ({ isEdit }) => {
         Calificar - Ejercicios de pitagoras
       </h1>
       <form onSubmit={onSubmit}>
-        { isEdit ? data.data.map(({ score, student }) => <QualifyInput key={student.id} className="mt-2" score={score} student={student}/>)  : 
-          data.data.map((student) => <QualifyInput key={student.id} className="mt-2" student={student}/>)
-        }
+        {renderStudents()}
         <div className="flex space-x-2">
-          <AccentButton
-            className="py-1 mt-4"
-            disabled={isSubmitting}
-            text={isSubmitting ? "Cargando" : isEdit ? "Actalizar" : "Calificar"}
-          />
+          { !error && (
+              <AccentButton
+                className="py-1 mt-4"
+                disabled={isSubmitting}
+                text={isSubmitting ? "Cargando" : isEdit ? "Actualizar" : "Calificar"}
+              />
+          )}
           <AccentButton
             onClick={() => setTabSelected(ASSIGNMENT_TAB)}
             disabled={isSubmitting}
             className="py-1 mt-4"
-            text="Cancelar"
+            text={error ? "Regresar" : "Cancelar"}
             type="button"
           />
         </div>
         { requestError && 
           <ErrorComponent error={requestError}>
-            { console.log(requestError.data) }
-            <h1>Ocurrió un error</h1>
+            <h1 className="text-customGrey text-center mt-4">
+              {isEdit ? 
+                "Ocurrió un error al intentar actualizar las calificaciones" :
+                "Ocurrió un error al intentar calificar la asignación"
+              }
+            </h1>
           </ErrorComponent>}
       </form>
     </div>
   )
 }
 
-export default QualifiedAssignment
+export default QualifyAssignment

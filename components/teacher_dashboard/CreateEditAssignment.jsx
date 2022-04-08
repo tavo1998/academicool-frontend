@@ -1,5 +1,5 @@
 import { ASSIGNMENT_TAB } from "../../config/common"
-import { formatDateYMD } from "../../lib/calendar"
+import { formatDateYMD, getLocalDate } from "../../lib/calendar"
 import { useForm } from "react-hook-form"
 import { useEffect } from "react"
 import TextInputField from "../common/TextInputField"
@@ -50,7 +50,7 @@ const CreateEditAssignment = ({ isEdit }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
-      <h1 className="text-customGrey font-semibold lg:text-lg">{isEdit ? "Editar Asinación" : "Crear Asignacion"}</h1>
+      <h1 className="text-customGrey font-semibold lg:text-lg">{isEdit ? "Editar Asignación" : "Crear Asignacion"}</h1>
       <TextInputField
         maxLength={100}
         title="Título"
@@ -67,7 +67,7 @@ const CreateEditAssignment = ({ isEdit }) => {
       <DateInputField 
         title="Fecha de entrega"
         error={errors.delivery_date?.message}
-        min={formatDateYMD(new Date())}
+        min={formatDateYMD(getLocalDate())}
         disabled={isSubmitting}
         {...register('delivery_date', {
           required: {
@@ -103,7 +103,12 @@ const CreateEditAssignment = ({ isEdit }) => {
       </div>
       { requestError && 
         <ErrorComponent error={requestError}>
-          <h1>Ocurrió un error al realizar la solicitud, intentelo más tarde</h1>
+          <h1 className="text-customGrey text-center mt-4">
+            { isEdit ? 
+                "Ocurrió un error al intentar editar la asignación, intentelo más tarde" : 
+                "Ocurrió un error al intentar crear la asignación, intentelo más tarde"}
+            
+          </h1>
         </ErrorComponent> 
       }
     </form>

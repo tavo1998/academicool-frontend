@@ -1,7 +1,7 @@
 import { CREATE_ASSIGNMENT, EDIT_ASSIGNMENT, EDIT_ASSIGNMENT_SCORE, QUALIFY_ASSIGNMENT } from "../../config/common"
 import useStore from "../../store"
 import CreateEditAssignment from "./CreateEditAssignment"
-import QualifiedAssignment from "./QualifiedAssignment"
+import QualifyAssignment from "./QualifyAssignment"
 import AssignmentTab from "./AssignmentTab"
 
 const AssignmentBox = () => {
@@ -14,9 +14,9 @@ const AssignmentBox = () => {
       case EDIT_ASSIGNMENT:
         return <CreateEditAssignment isEdit={true}/>
       case QUALIFY_ASSIGNMENT:
-        return <QualifiedAssignment />
+        return <QualifyAssignment />
       case EDIT_ASSIGNMENT_SCORE:
-        return <QualifiedAssignment isEdit={true} />
+        return <QualifyAssignment isEdit={true} />
       default:
         return <AssignmentTab />
     }

@@ -8,7 +8,7 @@ import NoticeTab from "./NoticeTab"
 import AssistanceTab from "./AssistanceTab"
 import CreateEditAssignment from "./CreateEditAssignment"
 import CreateEditNotice from "./CreateEditNotice"
-import QualifiedAssignment from "./QualifiedAssignment"
+import QualifyAssignment from "./QualifyAssignment"
 import { 
   ASSIGNMENT_TAB, 
   ASSISTANCE_TAB, 
@@ -50,9 +50,9 @@ const SubjectTeacherSection = () => {
       case EDIT_ASSIGNMENT:
         return <CreateEditAssignment isEdit={true} />
       case QUALIFY_ASSIGNMENT:
-        return <QualifiedAssignment />
+        return <QualifyAssignment />
       case EDIT_ASSIGNMENT_SCORE:
-        return <QualifiedAssignment isEdit={true} />
+        return <QualifyAssignment isEdit={true} />
       case CREATE_NOTICE:
         return <CreateEditNotice />
       case EDIT_NOTICE:
