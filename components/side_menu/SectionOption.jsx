@@ -12,12 +12,14 @@ const SectionOption = ({ option }) => {
     setItemSideBarSelected(option.id)
     setIsSideBarOpen()
   }
+
+  console.log()
   
   return (
     <button 
       onClick={handleClick}  
       className={`${itemSideBarSelected === option.id ? 'bg-white text-primaryColor p-1 rounded-sm' : 'text-white text-opacity-80'} w-full text-left lg:text-base`}>
-      {option.name}
+      {option.name} {option.data?.grade.name}
     </button>
   )
 }
