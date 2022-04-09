@@ -1,4 +1,5 @@
-import { CREATE_ASSIGNMENT } from '../../config/common';
+import { CREATE_ASSIGNMENT, PAGINATION_QUANTITY } from '../../config/common';
+import { useState } from 'react';
 import SearchInput from './../common/SearchInput';
 import AccentButton from './../common/AccentButton';
 import AssigmentItem from './AssigmentItem';
@@ -6,11 +7,22 @@ import ErrorComponent from '../common/ErrorComponent';
 import useStore from './../../store/index'
 import useSWR from 'swr';
 import fetcher from '../../services/fetcher';
+import PaginationButtons from '../common/PaginationButtons';
 
 const AssignmetTab = () => {
+  const [pagination, setPagination] = useState(0)
+  const [search, setSearch] = useState('')
   const subject = useStore(state => state.sectionSelected.data)
   const setTabSelected = useStore(state => state.setTabSelected)
-  const { data, error } = useSWR(`/api/v1/subjects/${subject.id}/assignments`, fetcher)
+  const { data, error } = useSWR(`/api/v1/subjects/${subject.id}/assignments?title=${search}&pagination=${pagination}`, fetcher)
+
+  const handlePrevPagination = () => {
+    setPagination(pagination - 1)
+  }
+
+  const handleNextPagination = () => {
+    setPagination(pagination + 1)
+  }
 
   const render = () => {
     if(error) {
@@ -30,6 +42,7 @@ const AssignmetTab = () => {
         <h1 className='text-base text-customGrey font-semibold hidden lg:block'>Asignaciones</h1>
         <div className='flex-1 lg:flex justify-end'>
           <SearchInput
+            onChange={(e) => setSearch(e.target.value)}
             className="lg:w-3/5" 
           />
           <AccentButton
@@ -39,6 +52,16 @@ const AssignmetTab = () => {
         </div>
       </div>
       {render()}
+      {
+        data && (
+          <PaginationButtons
+            disablePrev={pagination === 0}
+            disableNext={data.data.length === 0 || data.data.length < PAGINATION_QUANTITY}
+            handlePrev={handlePrevPagination}
+            handleNext={handleNextPagination}
+          />
+        )
+      }
     </div>
   )
 }

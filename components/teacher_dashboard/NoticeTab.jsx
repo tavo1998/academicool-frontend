@@ -1,4 +1,6 @@
 import { CREATE_NOTICE } from "../../config/common"
+import { useState } from "react"
+import { PAGINATION_QUANTITY } from "../../config/common"
 import AccentButton from "../common/AccentButton"
 import SearchInput from "../common/SearchInput"
 import NoticeItem from "./NoticeItem"
@@ -6,12 +8,23 @@ import ErrorComponent from "../common/ErrorComponent"
 import useStore from "../../store"
 import useSWR from "swr"
 import fetcher from "../../services/fetcher"
+import PaginationButtons from "../common/PaginationButtons"
 
 
 const NoticeTab = () => {
+  const [pagination, setPagination] = useState(0)
+  const [search, setSearch] = useState('')
   const subject = useStore(state => state.sectionSelected.data)
   const setTabSelected = useStore(state => state.setTabSelected)
-  const { data, error } = useSWR(`/api/v1/subjects/${subject.id}/notices`, fetcher)
+  const { data, error } = useSWR(`/api/v1/subjects/${subject.id}/notices?title=${search}&pagination=${pagination}`, fetcher)
+
+  const handlePrevPagination = () => {
+    setPagination(pagination - 1)
+  }
+
+  const handleNextPagination = () => {
+    setPagination(pagination + 1)
+  }
 
   const render = () => {
     if(error) {
@@ -32,6 +45,7 @@ const NoticeTab = () => {
         <h1 className='text-base text-customGrey font-semibold hidden lg:block'>Comunicados</h1>
         <div className="flex-1 lg:flex items-center justify-end">
           <SearchInput
+            onChange={(e) => setSearch(e.target.value)}
             className="lg:w-3/5"
           />
           <AccentButton
@@ -41,6 +55,14 @@ const NoticeTab = () => {
         </div>
       </div>
       {render()}
+      { data && (
+          <PaginationButtons
+            disablePrev={pagination === 0}
+            disableNext={data.data.length === 0 || data.data.length < PAGINATION_QUANTITY}
+            handlePrev={handlePrevPagination}
+            handleNext={handleNextPagination}
+          />
+      ) }
     </div>
   )
 }

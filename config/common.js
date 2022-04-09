@@ -12,6 +12,12 @@ export const EDIT_ASSIGNMENT_SCORE = 'EDIT_ASSIGNMENT_SCORE'
 export const QUALIFY_ASSISTANCE = 'QUALIFY_ASSISTANCE'
 export const EDIT_ASSISTANCE = 'EDIT_ASSISTANCE'
 
+export const PAGINATION_QUANTITY = 4
+
+export const TEACHER_ROLE = 'TEACHER'
+export const ADMIN_ROLE = 'ADMIN'
+export const ATTENDANT_ROLE = 'ATTENDANT'
+
 export const TABS = [
   {
     id: ASSIGNMENT_TAB,
