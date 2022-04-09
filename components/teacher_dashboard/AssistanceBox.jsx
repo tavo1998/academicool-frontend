@@ -1,17 +1,25 @@
-import Calendar from "../common/Calendar"
-import SectionHeader from "../common/SectionHeader"
+import { EDIT_ASSISTANCE, QUALIFY_ASSISTANCE } from "../../config/common"
+import AssistanceTab from "./AssistanceTab"
+import QualifyAssistance from "./QualifyAssistance"
+import useStore from "../../store"
 
 const AssistanceBox = () => {
+  const tabSelected = useStore(state => state.tabSelected)
+
+  const renderComponent = () => {
+    switch(tabSelected) {
+      case QUALIFY_ASSISTANCE:
+        return <QualifyAssistance />
+      case EDIT_ASSISTANCE:
+        return <QualifyAssistance isEdit={true}/>
+      default:
+        return <AssistanceTab />
+    }
+  }
+
   return (
-    <div className="p-4 bg-primaryColor bg-opacity-10 h-full overflow-y-scroll">
-      <SectionHeader
-        title="Asistencias" 
-      />
-      <div className="flex-1 flex justify-center">
-        <div className="w-3/5">
-          <Calendar />
-        </div>
-      </div>
+    <div className="p-4 h-full overflow-y-auto">
+      { renderComponent() }
     </div>
   )
 }

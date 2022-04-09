@@ -60,7 +60,7 @@ const QualifyAssignment = ({ isEdit }) => {
   return (
     <div>
       <h1 
-        className="text-customGrey font-semibold lg:text-lg"
+        className="text-customGrey font-semibold lg:text-base"
       >
         Calificar - Ejercicios de pitagoras
       </h1>

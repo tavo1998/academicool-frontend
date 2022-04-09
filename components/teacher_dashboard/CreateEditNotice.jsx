@@ -46,7 +46,7 @@ const CreateEditNotice = ({ isEdit }) => {
 
   return (
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
-      <h1 className="text-customGrey font-semibold mt-3 lg:mt-0 mb-1 lg:text-lg">{isEdit ? "Editar Comunicado" : "Crear Comunicado"}</h1>
+      <h1 className="text-customGrey font-semibold mt-3 lg:mt-0 mb-2">{isEdit ? "Editar Comunicado" : "Crear Comunicado"}</h1>
       <TextInputField
         maxLength={100}
         title="Título"

@@ -20,8 +20,8 @@ const AssistanceToday = ({ data }) => {
     if(!data) return <h1 className="text-center text-customGrey">Hoy no se ha calificado asistencia</h1>
     return (
       <div>
-        <h1 className="text-customGrey font-semibold">Descripción de la clase</h1>
-        <p className="text-sm text-customGrey">{data.description}</p>
+        <h1 className="text-customGrey font-semibold lg:text-base">Descripción de la clase</h1>
+        <p className="text-sm text-customGrey mt-1">{data.description}</p>
         { data.students.map(({attended, student}) => <AssistanceItem key={student.id} className="mt-2" attended={attended} student={student} /> )}
       </div>
     )
@@ -31,7 +31,7 @@ const AssistanceToday = ({ data }) => {
     <div className="mt-4">
       { render() }
       <AccentButton
-        className="py-1 mt-2"
+        className="py-1 mt-4"
         onClick={handleCreateEditButton}
         text={data ? "Editar Calificación" : "Calificar"}
       />

@@ -27,7 +27,7 @@ const AssignmetTab = () => {
   return (
     <div>
       <div className='lg:flex items-center justify-between'>
-        <h1 className='text-lg text-customGrey font-semibold hidden lg:block'>Asignaciones</h1>
+        <h1 className='text-base text-customGrey font-semibold hidden lg:block'>Asignaciones</h1>
         <div className='flex-1 lg:flex justify-end'>
           <SearchInput
             className="lg:w-3/5" 
