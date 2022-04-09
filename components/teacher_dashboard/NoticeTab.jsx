@@ -1,4 +1,5 @@
 import { CREATE_NOTICE } from "../../config/common"
+import { useState } from "react"
 import AccentButton from "../common/AccentButton"
 import SearchInput from "../common/SearchInput"
 import NoticeItem from "./NoticeItem"
@@ -9,9 +10,10 @@ import fetcher from "../../services/fetcher"
 
 
 const NoticeTab = () => {
+  const [search, setSearch] = useState('')
   const subject = useStore(state => state.sectionSelected.data)
   const setTabSelected = useStore(state => state.setTabSelected)
-  const { data, error } = useSWR(`/api/v1/subjects/${subject.id}/notices`, fetcher)
+  const { data, error } = useSWR(`/api/v1/subjects/${subject.id}/notices?title=${search}`, fetcher)
 
   const render = () => {
     if(error) {
@@ -32,6 +34,7 @@ const NoticeTab = () => {
         <h1 className='text-base text-customGrey font-semibold hidden lg:block'>Comunicados</h1>
         <div className="flex-1 lg:flex items-center justify-end">
           <SearchInput
+            onChange={(e) => setSearch(e.target.value)}
             className="lg:w-3/5"
           />
           <AccentButton
