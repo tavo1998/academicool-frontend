@@ -8,7 +8,7 @@ const QualifyInput = ({ className, student, score, ...rest }) => {
         min="0.0"
         max="5.0"
         step="0.1"
-        className="w-1/5 bg-primaryColor bg-opacity-10 p-2 lg:placeholder:text-base placeholder:text-sm mt-1 focus:outline-none text-customGrey text-xs lg:text-base" 
+        className="w-1/5 bg-primaryColor bg-opacity-10 p-2 mt-1 focus:outline-none text-customGrey text-sm" 
         type="number"
         {...rest}
       />

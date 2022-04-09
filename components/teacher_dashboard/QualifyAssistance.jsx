@@ -46,21 +46,44 @@ const QualifyAssistance = ({ isEdit }) => {
 
   const onSubmit = (data) => {
     const body = transformDataToPostBody(data)
-    console.log(body)
     sendMutation(body)
   }
 
+  const renderStudents = () => {
+    if(error) return <h1 className="text-customGrey text-center mt-4">Ocurrió un error al traer la información de los estudiantes, intentelo más tarde</h1>
+    if(!data && !isEdit) return <h1 className="text-customGrey text-center mt-4">Cargando...</h1>
+    if(isEdit) return (
+      assistanceToUpdate.students.map(({attended, student}) => 
+        <AssistanceCheckBox
+          disabled={isSubmitting}
+          key={student.id} 
+          className="mt-2"
+          attended={attended}
+          student={student} 
+          {...register(student.id.toString())} 
+        />
+      )
+    )
+    return (
+      data.data.map(student => 
+        <AssistanceCheckBox
+          disabled={isSubmitting}
+          key={student.id} 
+          className="mt-2" 
+          student={student} 
+          {...register(student.id.toString())} 
+        />
+      )
+    )
+  }
+
   useEffect(() => {
-    reset({ description:  assistanceToUpdate.description })
-  }, [isEdit])
+    if(assistanceToUpdate) reset({ description:  assistanceToUpdate.description })
+  }, [isEdit, assistanceToUpdate])
 
   useEffect(() => {
     if(requestOk) setTabSelected(ASSISTANCE_TAB)
   }, [requestOk])
-
-  if(!data && !isEdit) return <h1>Cargando</h1>
-
-  if(error) return <h1>Ocurrió un error</h1>
 
   return (
     <div>
@@ -83,44 +106,30 @@ const QualifyAssistance = ({ isEdit }) => {
           })}
         />
         <h1 className="text-sm text-customGrey font-semibold my-1">Estudiantes</h1>
-        { isEdit ?
-            assistanceToUpdate.students.map(({attended, student}) => 
-              <AssistanceCheckBox
-                disabled={isSubmitting}
-                key={student.id} 
-                className="mt-2"
-                attended={attended}
-                student={student} 
-                {...register(student.id.toString())} 
-              />
-            )
-          :
-            data.data.map(student => 
-              <AssistanceCheckBox
-                disabled={isSubmitting}
-                key={student.id} 
-                className="mt-2" 
-                student={student} 
-                {...register(student.id.toString())} 
-              />
-            )
-        }
+        { renderStudents() }
         <div className="flex space-x-2 mt-4">
-          <AccentButton
-            className="py-1"
-            text="Calificar" 
-          />
+          { !error && (
+              <AccentButton
+                className="py-1"
+                text="Calificar" 
+              />
+          )}
           <AccentButton
             onClick={() => setTabSelected(ASSISTANCE_TAB)}
             className="py-1"
-            text="Cancelar"
+            text={error ? "Regresar" : "Cancelar"}
             type="button" 
           />
         </div>
       </form>
       { requestError && 
         <ErrorComponent error={requestError}>
-          <h1>Ocurrió un error</h1>
+          <h1 className="text-customGrey text-center mt-4">
+            {isEdit ? 
+              "Ocurrió un error al intentar actualizar las asistencias, inténtalo más tarde" :
+              "Ocurrió un error al intentar calificar la asistencia, inténtalo más tarde"
+            }
+          </h1>
         </ErrorComponent>
       }
     </div>

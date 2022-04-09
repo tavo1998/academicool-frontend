@@ -37,7 +37,7 @@ const AssigmentItem = ({ className, assignment }) => {
         </div>
         <div className="flex items-center space-x-2">
           <button onClick={handleEdit}>
-            <MdModeEdit className="text-customGrey lg:h-5 lg:w-5" />
+            <MdModeEdit className="text-customGrey lg:h-4 lg:w-4" />
           </button>
           {
             itemExpanded ?
@@ -51,10 +51,10 @@ const AssigmentItem = ({ className, assignment }) => {
           }
         </div>
       </div>
-      <h1 className="text-customGrey text-sm lg:text-base">Fecha de entrega: {formatDateString(assignment.delivery_date)}</h1>
-      <h1 className="text-customGrey text-sm lg:text-base">Calificación: {assignment.is_qualified ? 'Calificado' : 'No calificado'} </h1>
+      <h1 className="text-customGrey text-sm">Fecha de entrega: {formatDateString(assignment.delivery_date)}</h1>
+      <h1 className="text-customGrey text-sm">Calificación: {assignment.is_qualified ? 'Calificado' : 'No calificado'} </h1>
       <p 
-        className={`${itemExpanded ? 'h-full mt-2' : 'h-0 overflow-hidden'} text-sm text-customGrey lg:h-full lg:text-base lg:mt-2`}>
+        className={`${itemExpanded ? 'h-full mt-2' : 'h-0 overflow-hidden'} text-sm text-customGrey lg:h-full lg:mt-2`}>
         { assignment.description }
       </p>
       <AccentButton

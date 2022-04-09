@@ -18,12 +18,12 @@ const NoticeItem = ({ className, notice }) => {
       <div className="flex justify-between items-center">
         <h1 className="text-customGrey text-sm lg:text-base font-semibold">{notice.title}</h1>
         <button onClick={handleEdit}>
-          <MdModeEdit className="h-5 w-5 text-customGrey" />
+          <MdModeEdit className="h-4 w-4 text-customGrey" />
         </button>
       </div>
       <h1 className="text-customGrey text-xs lg:text-sm">{formatDateString(notice.created_at)}</h1>
       <p
-        className="text-customGrey text-sm mt-2 lg:text-base">
+        className="text-customGrey text-sm mt-2">
         {notice.description}
       </p>
     </div>
