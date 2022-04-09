@@ -1,3 +1,9 @@
+import { useEffect } from "react"
+import { getUserAuthenticated } from "../../services/user"
+import { getRoleRedirectUrl } from "../../lib/redirect"
+import { createTeacherSideBarOptions, SUBJECT_TEACHER_OPTION } from "../../config/teacher"
+import { useMediaQuery } from "react-responsive"
+import { useRouter } from "next/router"
 import SideBar from "../../components/side_menu/SideBar"
 import useSWR from "swr"
 import fetcher from "./../../services/fetcher"
@@ -5,18 +11,20 @@ import ErrorComponent from "../../components/common/ErrorComponent"
 import useStore from "../../store"
 import NoSectionSelected from "../../components/common/NoSectionSelected"
 import SubjectTeacherSection from "../../components/teacher_dashboard/SubjectTeacherSection"
-import { getUserAuthenticated } from "../../services/user"
-import { getRoleRedirectUrl } from "../../lib/redirect"
-import { createTeacherSideBarOptions, SUBJECT_TEACHER_OPTION } from "../../config/teacher"
-import { useMediaQuery } from "react-responsive"
 import SubjectDesktopTeacherSection from "../../components/teacher_dashboard/SubjectDesktopTeacherSection"
+import { SIGN_OUT_OPTION } from "../../config/common"
 
 const TeacherDashboard = () => {
+  const router = useRouter()
   const sectionSelected = useStore(state => state.sectionSelected)
   const { data, error } = useSWR('/api/v1/subjects', fetcher)
   const isMobileOrDesktop = useMediaQuery({
     query: '(min-width: 1024px)'
   })
+
+  useEffect(() => {
+    if(sectionSelected.id === SIGN_OUT_OPTION) router.push(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/auth/google/sign-out`)
+  }, [sectionSelected.id])
 
   const renderSection = () => {
     switch(sectionSelected.id){
