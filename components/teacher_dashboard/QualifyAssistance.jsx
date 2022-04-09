@@ -28,6 +28,7 @@ const transformDataToPostBody = (data) => {
 
 const QualifyAssistance = ({ isEdit }) => {
   const assistanceToUpdate = useStore(state => state.tabSelectedData)
+  const setTabSelectedData = useStore(state => state.setTabSelectedData)
   const currentSubject = useStore(state => state.sectionSelected.data)
   const setTabSelected = useStore(state => state.setTabSelected)
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -48,6 +49,15 @@ const QualifyAssistance = ({ isEdit }) => {
     const body = transformDataToPostBody(data)
     sendMutation(body)
   }
+
+  useEffect(() => {
+    if(assistanceToUpdate) reset({ description:  assistanceToUpdate.description })
+    return () => setTabSelectedData(null)
+  }, [isEdit, assistanceToUpdate])
+
+  useEffect(() => {
+    if(requestOk) setTabSelected(ASSISTANCE_TAB)
+  }, [requestOk])
 
   const renderStudents = () => {
     if(error) return <h1 className="text-customGrey text-center mt-4">Ocurrió un error al traer la información de los estudiantes, intentelo más tarde</h1>
@@ -76,14 +86,6 @@ const QualifyAssistance = ({ isEdit }) => {
       )
     )
   }
-
-  useEffect(() => {
-    if(assistanceToUpdate) reset({ description:  assistanceToUpdate.description })
-  }, [isEdit, assistanceToUpdate])
-
-  useEffect(() => {
-    if(requestOk) setTabSelected(ASSISTANCE_TAB)
-  }, [requestOk])
 
   return (
     <div>

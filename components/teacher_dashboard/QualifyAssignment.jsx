@@ -24,6 +24,7 @@ const transformDataToPostBody = (inputs, nInvalidInputs) => {
 
 const QualifyAssignment = ({ isEdit }) => {
   const setTabSelected = useStore(state=> state.setTabSelected)
+  const setTabSelectedData = useStore(state => state.setTabSelectedData)
   const currentAssignment = useStore(state=> state.tabSelectedData)
   const currentSubject = useStore(state => state.sectionSelected.data)
   const { 
@@ -55,6 +56,7 @@ const QualifyAssignment = ({ isEdit }) => {
 
   useEffect(() => {
     if(requestOk) setTabSelected(ASSIGNMENT_TAB)
+    return () => setTabSelectedData(null)
   }, [requestOk])
 
   return (
