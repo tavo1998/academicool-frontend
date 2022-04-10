@@ -51,8 +51,7 @@ const QualifyAssistance = ({ isEdit }) => {
   }
 
   useEffect(() => {
-    if(assistanceToUpdate) reset({ description:  assistanceToUpdate.description })
-    return () => setTabSelectedData(null)
+    if(assistanceToUpdate && isEdit) reset({ description:  assistanceToUpdate.description })
   }, [isEdit, assistanceToUpdate])
 
   useEffect(() => {
