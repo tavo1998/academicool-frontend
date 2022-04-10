@@ -24,6 +24,11 @@ const AssignmetTab = () => {
     setPagination(pagination + 1)
   }
 
+  const handleSearchChange = (e) => {
+    if(e.target.value !== '') setPagination(0)
+    setSearch(e.target.value) 
+  }
+
   const render = () => {
     if(error) {
       return (
@@ -42,7 +47,7 @@ const AssignmetTab = () => {
         <h1 className='text-base text-customGrey font-semibold hidden lg:block'>Asignaciones</h1>
         <div className='flex-1 lg:flex justify-end'>
           <SearchInput
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={handleSearchChange}
             className="lg:w-3/5" 
           />
           <AccentButton

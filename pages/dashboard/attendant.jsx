@@ -11,6 +11,8 @@ import useStore from "../../store"
 import useSWR from "swr"
 import SideBar from "../../components/side_menu/SideBar"
 import fetcher from "../../services/fetcher"
+import { SUBJECT_TEACHER_OPTION } from "../../config/teacher"
+import SubjectStudentSection from "../../components/attendant_dashboard/SubjectStudentSection"
 
 const AttendantDashboard = () => {
   const sectionSelected = useStore(state => state.sectionSelected)
@@ -41,6 +43,8 @@ const AttendantDashboard = () => {
     switch(sectionSelected.id){
       case null:
         return <NoSectionSelected />
+      case SUBJECT_TEACHER_OPTION:
+        return <SubjectStudentSection />
     }
   }
   
