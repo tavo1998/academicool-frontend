@@ -1,4 +1,5 @@
 import { useEffect } from "react"
+import { SIGN_OUT_OPTION } from "../../config/common"
 import { getUserAuthenticated } from "../../services/user"
 import { getRoleRedirectUrl } from "../../lib/redirect"
 import { createTeacherSideBarOptions, SUBJECT_TEACHER_OPTION } from "../../config/teacher"
@@ -12,7 +13,6 @@ import useStore from "../../store"
 import NoSectionSelected from "../../components/common/NoSectionSelected"
 import SubjectTeacherSection from "../../components/teacher_dashboard/SubjectTeacherSection"
 import SubjectDesktopTeacherSection from "../../components/teacher_dashboard/SubjectDesktopTeacherSection"
-import { SIGN_OUT_OPTION } from "../../config/common"
 
 const TeacherDashboard = () => {
   const router = useRouter()

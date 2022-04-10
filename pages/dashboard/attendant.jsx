@@ -4,6 +4,7 @@ import { getUserAuthenticated } from "../../services/user"
 import { getRoleRedirectUrl } from "../../lib/redirect"
 import { ATTENDANT_ROLE } from "../../config/common"
 import { createAttendantSideBarOptions } from "../../config/attendant"
+import { useMediaQuery } from "react-responsive"
 import SelectStudent from "../../components/attendant_dashboard/SelectStudent"
 import NoSectionSelected from "../../components/common/NoSectionSelected"
 import ErrorComponent from "../../components/common/ErrorComponent"
@@ -13,11 +14,15 @@ import SideBar from "../../components/side_menu/SideBar"
 import fetcher from "../../services/fetcher"
 import { SUBJECT_TEACHER_OPTION } from "../../config/teacher"
 import SubjectStudentSection from "../../components/attendant_dashboard/SubjectStudentSection"
+import SubjectDesktopStudentSection from "../../components/attendant_dashboard/SubjectDesktopStudentSection"
 
 const AttendantDashboard = () => {
   const sectionSelected = useStore(state => state.sectionSelected)
   const studentSelected = useStore(state => state.studentSelected)
   const { data, error } = useSWR(studentSelected ? `/api/v1/students/${studentSelected.id}/subjects` : null, fetcher)
+  const isMobileOrDesktop = useMediaQuery({
+    query: '(min-width: 1024px)'
+  })
 
   useEffect(() => {
     if(sectionSelected.id === SIGN_OUT_OPTION) router.push(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/auth/google/sign-out`)
@@ -44,14 +49,19 @@ const AttendantDashboard = () => {
       case null:
         return <NoSectionSelected />
       case SUBJECT_TEACHER_OPTION:
-        return <SubjectStudentSection />
+        if(!isMobileOrDesktop)
+          return <SubjectStudentSection />
+        else
+          return <SubjectDesktopStudentSection />
     }
   }
   
   return (
     <div className="lg:flex">
       <SideBar sections={createAttendantSideBarOptions(data.data)} />
-      {renderSection()}
+      <div className="flex-1">
+        {renderSection()}
+      </div>
     </div>
   )
 }
