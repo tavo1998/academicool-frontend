@@ -2,7 +2,7 @@ import create from 'zustand'
 import { devtools } from 'zustand/middleware'
 
 const useStore = create(devtools(set => ({
-  isSideBarOpen: false,
+  isSideBarOpen: true,
   itemSideBarSelected: null,
   sectionSelected: { id: null, data: null },
   tabSelected: null,
