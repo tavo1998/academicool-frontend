@@ -1,10 +1,15 @@
 import useStore from "../../store"
 
 const StudentItem = ({ student }) => {
+  const setIsSideBarOpen = useStore(state => state.setIsSideBarOpen)
+  const isSideBarOpen = useStore(state => state.isSideBarOpen)
   const setStudentSelected = useStore(state => state.setStudentSelected)
 
   const handleClick = () => {
     setStudentSelected(student)
+    if(!isSideBarOpen) {
+      setIsSideBarOpen()
+    }
   }
 
   return (
