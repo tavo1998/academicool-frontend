@@ -5,6 +5,7 @@ import { getRoleRedirectUrl } from "../../lib/redirect"
 import { ATTENDANT_ROLE } from "../../config/common"
 import { createAttendantSideBarOptions } from "../../config/attendant"
 import { useMediaQuery } from "react-responsive"
+import { useRouter } from "next/router"
 import SelectStudent from "../../components/attendant_dashboard/SelectStudent"
 import NoSectionSelected from "../../components/common/NoSectionSelected"
 import ErrorComponent from "../../components/common/ErrorComponent"
@@ -17,6 +18,7 @@ import SubjectStudentSection from "../../components/attendant_dashboard/SubjectS
 import SubjectDesktopStudentSection from "../../components/attendant_dashboard/SubjectDesktopStudentSection"
 
 const AttendantDashboard = () => {
+  const router = useRouter()
   const sectionSelected = useStore(state => state.sectionSelected)
   const studentSelected = useStore(state => state.studentSelected)
   const { data, error } = useSWR(studentSelected ? `/api/v1/students/${studentSelected.id}/subjects` : null, fetcher)
