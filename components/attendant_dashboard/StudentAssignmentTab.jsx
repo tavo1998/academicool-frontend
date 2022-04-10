@@ -47,10 +47,13 @@ const StudentAssignmentTab = () => {
 
   return (
     <div>
-      <SearchInput
-        onChange={handleSearchChange}
-        className="lg:w-3/5" 
-      />
+      <div className="lg:flex items-center justify-between">
+        <h1 className='text-base text-customGrey font-semibold hidden lg:block'>Asignaciones</h1>
+        <SearchInput
+          onChange={handleSearchChange}
+          className="lg:w-3/5" 
+        />
+      </div>
       {render()}
       {
         data && (
