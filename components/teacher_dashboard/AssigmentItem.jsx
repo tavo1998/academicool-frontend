@@ -17,7 +17,6 @@ const AssigmentItem = ({ className, assignment }) => {
 
   const handleExpanded = () => {
     setItemExpanded(!itemExpanded)
-    setTabSelectedData(assignment)
   }
 
   const handleQualification = () => {
