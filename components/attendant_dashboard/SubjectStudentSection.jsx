@@ -6,6 +6,7 @@ import SubjectTabs from "../teacher_dashboard/SubjectTabs"
 import NoTabSelected from "../teacher_dashboard/NoTabSelected"
 import StudentAssignmentTab from "./StudentAssignmentTab"
 import StudentNoticeTab from "./StudentNoticeTab"
+import StudentAssistanceTab from "./StudentAssistanceTab"
 
 const SubjectStudentSection = () => {
   const subject = useStore(state => state.sectionSelected.data)
@@ -20,7 +21,7 @@ const SubjectStudentSection = () => {
       case NOTICES_TAB:
         return <StudentNoticeTab />
       case ASSISTANCE_TAB:
-        return <h1>Assitance Tab</h1>
+        return <StudentAssistanceTab />
     }
   }
 
