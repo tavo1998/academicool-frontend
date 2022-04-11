@@ -1,9 +1,9 @@
 import { useEffect } from "react"
-import { SIGN_OUT_OPTION } from "../../config/common"
+import { ASSIGNMENT_TAB, SIGN_OUT_OPTION } from "../../config/common"
 import { getUserAuthenticated } from "../../services/user"
 import { getRoleRedirectUrl } from "../../lib/redirect"
 import { ATTENDANT_ROLE } from "../../config/common"
-import { createAttendantSideBarOptions } from "../../config/attendant"
+import { CHANGE_STUDENT, createAttendantSideBarOptions } from "../../config/attendant"
 import { useMediaQuery } from "react-responsive"
 import { useRouter } from "next/router"
 import SelectStudent from "../../components/attendant_dashboard/SelectStudent"
@@ -20,7 +20,11 @@ import SubjectDesktopStudentSection from "../../components/attendant_dashboard/S
 const AttendantDashboard = () => {
   const router = useRouter()
   const sectionSelected = useStore(state => state.sectionSelected)
+  const setSectionSelected = useStore(state => state.setSectionSelected)
+  const setTabSelected = useStore(state => state.setTabSelected)
+  const setItemSideBarSelected = useStore(state => state.setItemSideBarSelected)
   const studentSelected = useStore(state => state.studentSelected)
+  const setStudentSelected = useStore(state => state.setStudentSelected)
   const { data, error } = useSWR(studentSelected ? `/api/v1/students/${studentSelected.id}/subjects` : null, fetcher)
   const isMobileOrDesktop = useMediaQuery({
     query: '(min-width: 1024px)'
@@ -28,6 +32,15 @@ const AttendantDashboard = () => {
 
   useEffect(() => {
     if(sectionSelected.id === SIGN_OUT_OPTION) router.push(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/auth/google/sign-out`)
+  }, [sectionSelected.id])
+
+  useEffect(() => {
+    if(sectionSelected.id === CHANGE_STUDENT) {
+      setItemSideBarSelected(null)
+      setStudentSelected(null)
+      setSectionSelected(null)
+      setTabSelected(ASSIGNMENT_TAB)
+    }
   }, [sectionSelected.id])
 
   if(!studentSelected){
