@@ -17,6 +17,16 @@ const SelectStudent = () => {
 
   const render = () => {
     if(!data) return <h1 className="text-customGrey lg:text-lg text-center font-semibold">Cargando estudiantes...</h1>
+    if(data.data.length === 0) return (
+      <div>
+        <h1 className="text-customGrey lg:text-lg text-center font-semibold">
+          No tienes estudiantes registrados. Comunícate con soporte
+        </h1>
+        <h1 className="text-customGrey lg:text-lg text-center font-semibold">
+          Comunícate con soporte
+        </h1>
+      </div>
+    )
     return data.data.map(student => <StudentItem  key={student.id} student={student}/>)
   }
 
