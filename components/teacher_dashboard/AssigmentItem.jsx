@@ -1,11 +1,11 @@
 import { useState  } from 'react';
-import { MdModeEdit, MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md"
+import { MdModeEdit, MdDelete, MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md"
 import { EDIT_ASSIGNMENT, EDIT_ASSIGNMENT_SCORE, QUALIFY_ASSIGNMENT } from '../../config/common';
 import { formatDateString } from '../../lib/calendar';
 import useStore from '../../store';
 import AccentButton from '../common/AccentButton';
 
-const AssigmentItem = ({ className, assignment }) => {
+const AssigmentItem = ({ className, assignment, handleDelete }) => {
   const setTabSelected = useStore(state => state.setTabSelected)
   const setTabSelectedData = useStore(state => state.setTabSelectedData)
   const [itemExpanded, setItemExpanded] = useState(false)
@@ -30,24 +30,27 @@ const AssigmentItem = ({ className, assignment }) => {
       onClick={handleExpanded} 
       className={`${className} bg-primaryColor bg-opacity-10 p-2 lg:p-4 rounded-sm cursor-pointer lg:cursor-default`}
     >
-      <div className="flex text-customGrey justify-between items-center">
+      <div className="flex text-customGrey justify-between items-start">
         <div className="lg:flex items-center lg:space-x-2">
           <h1 className="text-customGrey text-sm font-semibold lg:text-base">
             {assignment.title}
           </h1>
           <span className="text-customGrey text-xs lg:text-base font-normal">{formatDateString(assignment.created_at)}</span>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-start space-x-2">
           <button onClick={handleEdit}>
-            <MdModeEdit className="text-customGrey lg:h-4 lg:w-4" />
+            <MdModeEdit className="text-customGrey" />
+          </button>
+          <button onClick={() => handleDelete(assignment)}>
+            <MdDelete className="text-customGrey" />
           </button>
           {
             itemExpanded ?
-            <MdKeyboardArrowUp 
-                className="text-customGrey h-6 w-6 lg:hidden"
+            <MdKeyboardArrowUp
+                className="text-customGrey h-5 w-5 lg:hidden"
             /> :
               <MdKeyboardArrowDown
-                className="text-customGrey h-6 w-6 lg:hidden"/> 
+                className="text-customGrey h-5 w-5 lg:hidden"/> 
           }
         </div>
       </div>

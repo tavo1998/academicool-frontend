@@ -49,7 +49,7 @@ const TeacherDashboard = () => {
   if(!data) return <></>
 
   return (
-    <div className="lg:flex">
+    <div className="lg:flex relative">
       <SideBar sections={createTeacherSideBarOptions(data.data)} />
       <div className="flex-1">
         { renderSection() }
