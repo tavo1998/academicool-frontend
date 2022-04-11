@@ -1,7 +1,9 @@
-import { SUBJECT_TEACHER_OPTION, PROFILE_TEACHER_OPTION, SIGN_OUT_OPTION } from "./teacher"
+import { SIGN_OUT_OPTION } from "./common"
+import { SUBJECT_TEACHER_OPTION, PROFILE_TEACHER_OPTION, } from "./teacher"
 
 export const ASSIGNMENTS_STATISTICS = 'ASSIGNMENTS_STATISTICS'
 export const ASSISTANCES_STATISTICS = 'ASSISTANCES_STATISTICS'
+export const CHANGE_STUDENT = 'CHANGE_STUDENT'
 
 export const createAttendantSideBarOptions = (subjects) => {
   const attendantOptions = [
@@ -36,6 +38,11 @@ export const createAttendantSideBarOptions = (subjects) => {
           id: PROFILE_TEACHER_OPTION,
           name: "Cuenta",
           sectionType: PROFILE_TEACHER_OPTION
+        },
+        {
+          id: CHANGE_STUDENT,
+          name: "Cambiar de estudiante",
+          sectionType: CHANGE_STUDENT
         },
         {
           id: SIGN_OUT_OPTION,

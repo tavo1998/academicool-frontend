@@ -33,11 +33,9 @@ const CreateEditNotice = ({ isEdit }) => {
   }
 
   useEffect(() => {
-    if(noticeToUpdate){
+    if(noticeToUpdate && isEdit){
       reset({ ...noticeToUpdate })
     }
-
-    return () => setTabSelectedData(null)
   }, [noticeToUpdate])
 
   useEffect(() => {

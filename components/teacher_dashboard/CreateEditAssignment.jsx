@@ -37,12 +37,10 @@ const CreateEditAssignment = ({ isEdit }) => {
   }
 
   useEffect(() => {
-    if(assignmentToUpdate){
+    if(assignmentToUpdate && isEdit){
       reset({ ...assignmentToUpdate })
     }
-
-    return () => setTabSelectedData(null)
-  }, [assignmentToUpdate])
+  }, [assignmentToUpdate, isEdit])
 
   useEffect(() => {
     if(requestOk) setTabSelected(ASSIGNMENT_TAB)
