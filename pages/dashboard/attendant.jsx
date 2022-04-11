@@ -16,6 +16,7 @@ import fetcher from "../../services/fetcher"
 import { SUBJECT_TEACHER_OPTION } from "../../config/teacher"
 import SubjectStudentSection from "../../components/attendant_dashboard/SubjectStudentSection"
 import SubjectDesktopStudentSection from "../../components/attendant_dashboard/SubjectDesktopStudentSection"
+import PageError from "../../components/common/PageError"
 
 const AttendantDashboard = () => {
   const router = useRouter()
@@ -52,7 +53,7 @@ const AttendantDashboard = () => {
   if(error) {
     return (
       <ErrorComponent error={error}>
-        <h1>Ocurrió un error al intentar traer los datos</h1>
+        <PageError />
       </ErrorComponent>
     )  
   }
