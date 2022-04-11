@@ -28,7 +28,6 @@ const transformDataToPostBody = (data) => {
 
 const QualifyAssistance = ({ isEdit }) => {
   const assistanceToUpdate = useStore(state => state.tabSelectedData)
-  const setTabSelectedData = useStore(state => state.setTabSelectedData)
   const currentSubject = useStore(state => state.sectionSelected.data)
   const setTabSelected = useStore(state => state.setTabSelected)
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
