@@ -12,7 +12,7 @@ const StudentAssignmentItem = ({className, assignment }) => {
   return (
     <div 
       onClick={handleExpanded} 
-      className={`${className} bg-primaryColor bg-opacity-10 p-2 lg:p-4 rounded-sm cursor-pointer`}
+      className={`${className} bg-primaryColor bg-opacity-10 p-2 lg:p-4 rounded-sm cursor-pointer lg:cursor-default`}
     >
       <div className="flex text-customGrey justify-between items-start">
         <div className="lg:flex items-center lg:space-x-2">

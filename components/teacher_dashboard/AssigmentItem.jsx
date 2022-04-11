@@ -26,7 +26,10 @@ const AssigmentItem = ({ className, assignment }) => {
   }
 
   return (
-    <div className={`${className} bg-primaryColor bg-opacity-10 p-2 lg:p-4 rounded-sm`}>
+    <div
+      onClick={handleExpanded} 
+      className={`${className} bg-primaryColor bg-opacity-10 p-2 lg:p-4 rounded-sm cursor-pointer lg:cursor-default`}
+    >
       <div className="flex text-customGrey justify-between items-center">
         <div className="lg:flex items-center lg:space-x-2">
           <h1 className="text-customGrey text-sm font-semibold lg:text-base">
@@ -41,11 +44,9 @@ const AssigmentItem = ({ className, assignment }) => {
           {
             itemExpanded ?
             <MdKeyboardArrowUp 
-                onClick={handleExpanded}
                 className="text-customGrey h-6 w-6 lg:hidden"
             /> :
               <MdKeyboardArrowDown
-                onClick={handleExpanded}
                 className="text-customGrey h-6 w-6 lg:hidden"/> 
           }
         </div>
