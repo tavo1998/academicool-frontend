@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
 import { getRoleRedirectUrl } from "./../lib/redirect";
 import { getUserAuthenticated } from "../services/user";
+import loginPic from "./../public/login.jpg"
+import Image from 'next/image'
 import LoginTitle from "../components/login/LoginTitle"
 import LoginLema from "../components/login/LoginLema";
 import GoogleButton from "../components/login/GoogleButton";
@@ -14,7 +16,9 @@ const LoginPage = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 h-screen">
-      <div className="hidden lg:block bg-primaryColor z-10" />
+      <div className="relative hidden lg:block z-10">
+        <Image src={loginPic} layout="fill" />
+      </div>
       <div className="relative flex flex-col justify-between px-4">
         <div className="absolute lg:w-52 w-48 lg:h-52 h-48 bg-accentColor top- rounded-full -left-4 -top-4" />
         <div className="absolute lg:w-48 w-40 lg:h-48 h-40 bg-primaryColor top- rounded-full top-20 left-20 z-10" />

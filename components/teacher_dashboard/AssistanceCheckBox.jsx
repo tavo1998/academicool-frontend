@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { MdDone } from "react-icons/md"
 
 const AssistanceCheckBox = React.forwardRef(({ className, student, attended, onChange, ...rest }, ref) => {
   const [checked, setChecked] = useState(attended)
@@ -19,7 +20,9 @@ const AssistanceCheckBox = React.forwardRef(({ className, student, attended, onC
         {...rest}
       />
       <h1 className="text-sm text-customGrey">{student.first_name} {student.last_name}</h1>
-      <div className={`${checked ? 'bg-green-500' : 'bg-white border border-customGrey'} p-2 rounded-sm`} />
+      <div className={`${checked ? 'bg-green-500' : 'bg-white border border-customGrey'} rounded-sm`}>
+        <MdDone className="text-white" />
+      </div>
     </label>
   )
 })

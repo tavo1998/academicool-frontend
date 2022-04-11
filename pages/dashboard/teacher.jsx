@@ -13,6 +13,7 @@ import useStore from "../../store"
 import NoSectionSelected from "../../components/common/NoSectionSelected"
 import SubjectTeacherSection from "../../components/teacher_dashboard/SubjectTeacherSection"
 import SubjectDesktopTeacherSection from "../../components/teacher_dashboard/SubjectDesktopTeacherSection"
+import PageError from "../../components/common/PageError"
 
 const TeacherDashboard = () => {
   const router = useRouter()
@@ -41,7 +42,7 @@ const TeacherDashboard = () => {
   if(error) {
     return (
       <ErrorComponent error={error}>
-        <h1>Ocurrió un error al intentar traer los datos</h1>
+        <PageError />
       </ErrorComponent>
     )  
   }
