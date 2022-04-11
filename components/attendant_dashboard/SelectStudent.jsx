@@ -20,7 +20,7 @@ const SelectStudent = () => {
     if(data.data.length === 0) return (
       <div>
         <h1 className="text-customGrey lg:text-lg text-center font-semibold">
-          No tienes estudiantes registrados. Comunícate con soporte
+          No tienes estudiantes registrados
         </h1>
         <h1 className="text-customGrey lg:text-lg text-center font-semibold">
           Comunícate con soporte
