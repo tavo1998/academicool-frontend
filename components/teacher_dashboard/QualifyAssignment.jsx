@@ -62,8 +62,9 @@ const QualifyAssignment = ({ isEdit }) => {
       <h1 
         className="text-customGrey font-semibold lg:text-base"
       >
-        Calificar - Ejercicios de pitagoras
+        Calificar - {currentAssignment.title}
       </h1>
+      <p className="mt-1 text-customGrey text-sm">{currentAssignment.description}</p>
       <form onSubmit={onSubmit}>
         {renderStudents()}
         <div className="flex space-x-2">
