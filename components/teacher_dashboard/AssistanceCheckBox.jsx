@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { MdDone } from "react-icons/md"
 
-const AssistanceCheckBox = React.forwardRef(({ className, student, attended, onChange, ...rest }, ref) => {
+const AssistanceCheckBox = React.forwardRef(({ className, student, attended = false, onChange, ...rest }, ref) => {
   const [checked, setChecked] = useState(attended)
 
   const handleChecked = (e) => {
