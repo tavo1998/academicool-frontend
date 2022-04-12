@@ -105,6 +105,7 @@ const QualifyAssignment = ({ isEdit }) => {
         Calificar - {currentAssignment.title}
       </h1>
       <p className="mt-1 text-customGrey text-sm">{currentAssignment.description}</p>
+      <div className="bg-customGrey opacity-20 h-[1px] my-2" />
       <form onSubmit={onSubmit}>
         {renderStudents()}
         <div className="flex space-x-2">

@@ -1,4 +1,5 @@
 import { ASSIGNMENT_TAB } from "../../config/common"
+import { ASSIGNMENT_TYPES, HOMEWORK } from "../../config/teacher"
 import { formatDateYMD, getLocalDate } from "../../lib/calendar"
 import { useForm } from "react-hook-form"
 import { useEffect } from "react"
@@ -11,13 +12,13 @@ import useStore from "../../store"
 import useMutation from "../../hooks/useMutation"
 import creator from "../../services/creator"
 import updater from "../../services/updater"
+import AssignmentTypeInput from "./AssignmentTypeInput"
 
 
 const CreateEditAssignment = ({ isEdit }) => {
   const subject = useStore(state => state.sectionSelected.data)
   const assignmentToUpdate = useStore(state => state.tabSelectedData)
   const setTabSelected = useStore(state => state.setTabSelected)
-  const setTabSelectedData = useStore(state => state.setTabSelectedData)
 
   const { 
     requestOk, 
@@ -62,6 +63,16 @@ const CreateEditAssignment = ({ isEdit }) => {
           }
         })}
       />
+      <AssignmentTypeInput 
+        assignmentTypes={ASSIGNMENT_TYPES}
+        error={errors.assignment_type?.message}
+        {...register('assignment_type', {
+          required: {
+            value: true,
+            message: "Debes completar este campo" 
+          }
+        })}
+      />
       <DateInputField 
         title="Fecha de entrega"
         error={errors.delivery_date?.message}
@@ -97,6 +108,7 @@ const CreateEditAssignment = ({ isEdit }) => {
           disabled={isSubmitting}
           onClick={() => setTabSelected(ASSIGNMENT_TAB)}
           className="py-1"
+          type="button"
           text="Cancelar"/>
       </div>
       { requestError && 
