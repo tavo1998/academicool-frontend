@@ -1,7 +1,6 @@
-import { SIGN_OUT_OPTION } from "./common"
+import { PROFILE_OPTION, SIGN_OUT_OPTION } from "./common"
 
 export const SUBJECT_TEACHER_OPTION = 'SUBJECT_TEACHER_OPTION'
-export const PROFILE_TEACHER_OPTION = 'PROFILE_TEACHER_OPTION'
 
 export const EXAM = 'EXAM'
 export const HOMEWORK = 'HOMEWORK'
@@ -47,9 +46,9 @@ export const createTeacherSideBarOptions = (subjects) => {
       name: 'Configuración',
       options: [
         {
-          id: PROFILE_TEACHER_OPTION,
+          id: PROFILE_OPTION,
           name: "Cuenta",
-          sectionType: PROFILE_TEACHER_OPTION
+          sectionType: PROFILE_OPTION
         },
         {
           id: SIGN_OUT_OPTION,

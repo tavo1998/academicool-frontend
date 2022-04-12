@@ -1,9 +1,10 @@
 import { useEffect } from "react"
-import { ASSIGNMENT_TAB, SIGN_OUT_OPTION } from "../../config/common"
+import { ASSIGNMENT_TAB, PROFILE_OPTION, SIGN_OUT_OPTION } from "../../config/common"
+import { SUBJECT_TEACHER_OPTION } from "../../config/teacher"
 import { getUserAuthenticated } from "../../services/user"
 import { getRoleRedirectUrl } from "../../lib/redirect"
 import { ATTENDANT_ROLE } from "../../config/common"
-import { CHANGE_STUDENT, createAttendantSideBarOptions } from "../../config/attendant"
+import { ASSIGNMENTS_STATISTICS, ASSISTANCES_STATISTICS, CHANGE_STUDENT, createAttendantSideBarOptions } from "../../config/attendant"
 import { useMediaQuery } from "react-responsive"
 import { useRouter } from "next/router"
 import SelectStudent from "../../components/attendant_dashboard/SelectStudent"
@@ -13,10 +14,12 @@ import useStore from "../../store"
 import useSWR from "swr"
 import SideBar from "../../components/side_menu/SideBar"
 import fetcher from "../../services/fetcher"
-import { SUBJECT_TEACHER_OPTION } from "../../config/teacher"
 import SubjectStudentSection from "../../components/attendant_dashboard/SubjectStudentSection"
 import SubjectDesktopStudentSection from "../../components/attendant_dashboard/SubjectDesktopStudentSection"
 import PageError from "../../components/common/PageError"
+import AttendantProfile from "../../components/common/AttendantProfile"
+import AssignmentStatistics from "../../components/attendant_dashboard/AssignmentStatistics"
+import AssistanceStatistics from "../../components/attendant_dashboard/AssistanceStatistics"
 
 const AttendantDashboard = () => {
   const router = useRouter()
@@ -69,6 +72,12 @@ const AttendantDashboard = () => {
           return <SubjectStudentSection />
         else
           return <SubjectDesktopStudentSection />
+      case PROFILE_OPTION:
+        return <AttendantProfile />
+      case ASSIGNMENTS_STATISTICS:
+        return <AssignmentStatistics />
+      case ASSISTANCES_STATISTICS:
+        return <AssistanceStatistics />
     }
   }
   
