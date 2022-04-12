@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { SIGN_OUT_OPTION } from "../../config/common"
+import { PROFILE_OPTION, SIGN_OUT_OPTION } from "../../config/common"
 import { getUserAuthenticated } from "../../services/user"
 import { getRoleRedirectUrl } from "../../lib/redirect"
 import { createTeacherSideBarOptions, SUBJECT_TEACHER_OPTION } from "../../config/teacher"
@@ -14,6 +14,7 @@ import NoSectionSelected from "../../components/common/NoSectionSelected"
 import SubjectTeacherSection from "../../components/teacher_dashboard/SubjectTeacherSection"
 import SubjectDesktopTeacherSection from "../../components/teacher_dashboard/SubjectDesktopTeacherSection"
 import PageError from "../../components/common/PageError"
+import TeacherProfile from "../../components/teacher_dashboard/TeacherProfile"
 
 const TeacherDashboard = () => {
   const router = useRouter()
@@ -36,6 +37,8 @@ const TeacherDashboard = () => {
           return <SubjectTeacherSection />
         else
           return <SubjectDesktopTeacherSection />
+      case PROFILE_OPTION:
+        return <TeacherProfile />
     }
   }
 

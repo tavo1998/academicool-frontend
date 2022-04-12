@@ -1,6 +1,7 @@
 import { useState  } from 'react';
 import { MdModeEdit, MdDelete, MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md"
 import { EDIT_ASSIGNMENT, EDIT_ASSIGNMENT_SCORE, QUALIFY_ASSIGNMENT } from '../../config/common';
+import { getAssignmentTypeName } from './../../config/teacher'
 import { formatDateString } from '../../lib/calendar';
 import useStore from '../../store';
 import AccentButton from '../common/AccentButton';
@@ -54,6 +55,7 @@ const AssigmentItem = ({ className, assignment, handleDelete }) => {
           }
         </div>
       </div>
+      <h1 className="text-customGrey text-sm">Tipo: {getAssignmentTypeName(assignment.assignment_type)}</h1>
       <h1 className="text-customGrey text-sm">Fecha de entrega: {formatDateString(assignment.delivery_date)}</h1>
       <h1 className="text-customGrey text-sm">Calificación: {assignment.is_qualified ? 'Calificado' : 'No calificado'} </h1>
       <p 

@@ -1,4 +1,5 @@
 export const SIGN_OUT_OPTION = 'SIGN_OUT_OPTION'
+export const PROFILE_OPTION = 'PROFILE_OPTION'
 
 export const ASSIGNMENT_TAB = 'ASSIGNMENT_TAB'
 export const NOTICES_TAB = 'NOTICES_TAB'

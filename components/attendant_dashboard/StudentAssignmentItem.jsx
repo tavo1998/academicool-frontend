@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { formatDateString } from "../../lib/calendar"
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md"
+import { getAssignmentTypeName } from "../../config/teacher"
 
 const StudentAssignmentItem = ({className, assignment }) => {
   const [itemExpanded, setItemExpanded] = useState(false)
@@ -32,6 +33,7 @@ const StudentAssignmentItem = ({className, assignment }) => {
           }
         </div>
       </div>
+      <h1 className="text-customGrey text-sm">Tipo: {getAssignmentTypeName(assignment.assignment_type)}</h1>
       <h1 className="text-customGrey text-sm">Fecha de entrega: {formatDateString(assignment.delivery_date)}</h1>
       <h1 className="text-customGrey text-sm">
         Calificación: {assignment.scores.length === 0 ? 'No calificado' : assignment.scores[0].score}
