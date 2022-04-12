@@ -1,12 +1,16 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { MdDone } from "react-icons/md"
 
-const AssistanceCheckBox = React.forwardRef(({ className, student, attended = false, onChange, ...rest }, ref) => {
+const AssistanceCheckBox = ({ className, student, attended = false, changeAssistance, setInitAssistance, ...rest }) => {
   const [checked, setChecked] = useState(attended)
 
+  useEffect(() => {
+    setInitAssistance(student.id, attended)
+  }, [])
+
   const handleChecked = (e) => {
-    onChange(e)
     setChecked(e.target.checked)
+    changeAssistance(student.id, e.target.checked)
   }
 
   return (
@@ -16,7 +20,6 @@ const AssistanceCheckBox = React.forwardRef(({ className, student, attended = fa
         type="checkbox" 
         className="absolute opacity-0"
         onChange={handleChecked}
-        ref={ref}
         {...rest}
       />
       <h1 className="text-sm text-customGrey">{student.first_name} {student.last_name}</h1>
@@ -25,6 +28,6 @@ const AssistanceCheckBox = React.forwardRef(({ className, student, attended = fa
       </div>
     </label>
   )
-})
+}
 
 export default AssistanceCheckBox

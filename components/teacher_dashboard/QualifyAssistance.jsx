@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { ASSISTANCE_TAB } from "../../config/common"
 import { formatDateYMD, getLocalDate } from "../../lib/calendar"
 import { useForm } from "react-hook-form"
@@ -13,20 +13,8 @@ import useMutation from "../../hooks/useMutation"
 import creator from "../../services/creator"
 import updater from "../../services/updater"
 
-const transformDataToPostBody = (data) => {
-  const body = { description: null, assistances: [] }
-  const keys = Object.keys(data)
-  keys.forEach(key => {
-    if(key === 'description') body.description = data[key]
-    else body.assistances.push({
-      student_id: parseInt(key),
-      attended: data[key]
-    })
-  })
-  return body
-}
-
 const QualifyAssistance = ({ isEdit }) => {
+  const [assistances, setAssistances] = useState({})
   const assistanceToUpdate = useStore(state => state.tabSelectedData)
   const currentSubject = useStore(state => state.sectionSelected.data)
   const setTabSelected = useStore(state => state.setTabSelected)
@@ -45,8 +33,31 @@ const QualifyAssistance = ({ isEdit }) => {
         `/api/v1/subjects/${currentSubject.id}/assistances`, isEdit ? updater : creator)
 
   const onSubmit = (data) => {
-    const body = transformDataToPostBody(data)
+    const body = {
+      description: data.description,
+      assistances: Object.values(assistances)
+    }
     sendMutation(body)
+  }
+
+  const setInitAssistances = (studentId, attended) => {
+    setAssistances(prevState => ({
+      ...prevState,
+      [studentId]: {
+        student_id: studentId,
+        attended
+      }
+    }))
+  }
+
+  const changeAssistance = (studentId, attended) => {
+    setAssistances(prevState => ({
+      ...prevState,
+      [studentId]: {
+        ...prevState[studentId],
+        attended
+      }
+    }))
   }
 
   useEffect(() => {
@@ -68,7 +79,8 @@ const QualifyAssistance = ({ isEdit }) => {
           className="mt-2"
           attended={attended}
           student={student} 
-          {...register(student.id.toString())} 
+          setInitAssistance={setInitAssistances}
+          changeAssistance={changeAssistance}
         />
       )
     )
@@ -78,8 +90,8 @@ const QualifyAssistance = ({ isEdit }) => {
           disabled={isSubmitting}
           key={student.id} 
           className="mt-2" 
-          student={student} 
-          {...register(student.id.toString())} 
+          student={student}
+          changeAssistance={changeAssistance}
         />
       )
     )
