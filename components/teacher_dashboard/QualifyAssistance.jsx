@@ -96,6 +96,7 @@ const QualifyAssistance = ({ isEdit }) => {
           placeholder="Escribe una descripción"
           name="description"
           rows={8}
+          disabled={isSubmitting}
           maxLength={280}
           error={errors.description?.message}
           {...register('description', {
@@ -110,12 +111,14 @@ const QualifyAssistance = ({ isEdit }) => {
         <div className="flex space-x-2 mt-4">
           { !error && (
               <AccentButton
+                disabled={isSubmitting}
                 className="py-1"
-                text="Calificar" 
+                text={isSubmitting ? "Cargando" : "Calificar"}
               />
           )}
           <AccentButton
             onClick={() => setTabSelected(ASSISTANCE_TAB)}
+            disabled={isSubmitting}
             className="py-1"
             text={error ? "Regresar" : "Cancelar"}
             type="button" 
