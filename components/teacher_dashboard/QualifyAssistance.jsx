@@ -91,6 +91,7 @@ const QualifyAssistance = ({ isEdit }) => {
           key={student.id} 
           className="mt-2" 
           student={student}
+          setInitAssistance={setInitAssistances}
           changeAssistance={changeAssistance}
         />
       )
