@@ -36,6 +36,9 @@ const StudentAssignmentItem = ({className, assignment }) => {
       <h1 className="text-customGrey text-sm">
         Calificación: {assignment.scores.length === 0 ? 'No calificado' : assignment.scores[0].score}
       </h1>
+      <h1 className="text-customGrey text-sm">
+        Comentario: {assignment.scores.length === 0 ? 'No calificado' : assignment.scores[0].commentary}
+      </h1>
       <p 
         className={`${itemExpanded ? 'h-full mt-2' : 'h-0 overflow-hidden'} text-sm text-customGrey lg:h-full lg:mt-2`}>
         { assignment.description }

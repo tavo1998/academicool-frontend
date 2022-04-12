@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { ASSIGNMENT_TAB } from "../../config/common"
 import AccentButton from "../common/AccentButton"
 import QualifyInput from "../common/QualifyInput"
@@ -10,19 +10,8 @@ import useMutation from "../../hooks/useMutation"
 import ErrorComponent from "../common/ErrorComponent"
 import creator from "../../services/creator"
 
-
-const transformDataToPostBody = (inputs, nInvalidInputs) => {
-  const data = []
-  for(let i = 0; i < inputs.length - nInvalidInputs; i++){
-    data.push({ 
-      student_id: parseInt(inputs[i].name),
-      value: parseFloat(inputs[i].value)
-    })
-  }
-  return data
-}
-
 const QualifyAssignment = ({ isEdit }) => {
+  const [scores, setScores] = useState({})
   const setTabSelected = useStore(state=> state.setTabSelected)
   const currentAssignment = useStore(state=> state.tabSelectedData)
   const currentSubject = useStore(state => state.sectionSelected.data)
@@ -42,15 +31,66 @@ const QualifyAssignment = ({ isEdit }) => {
 
   const onSubmit = (event) => {
     event.preventDefault()
-    const data = transformDataToPostBody(event.target, 2)
+    const data = Object.values(scores)
     sendMutation(data)
+  }
+
+  const setInitScores = (studentId, score, commentary) => {
+    setScores(prevState => ({
+      ...prevState,
+      [studentId]: {
+        student_id: studentId,
+        value: parseFloat(score),
+        commentary
+      }
+    }))
+  }
+
+  const changeScore = (studentId, score) => {
+    setScores(prevState => ({
+      ...prevState,
+      [studentId]: {
+        ...prevState[studentId],
+        value: parseFloat(score)
+      }
+    }))
+  }
+
+  const changeCommentary = (studentId, commentary) => {
+    setScores(prevState => ({
+      ...prevState,
+      [studentId]: {
+        ...prevState[studentId],
+        commentary
+      }
+    }))
   }
 
   const renderStudents = () => {
     if(error) return <h1 className="text-customGrey text-center mt-4">Ocurrió un error al traer la información de los estudiantes, intentelo más tarde</h1>
     if(!data) return <h1 className="text-customGrey text-center mt-4">Cargando...</h1>
-    if(isEdit) return data.data.map(({ score, student }) => <QualifyInput key={student.id} className="mt-2" score={score} student={student}/>)
-    return data.data.map((student) => <QualifyInput key={student.id} className="mt-2" student={student}/>)
+    if(isEdit) return data.data.map(({ score, commentary, student }) => (
+      <QualifyInput 
+        key={student.id} 
+        className="mt-2" 
+        defaultScore={score}
+        defaultCommentary={commentary}
+        student={student}
+        changeScore={changeScore}
+        changeCommentary={changeCommentary}
+        setInitScores={setInitScores}
+      />
+    ))
+    return data.data.map((student) => (
+      <QualifyInput 
+        key={student.id} 
+        className="mt-2" 
+        student={student}
+        changeScore={changeScore}
+        changeCommentary={changeCommentary}
+        setInitScores={setInitScores}
+      />
+    ))
   }
 
   useEffect(() => {

@@ -74,8 +74,6 @@ const AssignmetTab = () => {
     setShowDeleteError(false)
   }
 
-  console.log(isSubmitting)
-
   const render = () => {
     if(error) {
       return (
