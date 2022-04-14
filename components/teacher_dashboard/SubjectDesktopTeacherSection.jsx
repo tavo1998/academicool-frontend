@@ -9,7 +9,7 @@ const SubjectDesktopTeacherSection = () => {
   return (
     <div className="flex flex-col p-4 h-screen">
       <div className="pb-2">
-        <h1 className="text-lg text-customGrey font-semibold">{subject.name}</h1>
+        <h1 className="text-lg text-customGrey font-semibold">{subject.name} {subject.grade.name}</h1>
         <p className="text-customGrey">{subject.description}</p>
       </div>
       <div className="flex-1 grid grid-cols-3 grid-rows-1 gap-4 h-4/5">
