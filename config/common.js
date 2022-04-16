@@ -1,5 +1,6 @@
 export const SIGN_OUT_OPTION = 'SIGN_OUT_OPTION'
 export const PROFILE_OPTION = 'PROFILE_OPTION'
+export const SUBJECT_OPTION = 'SUBJECT_OPTION'
 
 export const ASSIGNMENT_TAB = 'ASSIGNMENT_TAB'
 export const NOTICES_TAB = 'NOTICES_TAB'
@@ -16,7 +17,6 @@ export const EDIT_ASSISTANCE = 'EDIT_ASSISTANCE'
 export const PAGINATION_QUANTITY = 4
 
 export const TEACHER_ROLE = 'TEACHER'
-export const ADMIN_ROLE = 'ADMIN'
 export const ATTENDANT_ROLE = 'ATTENDANT'
 
 export const TABS = [

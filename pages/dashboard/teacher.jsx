@@ -1,8 +1,8 @@
 import { useEffect } from "react"
-import { PROFILE_OPTION, SIGN_OUT_OPTION } from "../../config/common"
+import { PROFILE_OPTION, SIGN_OUT_OPTION, TEACHER_ROLE, SUBJECT_OPTION } from "../../config/common"
 import { getUserAuthenticated } from "../../services/user"
 import { getRoleRedirectUrl } from "../../lib/redirect"
-import { createTeacherSideBarOptions, SUBJECT_TEACHER_OPTION } from "../../config/teacher"
+import { createTeacherSideBarOptions } from "../../config/teacher"
 import { useMediaQuery } from "react-responsive"
 import { useRouter } from "next/router"
 import SideBar from "../../components/side_menu/SideBar"
@@ -32,7 +32,7 @@ const TeacherDashboard = () => {
     switch(sectionSelected.id){
       case null:
         return <NoSectionSelected />
-      case SUBJECT_TEACHER_OPTION:
+      case SUBJECT_OPTION:
         if(!isMobileOrDesktop)
           return <SubjectTeacherSection />
         else
@@ -73,7 +73,7 @@ export async function getServerSideProps ({ req }) {
     }
   }
 
-  if(user.role !== 'TEACHER') {
+  if(user.role !== TEACHER_ROLE) {
     return {
       redirect: { permanent: false, destination: getRoleRedirectUrl(user.role) }
     }

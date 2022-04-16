@@ -1,6 +1,5 @@
 import { useEffect } from "react"
-import { ASSIGNMENT_TAB, PROFILE_OPTION, SIGN_OUT_OPTION } from "../../config/common"
-import { SUBJECT_TEACHER_OPTION } from "../../config/teacher"
+import { ASSIGNMENT_TAB, PROFILE_OPTION, SIGN_OUT_OPTION, SUBJECT_OPTION } from "../../config/common"
 import { getUserAuthenticated } from "../../services/user"
 import { getRoleRedirectUrl } from "../../lib/redirect"
 import { ATTENDANT_ROLE } from "../../config/common"
@@ -67,7 +66,7 @@ const AttendantDashboard = () => {
     switch(sectionSelected.id){
       case null:
         return <NoSectionSelected />
-      case SUBJECT_TEACHER_OPTION:
+      case SUBJECT_OPTION:
         if(!isMobileOrDesktop)
           return <SubjectStudentSection />
         else

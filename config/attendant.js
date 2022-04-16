@@ -1,5 +1,4 @@
-import { SIGN_OUT_OPTION, PROFILE_OPTION } from "./common"
-import { SUBJECT_TEACHER_OPTION } from "./teacher"
+import { SIGN_OUT_OPTION, PROFILE_OPTION, SUBJECT_OPTION } from "./common"
 
 export const ASSIGNMENTS_STATISTICS = 'ASSIGNMENTS_STATISTICS'
 export const ASSISTANCES_STATISTICS = 'ASSISTANCES_STATISTICS'
@@ -12,7 +11,7 @@ export const createAttendantSideBarOptions = (subjects) => {
       options: subjects.map(subject => ({
         id: subject.id,
         name: subject.name,
-        sectionType: SUBJECT_TEACHER_OPTION,
+        sectionType: SUBJECT_OPTION,
         data: subject
       }))
     },
