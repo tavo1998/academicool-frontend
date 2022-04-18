@@ -3,12 +3,12 @@ import { getRoleRedirectUrl } from "./../lib/redirect";
 import { getUserAuthenticated } from "../services/user";
 import loginPic from "./../public/login.jpg"
 import Image from 'next/image'
-import LoginTitle from "./../components/login/LoginTitle.jsx"
-import LoginLema from "./../components/login/LoginLema.jsx";
-import GoogleButton from "./../components/login/GoogleButton.jsx";
-import RecoveryInformation from "./../components/login/RecoveryInformation.jsx";
-import CopyrightFooter from "./../components/login/CopyrightFooter.jsx";
-import LoginErrorMessage from "./../components/login/LoginErrorMessage.jsx";
+import LoginTitle from "./../components/login/LoginTitle.js"
+import LoginLema from "./../components/login/LoginLema.js";
+import GoogleButton from "./../components/login/GoogleButton.js";
+import RecoveryInformation from "./../components/login/RecoveryInformation.js";
+import CopyrightFooter from "./../components/login/CopyrightFooter.js";
+import LoginErrorMessage from "./../components/login/LoginErrorMessage.js";
 
 
 const LoginPage = () => {
