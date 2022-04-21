@@ -32,7 +32,7 @@ const AssigmentItem = ({ className, assignment, handleDelete }) => {
       className={`${className} bg-primaryColor bg-opacity-10 p-2 lg:p-4 rounded-sm cursor-pointer lg:cursor-default`}
     >
       <div className="flex text-customGrey justify-between items-start">
-        <div>
+        <div className='mb-2'>
           <h1 className="text-customGrey text-sm font-semibold lg:text-base">
             {assignment.title}
           </h1>
