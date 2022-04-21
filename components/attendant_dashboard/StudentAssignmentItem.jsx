@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { formatDateString, getLocalISOString, addLocalOffset } from "../../lib/calendar"
+import { getScoreBgColor } from "../../lib/scoreColor"
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md"
 import { getAssignmentTypeName } from "../../config/teacher"
 
@@ -42,7 +43,14 @@ const StudentAssignmentItem = ({className, assignment }) => {
         Fecha de entrega: {formatDateString(assignment.delivery_date)}
       </h1>
       <h1 className="text-customGrey text-sm">
-        Calificación: {assignment.scores.length === 0 ? 'No calificado' : assignment.scores[0].score}
+        Calificación: 
+        { 
+          assignment.scores.length === 0 ? 
+            'No calificado' : 
+            <span className={`${getScoreBgColor(parseFloat(assignment.scores[0].score))} text-white px-3 rounded-full ml-1`}>
+              {assignment.scores[0].score}
+            </span>
+        }
       </h1>
       <h1 className="text-customGrey text-sm">
         Comentario: {assignment.scores.length === 0 ? 'No calificado' : assignment.scores[0].commentary}
