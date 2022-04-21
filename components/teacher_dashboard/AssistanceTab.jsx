@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { areEqualDates, formatDateYMD, getLocalDate } from "../../lib/calendar"
+import { areEqualDates, getLocalISOString, formatDateString } from "../../lib/calendar"
 import AssistanceList from "./AssistanceList"
 import Calendar from "../common/Calendar"
 import ErrorComponent from "../common/ErrorComponent"
@@ -10,12 +10,12 @@ import fetcher from "../../services/fetcher"
 
 const AssistanceTab = () => {
   const subject = useStore(state => state.sectionSelected.data)
-  const [selectedDate, setSelectedDate] = useState(getLocalDate())
+  const [selectedDate, setSelectedDate] = useState(new Date())
   const { 
     data, 
     error 
   } = useSWR(
-    `/api/v1/subjects/${subject.id}/assistances?date=${formatDateYMD(selectedDate)}`,
+    `/api/v1/subjects/${subject.id}/assistances?date=${formatDateString(getLocalISOString(selectedDate))}`,
     fetcher
   )
 
@@ -32,7 +32,7 @@ const AssistanceTab = () => {
       )
     }
     if(!data) return <h1 className="text-customGrey text-center mt-4">Cargando asistencias...</h1>
-    if(areEqualDates(selectedDate, getLocalDate())){
+    if(areEqualDates(selectedDate, new Date())){
       return <AssistanceToday data={data.data}/>
     }else {
       return <AssistanceList data={data.data} />

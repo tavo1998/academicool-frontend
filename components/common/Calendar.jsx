@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { MdKeyboardArrowLeft,MdKeyboardArrowRight } from "react-icons/md"
-import { createPrevDates, createDates, daysOfWeek, monthsOfYear, getLocalDate} from "../../lib/calendar"
+import { createPrevDates, createDates, daysOfWeek, monthsOfYear} from "../../lib/calendar"
 import ButtonCalendar from "./ButtonCalendar"
 
 const Calendar = ({ handleDate }) => {
-  const [date, setDate] = useState(getLocalDate())
+  const [date, setDate] = useState(new Date())
   const [selectedDate, setSelectedDate] = useState(null)
 
   const handleSelectedDate = (date) => {
