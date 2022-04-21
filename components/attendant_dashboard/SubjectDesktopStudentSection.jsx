@@ -1,6 +1,7 @@
 import StudentAssignmentTab from "./StudentAssignmentTab"
 import StudentNoticeTab from "./StudentNoticeTab"
 import StudentAssistanceTab from "./StudentAssistanceTab"
+import TeacherSectionInfo from "./TeacherSectionInfo"
 import useStore from "../../store"
 
 const SubjectDesktopStudentSection = () => {
@@ -10,6 +11,7 @@ const SubjectDesktopStudentSection = () => {
     <div className="flex flex-col p-4 h-screen w-full">
       <div className="pb-2">
         <h1 className="text-lg text-customGrey font-semibold">{subject.name}</h1>
+        <TeacherSectionInfo teacher={subject.teacher} />
         <p className="text-customGrey">
           {subject.description}
         </p>

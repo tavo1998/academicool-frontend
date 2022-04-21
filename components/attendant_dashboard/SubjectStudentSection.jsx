@@ -7,7 +7,7 @@ import NoTabSelected from "../teacher_dashboard/NoTabSelected"
 import StudentAssignmentTab from "./StudentAssignmentTab"
 import StudentNoticeTab from "./StudentNoticeTab"
 import StudentAssistanceTab from "./StudentAssistanceTab"
-import TeacherSectioInfo from "./TeacherSectionInfo"
+import TeacherSectionInfo from "./TeacherSectionInfo"
 
 const SubjectStudentSection = () => {
   const subject = useStore(state => state.sectionSelected.data)
@@ -29,7 +29,7 @@ const SubjectStudentSection = () => {
   return (
     <div className="p-4 space-y-2">
       <SectionHeader title={subject.name} />
-      <TeacherSectioInfo teacher={subject.teacher} />
+      <TeacherSectionInfo teacher={subject.teacher} />
       <SubjectDescription description={subject.description} />
       <SubjectTabs tabs={TABS}/>
       {renderTab()}
