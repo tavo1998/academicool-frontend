@@ -17,11 +17,11 @@ const StudentAssignmentItem = ({className, assignment }) => {
       className={`${className} bg-primaryColor bg-opacity-10 p-2 lg:p-4 rounded-sm cursor-pointer lg:cursor-default`}
     >
       <div className="flex text-customGrey justify-between items-start">
-        <div className="lg:flex items-center lg:space-x-2">
+        <div>
           <h1 className="text-customGrey text-sm font-semibold lg:text-base">
             {assignment.title}
           </h1>
-          <span className="text-customGrey text-xs lg:text-base font-normal">
+          <span className="text-customGrey text-sm  font-normal">
             {formatDateString(getLocalISOString(addLocalOffset(new Date(assignment.created_at))))}
           </span>
         </div>
@@ -37,23 +37,23 @@ const StudentAssignmentItem = ({className, assignment }) => {
         </div>
       </div>
       <h1 className="text-customGrey text-sm">
-        Tipo: {getAssignmentTypeName(assignment.assignment_type)}
+        <span className="font-medium">Tipo:</span> {getAssignmentTypeName(assignment.assignment_type)}
       </h1>
       <h1 className="text-customGrey text-sm">
-        Fecha de entrega: {formatDateString(assignment.delivery_date)}
+        <span className="font-medium">Fecha de entrega:</span> {formatDateString(assignment.delivery_date)}
       </h1>
       <h1 className="text-customGrey text-sm">
-        Calificación: 
+        <span className="font-medium">Calificación:</span> 
         { 
           assignment.scores.length === 0 ? 
-            'No calificado' : 
+            ' No calificado' : 
             <span className={`${getScoreBgColor(parseFloat(assignment.scores[0].score))} text-white px-3 rounded-full ml-1`}>
               {assignment.scores[0].score}
             </span>
         }
       </h1>
       <h1 className="text-customGrey text-sm">
-        Comentario: {assignment.scores.length === 0 ? 'No calificado' : assignment.scores[0].commentary}
+        <span className="font-medium">Comentario:</span> {assignment.scores.length === 0 ? 'No calificado' : assignment.scores[0].commentary}
       </h1>
       <p 
         className={`${itemExpanded ? 'h-full mt-2' : 'h-0 overflow-hidden'} text-sm text-customGrey lg:h-full lg:mt-2`}>

@@ -15,13 +15,13 @@ const SubjectDesktopStudentSection = () => {
         </p>
       </div>
       <div className="flex-1 grid grid-cols-3 grid-rows-1 gap-4 h-4/5">
-        <div className="row-span-2">
+        <div className="row-span-2 overflow-hidden overflow-y-auto p-4">
           <StudentAssignmentTab />
         </div>
-        <div>
+        <div className="overflow-hidden overflow-y-auto p-4">
           <StudentNoticeTab />
         </div>
-        <div>
+        <div className="overflow-hidden overflow-y-auto p-4">
           <StudentAssistanceTab />
         </div>
       </div>
