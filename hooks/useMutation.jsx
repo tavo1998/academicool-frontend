@@ -6,6 +6,7 @@ const useMutation = (url, mutator) => {
   const [requestError, setRequestError] = useState(null)
 
   const sendMutation = async (body) => {
+    setRequestOk(false)
     setIsSubmitting(true)
     try {
       await mutator(url, body)
