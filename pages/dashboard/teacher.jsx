@@ -53,7 +53,7 @@ const TeacherDashboard = () => {
   if(!data) return <></>
 
   return (
-    <div className="lg:flex relative">
+    <div className="lg:flex relative h-screen overflow-hidden overflow-y-scroll">
       <SideBar sections={createTeacherSideBarOptions(data.data)} />
       <div className="flex-1">
         { renderSection() }

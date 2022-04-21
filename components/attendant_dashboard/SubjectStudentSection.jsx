@@ -27,7 +27,7 @@ const SubjectStudentSection = () => {
   }
 
   return (
-    <div className="p-4 space-y-2 h-screen overflow-hidden overflow-y-auto">
+    <div className="p-4 space-y-2">
       <SectionHeader title={subject.name} />
       <TeacherSectionInfo teacher={subject.teacher} />
       <SubjectDescription description={subject.description} />
