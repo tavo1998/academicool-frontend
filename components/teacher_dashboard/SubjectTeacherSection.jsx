@@ -67,7 +67,7 @@ const SubjectTeacherSection = () => {
   }
 
   return (
-    <div className="p-4 space-y-2">
+    <div className="p-4 space-y-2 h-screen overflow-hidden overflow-y-scroll">
       <SectionHeader title={data.name} />
       <SubjectDescription
         description={data.description} />
