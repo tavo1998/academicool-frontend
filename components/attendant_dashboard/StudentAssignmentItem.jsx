@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { formatDateString } from "../../lib/calendar"
+import { formatDateString, getLocalISOString, addLocalOffset } from "../../lib/calendar"
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md"
 import { getAssignmentTypeName } from "../../config/teacher"
 
@@ -20,7 +20,9 @@ const StudentAssignmentItem = ({className, assignment }) => {
           <h1 className="text-customGrey text-sm font-semibold lg:text-base">
             {assignment.title}
           </h1>
-          <span className="text-customGrey text-xs lg:text-base font-normal">{formatDateString(assignment.created_at)}</span>
+          <span className="text-customGrey text-xs lg:text-base font-normal">
+            {formatDateString(getLocalISOString(addLocalOffset(new Date(assignment.created_at))))}
+          </span>
         </div>
         <div className="flex items-center space-x-2">
           {
@@ -33,8 +35,12 @@ const StudentAssignmentItem = ({className, assignment }) => {
           }
         </div>
       </div>
-      <h1 className="text-customGrey text-sm">Tipo: {getAssignmentTypeName(assignment.assignment_type)}</h1>
-      <h1 className="text-customGrey text-sm">Fecha de entrega: {formatDateString(assignment.delivery_date)}</h1>
+      <h1 className="text-customGrey text-sm">
+        Tipo: {getAssignmentTypeName(assignment.assignment_type)}
+      </h1>
+      <h1 className="text-customGrey text-sm">
+        Fecha de entrega: {formatDateString(assignment.delivery_date)}
+      </h1>
       <h1 className="text-customGrey text-sm">
         Calificación: {assignment.scores.length === 0 ? 'No calificado' : assignment.scores[0].score}
       </h1>

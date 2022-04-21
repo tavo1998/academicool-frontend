@@ -1,5 +1,5 @@
 import { useState } from  "react"
-import { getLocalDate, formatDateYMD } from "../../lib/calendar"
+import { formatDateString, getLocalISOString } from "../../lib/calendar"
 import useStore from "../../store"
 import useSWR from "swr"
 import fetcher from "../../services/fetcher"
@@ -10,13 +10,13 @@ import StudentAssistanceStatus from "./StudentAssistanceStatus"
 const StudentAssistanceTab = () => {
   const student = useStore(state => state.studentSelected)
   const subject = useStore(state => state.sectionSelected.data)
-  const [selectedDate, setSelectedDate] = useState(getLocalDate())
+  const [selectedDate, setSelectedDate] = useState(new Date())
 
   const { 
     data, 
     error 
   } = useSWR(
-    `/api/v1/students/${student.id}/assistances?subject=${subject.id}&date=${formatDateYMD(selectedDate)}`,
+    `/api/v1/students/${student.id}/assistances?subject=${subject.id}&date=${formatDateString(getLocalISOString(selectedDate))}`,
     fetcher
   )
 

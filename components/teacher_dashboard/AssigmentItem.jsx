@@ -2,7 +2,7 @@ import { useState  } from 'react';
 import { MdModeEdit, MdDelete, MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md"
 import { EDIT_ASSIGNMENT, EDIT_ASSIGNMENT_SCORE, QUALIFY_ASSIGNMENT } from '../../config/common';
 import { getAssignmentTypeName } from './../../config/teacher'
-import { formatDateString } from '../../lib/calendar';
+import { addLocalOffset, formatDateString, getLocalISOString } from '../../lib/calendar';
 import useStore from '../../store';
 import AccentButton from '../common/AccentButton';
 
@@ -36,7 +36,9 @@ const AssigmentItem = ({ className, assignment, handleDelete }) => {
           <h1 className="text-customGrey text-sm font-semibold lg:text-base">
             {assignment.title}
           </h1>
-          <span className="text-customGrey text-xs lg:text-base font-normal">{formatDateString(assignment.created_at)}</span>
+          <span className="text-customGrey text-xs lg:text-base font-normal">
+            {formatDateString(getLocalISOString(addLocalOffset(new Date(assignment.created_at))))}
+          </span>
         </div>
         <div className="flex items-start space-x-2">
           <button onClick={handleEdit}>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { ASSISTANCE_TAB } from "../../config/common"
-import { formatDateYMD, getLocalDate } from "../../lib/calendar"
+import { getLocalISOString, formatDateString } from "../../lib/calendar"
 import { useForm } from "react-hook-form"
 import useSWR from "swr"
 import fetcher from "../../services/fetcher"
@@ -35,6 +35,7 @@ const QualifyAssistance = ({ isEdit }) => {
   const onSubmit = (data) => {
     const body = {
       description: data.description,
+      date: getLocalISOString(new Date()),
       assistances: Object.values(assistances)
     }
     sendMutation(body)
@@ -101,7 +102,7 @@ const QualifyAssistance = ({ isEdit }) => {
   return (
     <div>
       <h1 className="text-customGrey font-semibold">
-        Calificar Asistencia - {formatDateYMD(getLocalDate())}
+        Calificar Asistencia - {formatDateString(getLocalISOString(new Date()))}
       </h1>
       <form className="mt-2" onSubmit={handleSubmit(onSubmit)}>
         <TextAreaField
