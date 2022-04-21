@@ -8,7 +8,7 @@ const AttendantProfile = () => {
   const studentSelected = useStore(state => state.studentSelected)
 
   return (
-    <div className="p-4 h-screen">
+    <div className="p-4 h-screen overflow-hidden overflow-y-auto">
       <SectionHeader
         title="Perfil" 
       />

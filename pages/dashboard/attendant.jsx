@@ -82,7 +82,7 @@ const AttendantDashboard = () => {
 
   
   return (
-    <div className="lg:flex h-screen overflow-hidden overflow-y-auto">
+    <div className="lg:flex">
       <SideBar sections={createAttendantSideBarOptions(data.data)} />
       <div className="flex-1">
         {renderSection()}

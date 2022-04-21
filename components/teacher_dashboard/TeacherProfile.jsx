@@ -6,7 +6,7 @@ const TeacherProfile = () => {
   const user = useUser()
 
   return (
-    <div className="p-4">
+    <div className="p-4 h-screen overflow-hidden overflow-y-auto">
       <SectionHeader
         title="Perfil" 
       />
