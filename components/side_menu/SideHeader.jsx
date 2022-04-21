@@ -3,7 +3,7 @@ import { useUser } from "./../../context/userContext";
 import { getUserRoleName } from "./../../lib/userRole"
 import useStore from "../../store";
 
-const SideHeader = ({ name, description, handleOpen }) => {
+const SideHeader = () => {
   const user = useUser();
   const setIsSideBarOpen = useStore(state => state.setIsSideBarOpen)
   const student = useStore(state => state.studentSelected)
@@ -21,7 +21,9 @@ const SideHeader = ({ name, description, handleOpen }) => {
             `${user.first_name} ${user.last_name}`
           }
         </h1>
-        <h1 className="text-white text-sm font-light text-opacity-80 lg:text-base">{getUserRoleName(user.role)}</h1>
+        <h1 className="text-white text-sm font-light text-opacity-80 lg:text-base">
+          {getUserRoleName(user.role)}
+        </h1>
       </div>
     </div>
   )

@@ -32,11 +32,11 @@ const AssigmentItem = ({ className, assignment, handleDelete }) => {
       className={`${className} bg-primaryColor bg-opacity-10 p-2 lg:p-4 rounded-sm cursor-pointer lg:cursor-default`}
     >
       <div className="flex text-customGrey justify-between items-start">
-        <div className="lg:flex items-center lg:space-x-2">
+        <div className='mb-2'>
           <h1 className="text-customGrey text-sm font-semibold lg:text-base">
             {assignment.title}
           </h1>
-          <span className="text-customGrey text-xs lg:text-base font-normal">
+          <span className="text-customGrey text-sm font-normal">
             {formatDateString(getLocalISOString(addLocalOffset(new Date(assignment.created_at))))}
           </span>
         </div>

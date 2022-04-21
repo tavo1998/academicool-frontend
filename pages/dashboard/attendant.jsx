@@ -79,6 +79,7 @@ const AttendantDashboard = () => {
         return <AssistanceStatistics />
     }
   }
+
   
   return (
     <div className="lg:flex">
