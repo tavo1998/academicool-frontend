@@ -8,7 +8,7 @@ const SideBar = ({ sections }) => {
   const isSideBarOpen = useStore(state => state.isSideBarOpen)
 
   return (
-    <div className={`transition-all duration-75 ease-linear sticky lg:relative top-0 left-0 h-screen overflow-y-auto ${isSideBarOpen ? 'w-3/4 p-4' : 'w-0'} lg:p-4 lg:w-1/5 bg-primaryColor overflow-hidden`}>
+    <div className={`transition-all duration-75 ease-linear fixed top-0 left-0 lg:relative h-screen overflow-y-auto ${isSideBarOpen ? 'w-3/4 p-4' : 'w-0'} lg:p-4 lg:w-1/5 bg-primaryColor overflow-hidden`}>
       <SideHeader/>
       <GradeDirectorHeader/>
       <div className="mt-4">
