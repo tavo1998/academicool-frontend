@@ -1,6 +1,6 @@
 import { MdModeEdit, MdDelete } from "react-icons/md"
 import { EDIT_NOTICE } from "../../config/common"
-import { formatDateString } from "../../lib/calendar"
+import { formatDateString, getLocalISOString, addLocalOffset } from "../../lib/calendar"
 import useStore from "../../store"
 
 
@@ -26,7 +26,9 @@ const NoticeItem = ({ className, notice, handleDelete }) => {
           </button>
         </div>
       </div>
-      <h1 className="text-customGrey text-xs lg:text-sm">{formatDateString(notice.created_at)}</h1>
+      <h1 className="text-customGrey text-xs lg:text-sm">
+        {formatDateString(getLocalISOString(addLocalOffset(new Date(notice.created_at))))}
+      </h1>
       <p
         className="text-customGrey text-sm mt-2">
         {notice.description}

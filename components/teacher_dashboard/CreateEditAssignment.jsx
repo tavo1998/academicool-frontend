@@ -1,6 +1,6 @@
 import { ASSIGNMENT_TAB } from "../../config/common"
-import { ASSIGNMENT_TYPES, HOMEWORK } from "../../config/teacher"
-import { formatDateYMD, getLocalDate } from "../../lib/calendar"
+import { ASSIGNMENT_TYPES } from "../../config/teacher"
+import { formatDateString, getLocalISOString } from "../../lib/calendar"
 import { useForm } from "react-hook-form"
 import { useEffect } from "react"
 import TextInputField from "../common/TextInputField"
@@ -76,7 +76,7 @@ const CreateEditAssignment = ({ isEdit }) => {
       <DateInputField 
         title="Fecha de entrega"
         error={errors.delivery_date?.message}
-        min={formatDateYMD(getLocalDate())}
+        min={formatDateString(getLocalISOString(new Date()))}
         disabled={isSubmitting}
         {...register('delivery_date', {
           required: {

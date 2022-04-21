@@ -14,7 +14,6 @@ const CreateEditNotice = ({ isEdit }) => {
   const subject = useStore(state => state.sectionSelected.data)
   const noticeToUpdate = useStore(state => state.tabSelectedData)
   const setTabSelected = useStore(state => state.setTabSelected)
-  const setTabSelectedData = useStore(state => state.setTabSelectedData)
 
   const { 
     requestOk, 
