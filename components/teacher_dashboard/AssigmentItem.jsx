@@ -32,15 +32,15 @@ const AssigmentItem = ({ className, assignment, handleDelete }) => {
       className={`${className} bg-primaryColor bg-opacity-10 p-2 lg:p-4 rounded-sm cursor-pointer lg:cursor-default`}
     >
       <div className="flex text-customGrey justify-between items-start">
-        <div className='mb-2'>
-          <h1 className="text-customGrey text-sm font-semibold lg:text-base">
+        <div className='w-4/5 mb-2 pr-2'>
+          <h1 className="text-customGrey text-sm font-semibold lg:text-base break-words">
             {assignment.title}
           </h1>
           <span className="text-customGrey text-sm font-normal">
             {formatDateString(getLocalISOString(addLocalOffset(new Date(assignment.created_at))))}
           </span>
         </div>
-        <div className="flex items-start space-x-2">
+        <div className="w-1/5 flex justify-end items-start space-x-2">
           <button onClick={handleEdit}>
             <MdModeEdit className="text-customGrey" />
           </button>
@@ -61,7 +61,7 @@ const AssigmentItem = ({ className, assignment, handleDelete }) => {
       <h1 className="text-customGrey text-sm">Fecha de entrega: {formatDateString(assignment.delivery_date)}</h1>
       <h1 className="text-customGrey text-sm">Calificación: {assignment.is_qualified ? 'Calificado' : 'No calificado'} </h1>
       <p 
-        className={`${itemExpanded ? 'h-full mt-2' : 'h-0 overflow-hidden'} text-sm text-customGrey lg:h-full lg:mt-2`}>
+        className={`${itemExpanded ? 'h-full mt-2' : 'h-0 overflow-hidden'} text-sm text-customGrey lg:h-full lg:mt-2 break-words`}>
         { assignment.description }
       </p>
       <AccentButton

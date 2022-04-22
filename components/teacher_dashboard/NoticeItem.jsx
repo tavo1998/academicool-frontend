@@ -16,8 +16,8 @@ const NoticeItem = ({ className, notice, handleDelete }) => {
   return (
     <div className={`${className} bg-primaryColor bg-opacity-10 p-2 lg:p-4 rounded-sm`}>
       <div className="flex justify-between items-start">
-        <h1 className="text-customGrey text-sm lg:text-base font-semibold">{notice.title}</h1>
-        <div className="flex items-start space-x-2">
+        <h1 className="text-customGrey text-sm lg:text-base font-semibold w-4/5 break-words">{notice.title}</h1>
+        <div className="flex justify-end items-start space-x-2 w-1/5">
           <button onClick={handleEdit}>
             <MdModeEdit className="h-4 w-4 text-customGrey" />
           </button>
@@ -30,7 +30,7 @@ const NoticeItem = ({ className, notice, handleDelete }) => {
         {formatDateString(getLocalISOString(addLocalOffset(new Date(notice.created_at))))}
       </h1>
       <p
-        className="text-customGrey text-sm mt-2">
+        className="text-customGrey text-sm mt-2 break-words">
         {notice.description}
       </p>
     </div>
