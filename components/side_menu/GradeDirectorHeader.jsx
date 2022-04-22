@@ -7,7 +7,7 @@ const GradeDirectorHeader = () => {
 
   return (
     <div>
-      <h1 className="mt-2 text-center text-white font-semibold lg:text-xl">
+      <h1 className="mt-2 text-center text-white font-semibold lg:text-xl w-full break-words">
         {
           grade.director ?
           `${grade.director.first_name} ${grade.director.last_name}` :
