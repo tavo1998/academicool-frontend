@@ -76,7 +76,7 @@ const AttendantDashboard = () => {
       case ASSIGNMENTS_STATISTICS:
         return <AssignmentStatistics subjects={data.data} />
       case ASSISTANCES_STATISTICS:
-        return <AssistanceStatistics />
+        return <AssistanceStatistics subjects={data.data} />
     }
   }
 
