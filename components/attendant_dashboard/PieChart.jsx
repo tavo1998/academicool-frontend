@@ -12,7 +12,12 @@ const PieChart = ({ attended, notAttended }) => {
         <Pie
           options={{
             responsive: true,
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                onClick: null
+              }
+            }
           }}
           data={{
             datasets: [
