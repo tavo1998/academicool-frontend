@@ -74,7 +74,7 @@ const AttendantDashboard = () => {
       case PROFILE_OPTION:
         return <AttendantProfile />
       case ASSIGNMENTS_STATISTICS:
-        return <AssignmentStatistics />
+        return <AssignmentStatistics subjects={data.data} />
       case ASSISTANCES_STATISTICS:
         return <AssistanceStatistics />
     }

@@ -1,14 +1,23 @@
 import SectionHeader from "../common/SectionHeader"
+import AssignmentScoreAverage from "./AssignmentScoreAverage"
 
-const AssignmentStatistics = () => {
+const AssignmentStatistics = ({ subjects }) => {
   return (
-    <div className="flex flex-col p-4 h-screen">
+    <div className="p-4 h-screen overflow-hidden overflow-y-auto">
       <SectionHeader
-        title="Estadísticas de asignaciones" 
+        title="Promedio de calificaciones" 
       />
-      <h1 className="flex-1 flex text-customGrey font-semibold justify-center items-center">
-        Sección en construcción
-      </h1>
+      <div className="lg:grid grid-cols-4 gap-4">
+        {
+          subjects.map(subject => (
+            <AssignmentScoreAverage
+              key={subject.id}
+              className="mt-2"
+              subject={subject}
+            />
+          ))
+        }
+      </div>
     </div>
   )
 }
