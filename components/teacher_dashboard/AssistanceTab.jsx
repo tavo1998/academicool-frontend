@@ -42,7 +42,7 @@ const AssistanceTab = () => {
   return (
     <div>
       <h1 className='text-base text-customGrey font-semibold hidden lg:block'>Asistencias</h1>
-      <div className="mx-auto lg:w-3/5">
+      <div className="mx-auto lg:w-4/5">
         <Calendar handleDate={handleDate} />
       </div>
       { render() }

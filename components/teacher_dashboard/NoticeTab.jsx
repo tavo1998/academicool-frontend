@@ -99,7 +99,7 @@ const NoticeTab = () => {
     <div>
       <div className="lg:flex items-center justify-between">
         <h1 className='text-base text-customGrey font-semibold hidden lg:block'>Comunicados</h1>
-        <div className="flex-1 lg:flex items-center justify-end">
+        <div className="flex-1 lg:flex justify-end">
           <SearchInput
             onChange={handleSearchChange}
             className="lg:w-3/5"
