@@ -1,4 +1,4 @@
-import { PROFILE_OPTION, SIGN_OUT_OPTION, SUBJECT_OPTION } from "./common"
+import { PROFILE_OPTION, SIGN_OUT_OPTION, SUBJECT_OPTION, SUPPORT_OPTION } from "./common"
 
 export const EXAM = 'EXAM'
 export const HOMEWORK = 'HOMEWORK'
@@ -47,6 +47,11 @@ export const createTeacherSideBarOptions = (subjects) => {
           id: PROFILE_OPTION,
           name: "Cuenta",
           sectionType: PROFILE_OPTION
+        },
+        {
+          id: SUPPORT_OPTION,
+          name: "Soporte",
+          sectionType: SUPPORT_OPTION
         },
         {
           id: SIGN_OUT_OPTION,

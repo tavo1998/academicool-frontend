@@ -1,5 +1,5 @@
 import { useEffect } from "react"
-import { ASSIGNMENT_TAB, PROFILE_OPTION, SIGN_OUT_OPTION, SUBJECT_OPTION } from "../../config/common"
+import { ASSIGNMENT_TAB, PROFILE_OPTION, SIGN_OUT_OPTION, SUBJECT_OPTION, SUPPORT_OPTION } from "../../config/common"
 import { getUserAuthenticated } from "../../services/user"
 import { getRoleRedirectUrl } from "../../lib/redirect"
 import { ATTENDANT_ROLE } from "../../config/common"
@@ -19,6 +19,7 @@ import PageError from "../../components/common/PageError"
 import AttendantProfile from "../../components/common/AttendantProfile"
 import AssignmentStatistics from "../../components/attendant_dashboard/AssignmentStatistics"
 import AssistanceStatistics from "../../components/attendant_dashboard/AssistanceStatistics"
+import SupportSection from "../../components/common/SupportSection"
 
 const AttendantDashboard = () => {
   const router = useRouter()
@@ -77,6 +78,8 @@ const AttendantDashboard = () => {
         return <AssignmentStatistics subjects={data.data} />
       case ASSISTANCES_STATISTICS:
         return <AssistanceStatistics subjects={data.data} />
+      case SUPPORT_OPTION:
+        return <SupportSection />
     }
   }
 
