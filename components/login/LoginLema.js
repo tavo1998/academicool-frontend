@@ -1,7 +1,7 @@
 const LoginLema = () => {
   return (
     <p className="text-primaryColor text-center text-md lg:text-2xl">
-      Modelo integral de seguimiento académico
+      Modelo Integral De Seguimiento Académico
     </p>
   )
 }

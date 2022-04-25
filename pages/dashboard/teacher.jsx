@@ -5,6 +5,7 @@ import { getRoleRedirectUrl } from "../../lib/redirect"
 import { createTeacherSideBarOptions } from "../../config/teacher"
 import { useMediaQuery } from "react-responsive"
 import { useRouter } from "next/router"
+import Head from "next/head"
 import SideBar from "../../components/side_menu/SideBar"
 import useSWR from "swr"
 import fetcher from "./../../services/fetcher"
@@ -56,12 +57,20 @@ const TeacherDashboard = () => {
   if(!data) return <></>
 
   return (
-    <div className="lg:flex relative">
-      <SideBar sections={createTeacherSideBarOptions(data.data)} />
-      <div className="flex-1">
-        { renderSection() }
+    <>
+      <Head>
+        <title>Academicool - Profesor</title>
+        <meta name="description" content="Modelo Integral De Seguimiento Académico" />
+        <meta name="keywords" content="Academicool, educación, estudiante, profesor, padres" />
+        <meta name="author" content="Gustavo Adolfo Pinto Zapata" />
+      </Head>
+      <div className="lg:flex relative">
+        <SideBar sections={createTeacherSideBarOptions(data.data)} />
+        <div className="flex-1">
+          { renderSection() }
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

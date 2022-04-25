@@ -6,6 +6,7 @@ import { ATTENDANT_ROLE } from "../../config/common"
 import { ASSIGNMENTS_STATISTICS, ASSISTANCES_STATISTICS, CHANGE_STUDENT, createAttendantSideBarOptions } from "../../config/attendant"
 import { useMediaQuery } from "react-responsive"
 import { useRouter } from "next/router"
+import Head from "next/head"
 import SelectStudent from "../../components/attendant_dashboard/SelectStudent"
 import NoSectionSelected from "../../components/common/NoSectionSelected"
 import ErrorComponent from "../../components/common/ErrorComponent"
@@ -85,12 +86,20 @@ const AttendantDashboard = () => {
 
   
   return (
-    <div className="lg:flex">
-      <SideBar sections={createAttendantSideBarOptions(data.data)} />
-      <div className="flex-1">
-        {renderSection()}
+    <>
+      <Head>
+        <title>Academicool - Acudiente</title>
+        <meta name="description" content="Modelo Integral De Seguimiento Académico" />
+        <meta name="keywords" content="Academicool, educación, estudiante, profesor, padres" />
+        <meta name="author" content="Gustavo Adolfo Pinto Zapata" />
+      </Head>
+      <div className="lg:flex">
+        <SideBar sections={createAttendantSideBarOptions(data.data)} />
+        <div className="flex-1">
+          {renderSection()}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
