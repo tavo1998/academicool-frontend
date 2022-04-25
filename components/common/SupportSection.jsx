@@ -39,7 +39,7 @@ const SupportSection = () => {
               ¿ Tienes problemas con la aplicación o encontraste algún error ?
             </h1>
             <h1 className="text-center text-customGrey font-semibold break-words">
-              ! Envía un reporte ¡
+              ¡ Envía un reporte !
             </h1>
             <form
               onSubmit={handleSubmit(onSubmit)}
