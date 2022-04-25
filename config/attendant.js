@@ -1,4 +1,4 @@
-import { SIGN_OUT_OPTION, PROFILE_OPTION, SUBJECT_OPTION } from "./common"
+import { SIGN_OUT_OPTION, PROFILE_OPTION, SUBJECT_OPTION, SUPPORT_OPTION } from "./common"
 
 export const ASSIGNMENTS_STATISTICS = 'ASSIGNMENTS_STATISTICS'
 export const ASSISTANCES_STATISTICS = 'ASSISTANCES_STATISTICS'
@@ -42,6 +42,11 @@ export const createAttendantSideBarOptions = (subjects) => {
           id: CHANGE_STUDENT,
           name: "Cambiar de estudiante",
           sectionType: CHANGE_STUDENT
+        },
+        {
+          id: SUPPORT_OPTION,
+          name: "Soporte",
+          sectionType: SUPPORT_OPTION
         },
         {
           id: SIGN_OUT_OPTION,
