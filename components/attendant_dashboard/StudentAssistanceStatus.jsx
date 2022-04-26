@@ -8,10 +8,10 @@ const StudentAssistanceStatus = ({ assistance }) => {
       <h1 className="text-customGrey font-semibold mb-2">{studentSelected.first_name} {studentSelected.last_name}</h1>
       {
         assistance.attended ? 
-          <h1 className="bg-green-600 text-white p-2 rounded-full">
+          <h1 className="bg-green-600 text-white p-2 rounded-full text-center">
             Asistió el día de hoy
           </h1> :
-          <h1 className="bg-red-600 text-white p-2 rounded-full">
+          <h1 className="bg-red-600 text-white p-2 rounded-full text-center">
             No asistió a la clase el día de hoy
           </h1>
       }
