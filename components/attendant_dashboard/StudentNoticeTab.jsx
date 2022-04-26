@@ -6,6 +6,7 @@ import fetcher from '../../services/fetcher'
 import PaginationButtons from "../common/PaginationButtons"
 import SearchInput from '../common/SearchInput'
 import StudentNoticeItem from './StudentNoticeItem'
+import ErrorComponent from './../common/ErrorComponent'
 
 const StudentNoticeTab = () => {
   const [pagination, setPagination] = useState(0)

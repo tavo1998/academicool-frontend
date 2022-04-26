@@ -28,7 +28,9 @@ const StudentAssistanceTab = () => {
     if(error) {
       return (
         <ErrorComponent error={error}>
-          <h1 className="text-customGrey text-center mt-4">Ocurrió un error al traer las asistencias, intentalo más tarde</h1>
+          <h1 className="text-customGrey text-center mt-4">
+            Ocurrió un error al traer las asistencias, intentalo más tarde
+          </h1>
         </ErrorComponent>
       )
     }

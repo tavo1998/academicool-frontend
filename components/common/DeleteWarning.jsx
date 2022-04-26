@@ -6,7 +6,7 @@ const DeleteWarning = ({ handleAccept, handleCancel, info}) => {
       className={`flex justify-center items-center fixed lg:absolute top-0 left-0 w-full h-screen bg-black bg-opacity-20 p-4`}>
       <div className='flex flex-col items-center bg-white p-4 rounded-md w-full lg:w-auto'>
         <h1 className='text-red-600 font-semibold'>¡Advertencia!</h1>
-        <h1 className='text-customGrey font-semibold text-center'>¿ Estás seguro que deseas eliminar este item ?</h1>
+        <h1 className='text-customGrey font-semibold text-center'>¿ Estás seguro que deseas eliminar este ítem ?</h1>
         <h1 className='text-customGrey font-semibold text-center w-full break-words'>{info}</h1>
         <div className='flex space-x-2 mt-2'>
           <AccentButton
