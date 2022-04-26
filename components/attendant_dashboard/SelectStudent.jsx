@@ -42,10 +42,10 @@ const SelectStudent = () => {
         <meta name="author" content="Gustavo Adolfo Pinto Zapata" />
       </Head>    
       <div className="lg:flex">
-        <div className="flex-1 relative bg-primaryColor hidden lg:block">
+        <div className="flex-1 relative bg-primaryColor hidden lg:block h-screen">
           <Image src={loginPic} layout="fill" />
         </div>
-        <div className="flex-1 h-screen flex flex-col justify-center items-center p-4">
+        <div className="flex-1 h-screen flex flex-col justify-center items-center p-4 overflow-hidden overflow-y-auto">
           <h1 className="text-primaryColor text-2xl lg:text-4xl font-semibold text-center mb-4">
             Bienvenido a Academicool
           </h1>
