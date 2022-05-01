@@ -49,7 +49,7 @@ const CreateEditAssignment = ({ isEdit }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
-      <h1 className="text-customGrey mb-2 font-semibold">{isEdit ? "Editar Asignación" : "Crear Asignacion"}</h1>
+      <h1 className="text-customGrey mb-2 font-semibold">{isEdit ? "Editar Asignación" : "Crear Asignación"}</h1>
       <TextInputField
         maxLength={100}
         title="Título"

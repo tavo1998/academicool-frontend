@@ -5,13 +5,17 @@ export const HOMEWORK = 'HOMEWORK'
 export const WORKSHOP = 'WORKSHOP'
 export const LECTURE = 'LECTURE'
 export const PARTICIPATION = 'PARTICIPATION'
+export const QUIZ = 'QUIZ'
+export const PROJECT = 'PROJECT'
 
 export const ASSIGNMENT_TYPES = [
   HOMEWORK,
   WORKSHOP,
   LECTURE,
   EXAM,
-  PARTICIPATION
+  PARTICIPATION,
+  QUIZ,
+  PROJECT
 ]
 
 export const getAssignmentTypeName = (assignmentType) => {
@@ -26,6 +30,10 @@ export const getAssignmentTypeName = (assignmentType) => {
       return "Exposición"
     case PARTICIPATION:
       return "Participación en clase"
+    case QUIZ:
+      return "Quiz"
+    case PROJECT:
+      return "Proyecto"
   }
 }
 

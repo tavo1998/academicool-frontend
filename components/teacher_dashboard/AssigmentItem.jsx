@@ -67,7 +67,7 @@ const AssigmentItem = ({ className, assignment, handleDelete }) => {
       <AccentButton
         onClick={handleQualification}
         className="w-auto px-2 py-1 mt-2"
-        text={assignment.is_qualified ? "Ver calificacion": "Calificar"}
+        text={assignment.is_qualified ? "ver calificaciones": "calificar"}
         />
     </div>
   )
