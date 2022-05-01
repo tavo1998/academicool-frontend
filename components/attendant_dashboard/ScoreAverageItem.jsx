@@ -8,7 +8,7 @@ const ScoreAverageItem = ({ assignmentType, score }) => {
         {getAssignmentTypeName(assignmentType)}
       </h1>
       <h1 className={`${score ? getScoreBgColor(parseFloat(score)) : 'bg-customGrey'} text-white text-sm px-2 rounded-full`}>
-        {score ? parseFloat(score).toFixed(2) : 'SC'}
+        {score ? parseFloat(score).toFixed(1) : 'SC'}
       </h1>
     </div>
   )
