@@ -47,6 +47,7 @@ const CreateEditAssignment = ({ isEdit }) => {
     if(requestOk) setTabSelected(ASSIGNMENT_TAB)
   }, [requestOk])
 
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
       <h1 className="text-customGrey mb-2 font-semibold">{isEdit ? "Editar Asignación" : "Crear Asignación"}</h1>
@@ -76,7 +77,7 @@ const CreateEditAssignment = ({ isEdit }) => {
       <DateInputField 
         title="Fecha de entrega"
         error={errors.delivery_date?.message}
-        min={formatDateString(getLocalISOString(new Date()))}
+        min={isEdit ? assignmentToUpdate.delivery_date : formatDateString(getLocalISOString(new Date()))}
         disabled={isSubmitting}
         {...register('delivery_date', {
           required: {
