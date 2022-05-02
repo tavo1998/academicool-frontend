@@ -30,10 +30,6 @@ const TeacherProfile = () => {
             title="Número de teléfono"
             value={user.phone_number || 'No especificado'} 
           />
-          <ProfileField
-            title="Dirección"
-            value={user.address || 'No especificado'} 
-          />
         </div>
       </div>
     </div>

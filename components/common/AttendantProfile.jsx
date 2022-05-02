@@ -33,10 +33,6 @@ const AttendantProfile = () => {
               title="Número de teléfono"
               value={user.phone_number || 'No especificado'} 
             />
-            <ProfileField
-              title="Dirección"
-              value={user.address || 'No especificado'} 
-            />
           </div>
         </div>
         <div className="flex flex-col items-center p-4 flex-1">
@@ -58,10 +54,6 @@ const AttendantProfile = () => {
             <ProfileField
               title="Número de teléfono"
               value={studentSelected.phone_number || 'No especificado'} 
-            />
-            <ProfileField
-              title="Dirección"
-              value={studentSelected.address || 'No especificado'} 
             />
           </div>
         </div>
