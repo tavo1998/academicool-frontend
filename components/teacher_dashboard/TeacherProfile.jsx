@@ -12,7 +12,6 @@ const TeacherProfile = () => {
       />
       <div className="flex flex-col items-center p-4 lg:w-1/2 lg:m-auto">
         <h1 className="text-customGrey font-semibold mb-2">Información del profesor</h1>
-        <div className="w-16 h-16 rounded-full bg-customGrey bg-opacity-50" />
         <div className="space-y-3 w-full">
           <ProfileField
             title="Nombre"

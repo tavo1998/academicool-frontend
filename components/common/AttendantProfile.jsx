@@ -15,7 +15,6 @@ const AttendantProfile = () => {
       <div className="flex flex-col lg:flex-row flex-1">
         <div className="flex flex-col items-center p-4 flex-1">
           <h1 className="text-customGrey font-semibold mb-2">Información del acudiente</h1>
-          <div className="w-16 h-16 rounded-full bg-customGrey bg-opacity-50" />
           <div className="space-y-3 w-full">
             <ProfileField
               title="Nombre"
@@ -37,7 +36,6 @@ const AttendantProfile = () => {
         </div>
         <div className="flex flex-col items-center p-4 flex-1">
           <h1 className="text-customGrey font-semibold mb-2">Información del estudiante</h1>
-          <div className="w-16 h-16 rounded-full bg-customGrey bg-opacity-50" />
           <div className="space-y-3 w-full">
             <ProfileField
               title="Nombre"
@@ -59,7 +57,6 @@ const AttendantProfile = () => {
         </div>
         <div className="flex flex-col items-center p-4 flex-1">
           <h1 className="text-customGrey font-semibold mb-2">Información de la institución</h1>
-          <div className="w-16 h-16 rounded-full bg-customGrey bg-opacity-50" />
           <div className="space-y-3 w-full">
             <ProfileField
               title="Nombre"
