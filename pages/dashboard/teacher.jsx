@@ -30,8 +30,6 @@ const TeacherDashboard = () => {
     if(sectionSelected.id === SIGN_OUT_OPTION) router.push(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/v1/auth/google/sign-out`)
   }, [sectionSelected.id])
 
-  console.log(process.env.NEXT_PUBLIC_SERVER_URL)
-
   const renderSection = () => {
     switch(sectionSelected.id){
       case null:
