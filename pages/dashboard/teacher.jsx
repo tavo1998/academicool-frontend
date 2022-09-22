@@ -77,7 +77,7 @@ const TeacherDashboard = () => {
         />
         <meta name="author" content="Gustavo Adolfo Pinto Zapata" />
       </Head>
-      <div className="relative overflow-hidden lg:flex">
+      <div className="relative h-screen overflow-hidden lg:flex">
         <SideBar sections={createTeacherSideBarOptions(data.data)} />
         <div className="flex-1">{renderSection()}</div>
       </div>
