@@ -112,7 +112,7 @@ const QualifyAssistance = ({ isEdit }) => {
       <h1 className="font-semibold text-customGrey">
         Calificar Asistencia - {formatDateString(getLocalISOString(new Date()))}
       </h1>
-      <form className="mt-2 h-full" onSubmit={handleSubmit(onSubmit)}>
+      <form className="mt-2" onSubmit={handleSubmit(onSubmit)}>
         <TextAreaField
           title="Descripción de lo visto en clase"
           placeholder="Escribe una descripción"
